@@ -1,6 +1,4 @@
-<div class="wrapper">
 
-    <navbar></navbar>
     <!-- <sidebar></sidebar>
     -->
     <!-- Content Wrapper. Contains page content -->
@@ -27,8 +25,14 @@
                                 Autor
                                 <input class="form-control" ng-model="autor">
                                 
-                                <button class="btn btn-success" ng-click="guardarLibro()">Guardar</button>
+                                <button class="btn btn-success" ng-click="guardarLibro()" ng-hide="insertando" ng-disabled="insertando">Guardar</button>
                             </div>
+                                
+                                <ul>
+                                    <li ng-repeat="book in books">{{book.title}}</li>
+                                </ul>
+                                
+                                
                             </div>
                         </div>
                     </div>
@@ -36,5 +40,3 @@
             </section>
         </section>
     </div><!-- /.content-wrapper -->
-</div>
-<footer></footer>

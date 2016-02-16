@@ -3,11 +3,16 @@
 app.controller('MainController', MainController);
 
 function MainController($scope, $http) {
-    $scope.hola = "paco";
-
+    $scope.hola = "pepe";
+    
+    $http.get('api/books').success(function(books){
+        $scope.books = books;
+    });
+    
     $scope.guardarLibro = guardaLibros;
 
     function guardaLibros() {
+        $scope.insertando = true;
         var titulo = $scope.titulo;
         var autor = $scope.autor;
 
@@ -17,8 +22,10 @@ function MainController($scope, $http) {
         };
         console.log(libro);
         
-        $http.post('api/books', libro).success(function(){
+        $http.post('api/books', libro).success(function(book){
             console.log("Win");
+            $scope.books.push(book);
+            $scope.insertando = false;
         });
     };
 
