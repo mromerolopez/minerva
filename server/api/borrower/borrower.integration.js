@@ -3,40 +3,40 @@
 var app = require('../..');
 import request from 'supertest';
 
-var newThing;
+var newBorrower;
 
-describe('Thing API:', function() {
+describe('Borrower API:', function() {
 
-  describe('GET /api/things', function() {
-    var things;
+  describe('GET /api/borrowers', function() {
+    var borrowers;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/things')
+        .get('/api/borrowers')
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          things = res.body;
+          borrowers = res.body;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      things.should.be.instanceOf(Array);
+      borrowers.should.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/things', function() {
+  describe('POST /api/borrowers', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/things')
+        .post('/api/borrowers')
         .send({
-          name: 'New Thing',
-          info: 'This is the brand new thing!!!'
+          name: 'New Borrower',
+          info: 'This is the brand new borrower!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -44,55 +44,55 @@ describe('Thing API:', function() {
           if (err) {
             return done(err);
           }
-          newThing = res.body;
+          newBorrower = res.body;
           done();
         });
     });
 
-    it('should respond with the newly created thing', function() {
-      newThing.name.should.equal('New Thing');
-      newThing.info.should.equal('This is the brand new thing!!!');
+    it('should respond with the newly created borrower', function() {
+      newBorrower.name.should.equal('New Borrower');
+      newBorrower.info.should.equal('This is the brand new borrower!!!');
     });
 
   });
 
-  describe('GET /api/things/:id', function() {
-    var thing;
+  describe('GET /api/borrowers/:id', function() {
+    var borrower;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/things/' + newThing._id)
+        .get('/api/borrowers/' + newBorrower._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          thing = res.body;
+          borrower = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      thing = {};
+      borrower = {};
     });
 
-    it('should respond with the requested thing', function() {
-      thing.name.should.equal('New Thing');
-      thing.info.should.equal('This is the brand new thing!!!');
+    it('should respond with the requested borrower', function() {
+      borrower.name.should.equal('New Borrower');
+      borrower.info.should.equal('This is the brand new borrower!!!');
     });
 
   });
 
-  describe('PUT /api/things/:id', function() {
-    var updatedThing;
+  describe('PUT /api/borrowers/:id', function() {
+    var updatedBorrower;
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/things/' + newThing._id)
+        .put('/api/borrowers/' + newBorrower._id)
         .send({
-          name: 'Updated Thing',
-          info: 'This is the updated thing!!!'
+          name: 'Updated Borrower',
+          info: 'This is the updated borrower!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -100,27 +100,27 @@ describe('Thing API:', function() {
           if (err) {
             return done(err);
           }
-          updatedThing = res.body;
+          updatedBorrower = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      updatedThing = {};
+      updatedBorrower = {};
     });
 
-    it('should respond with the updated thing', function() {
-      updatedThing.name.should.equal('Updated Thing');
-      updatedThing.info.should.equal('This is the updated thing!!!');
+    it('should respond with the updated borrower', function() {
+      updatedBorrower.name.should.equal('Updated Borrower');
+      updatedBorrower.info.should.equal('This is the updated borrower!!!');
     });
 
   });
 
-  describe('DELETE /api/things/:id', function() {
+  describe('DELETE /api/borrowers/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/things/' + newThing._id)
+        .delete('/api/borrowers/' + newBorrower._id)
         .expect(204)
         .end((err, res) => {
           if (err) {
@@ -130,9 +130,9 @@ describe('Thing API:', function() {
         });
     });
 
-    it('should respond with 404 when thing does not exist', function(done) {
+    it('should respond with 404 when borrower does not exist', function(done) {
       request(app)
-        .delete('/api/things/' + newThing._id)
+        .delete('/api/borrowers/' + newBorrower._id)
         .expect(404)
         .end((err, res) => {
           if (err) {
