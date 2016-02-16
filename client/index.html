@@ -33,14 +33,20 @@
     <link rel="stylesheet" href="assets/css/_all-skins.css">
 
   </head>
-  <body ng-app="minervaApp">
+  <body ng-app="minervaApp" class="hold-transition skin-blue sidebar-mini">
     
     <!--[if lt IE 7]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ui-view="" class="hold-transition skin-blue sidebar-mini"></div>
+    <div class="wrapper">
+
+    <navbar></navbar>
+    <div ui-view="" ></div>
+    
+    </div>
+    <footer></footer>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
