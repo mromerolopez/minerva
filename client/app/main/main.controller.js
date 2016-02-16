@@ -3,7 +3,7 @@
 app.controller('MainController', MainController);
 
 function MainController($scope, $http) {
-    $scope.hola = "eli";
+    $scope.hola = "pepe";
 
     $scope.guardarLibro = guardaLibros;
 
