@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('minervaApp', [
+var app = angular.module('minervaApp', [
   'minervaApp.constants',
   'ngCookies',
   'ngResource',
