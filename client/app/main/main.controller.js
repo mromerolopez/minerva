@@ -2,9 +2,13 @@
 
 app.controller('MainController', MainController);
 
-function MainController($scope, $http) {
+function MainController($scope, $http, dataVehicles) {
     $scope.hola = "pepe";
-    
+    dataVehicles.getVehiclesImei(['12421414']).then(function(datos){
+        var datos = datos;
+    }).catch(function(err){
+        console.log(err);
+    });
     $http.get('api/books').success(function(books){
         $scope.books = books;
     });
