@@ -21,16 +21,19 @@
                             </div><!-- /.box-header -->
                             <div class="box-body">
                                 
-                                Contenido
+                              <div class="form-group">
+                                Título
+                                <input class="form-control" ng-model="titulo">
+                                Autor
+                                <input class="form-control" ng-model="autor">
                                 
-                                {{hola}}
+                                <button class="btn btn-success" ng-click="guardarLibro()">Guardar</button>
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            
-           
         </section>
     </div><!-- /.content-wrapper -->
 </div>

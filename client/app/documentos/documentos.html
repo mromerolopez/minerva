@@ -1,0 +1,12 @@
+<div>This is the documentos view.</div>
+
+<ul>
+
+    <li ng-repeat="documento in documentos">
+        {{documento.titulo}} 
+        <button class="btn btn-success" ng-click="verDocumento(documento)">
+            Ver
+        </button>
+    </li>
+
+</ul>
