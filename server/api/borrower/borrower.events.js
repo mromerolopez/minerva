@@ -1,15 +1,15 @@
 /**
- * Thing model events
+ * Borrower model events
  */
 
 'use strict';
 
 import {EventEmitter} from 'events';
-var Thing = require('./thing.model');
-var ThingEvents = new EventEmitter();
+var Borrower = require('./borrower.model');
+var BorrowerEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
-ThingEvents.setMaxListeners(0);
+BorrowerEvents.setMaxListeners(0);
 
 // Model events
 var events = {
@@ -20,14 +20,14 @@ var events = {
 // Register the event emitter to the model events
 for (var e in events) {
   var event = events[e];
-  Thing.schema.post(e, emitEvent(event));
+  Borrower.schema.post(e, emitEvent(event));
 }
 
 function emitEvent(event) {
   return function(doc) {
-    ThingEvents.emit(event + ':' + doc._id, doc);
-    ThingEvents.emit(event, doc);
+    BorrowerEvents.emit(event + ':' + doc._id, doc);
+    BorrowerEvents.emit(event, doc);
   }
 }
 
-export default ThingEvents;
+export default BorrowerEvents;

@@ -6,16 +6,16 @@ var BookSchema = new mongoose.Schema({
     title: String,
     author: String,
     isbn: String,
-    ageRange: String,
+    age_range: String,
     editorial: String,
-    publishYear: Number,
+    publish_year: Number,
     synopsis: String,
     language: String,
     pages: Number,
     rating: Number,
     active: {type: Boolean, default: true},
-    created_At: {type: Date, default: Date.now},
-    updated_At: Date
+    created_at: {type: Date, default: Date.now},
+    updated_at: Date
 });
 
 export default mongoose.model('Book', BookSchema);

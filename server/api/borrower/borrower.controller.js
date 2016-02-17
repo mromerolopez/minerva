@@ -1,16 +1,16 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/things              ->  index
- * POST    /api/things              ->  create
- * GET     /api/things/:id          ->  show
- * PUT     /api/things/:id          ->  update
- * DELETE  /api/things/:id          ->  destroy
+ * GET     /api/borrowers              ->  index
+ * POST    /api/borrowers              ->  create
+ * GET     /api/borrowers/:id          ->  show
+ * PUT     /api/borrowers/:id          ->  update
+ * DELETE  /api/borrowers/:id          ->  destroy
  */
 
 'use strict';
 
 import _ from 'lodash';
-import Thing from './thing.model';
+import Borrower from './borrower.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -59,43 +59,43 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of Things
+// Gets a list of Borrowers
 export function index(req, res) {
-  Thing.findAsync()
+  Borrower.findAsync()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Gets a single Thing from the DB
+// Gets a single Borrower from the DB
 export function show(req, res) {
-  Thing.findByIdAsync(req.params.id)
+  Borrower.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Creates a new Thing in the DB
+// Creates a new Borrower in the DB
 export function create(req, res) {
-  Thing.createAsync(req.body)
+  Borrower.createAsync(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
-// Updates an existing Thing in the DB
+// Updates an existing Borrower in the DB
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Thing.findByIdAsync(req.params.id)
+  Borrower.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Deletes a Thing from the DB
+// Deletes a Borrower from the DB
 export function destroy(req, res) {
-  Thing.findByIdAsync(req.params.id)
+  Borrower.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));

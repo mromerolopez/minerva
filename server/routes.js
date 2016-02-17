@@ -9,8 +9,9 @@ import path from 'path';
 
 export default function(app) {
   // Insert routes below
+  app.use('/copies', require('./api/copy'));
+  app.use('/api/borrowers', require('./api/borrower'));
   app.use('/api/books', require('./api/book'));
-  app.use('/api/things', require('./api/thing'));
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
    .get(errors[404]);
