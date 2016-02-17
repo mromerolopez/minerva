@@ -5,5 +5,8 @@ angular.module('minervaApp')
     templateUrl: 'components/navbar/navbar.html',
     restrict: 'E',
     controller: 'NavbarController',
-    controllerAs: 'nav'
+    controllerAs: 'nav',
+    scope: {
+      forms: '=info'
+    }
   }));
