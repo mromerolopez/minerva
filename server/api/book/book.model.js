@@ -3,11 +3,12 @@
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 
 var BookSchema = new mongoose.Schema({
-    title: String,
-    author: String,
-    isbn: String,
+    title: {type:String, required:true},
+    author: {type:String, required:true},
+    isbn: {type:String, required:true},
     age_range: String,
-    editorial: String,
+    cdu : String ,
+    editorial: {type:String, required:true},
     publish_year: Number,
     synopsis: String,
     language: String,

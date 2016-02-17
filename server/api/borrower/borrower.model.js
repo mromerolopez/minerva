@@ -3,9 +3,9 @@
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 
 var BorrowerSchema = new mongoose.Schema({
-  name: String,
-  surname1: String,
-  surname2 : String,
+  name: {type:String, required:true},
+  surname1: {type:String, required:true},
+  surname2 : {type:String, required:true},
   email : String,
   phone : String,
   address :  String,
