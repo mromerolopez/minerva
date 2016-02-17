@@ -11,8 +11,8 @@ var BorrowerSchema = new mongoose.Schema({
   address :  String,
   class :  String,
   studentId : String,
-  loans : [{type: mongoose.Schema.Types.ObjectId, ref: ''}],
-  incidents : [{type: mongoose.Schema.Types.ObjectId, ref: ''}],
+  loans : [{type: mongoose.Schema.Types.ObjectId, ref: 'Loan'}],
+  incidents : [{type: mongoose.Schema.Types.ObjectId, ref: 'Incident'}],
   active : {type: Boolean , default: true},
   created_at : {type: Date, default: Date.now},
   updated_at : Date
