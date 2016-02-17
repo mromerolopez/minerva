@@ -4,7 +4,7 @@ var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 
 var CopySchema = new mongoose.Schema({
   state: String,
-  book: { type: mongoose.Schema.Types.ObjectId, ref: 'Book' },
+  book: { type: mongoose.Schema.Types.ObjectId, ref: 'Book' , required:true},
   loans: [{type: mongoose.Schema.Types.ObjectId, ref: 'Loan'}],
   location : {type: mongoose.Schema.Types.ObjectId, ref: 'Location'},
   active : {type: Boolean , default : true},
