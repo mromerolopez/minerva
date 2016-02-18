@@ -15,7 +15,8 @@ var BorrowerSchema = new mongoose.Schema({
   incidents : [{type: mongoose.Schema.Types.ObjectId, ref: 'Incident'}],
   active : {type: Boolean , default: true},
   created_at : {type: Date, default: Date.now},
-  updated_at : Date
+  updated_at : Date,
+
 });
 
 export default mongoose.model('Borrower', BorrowerSchema);
