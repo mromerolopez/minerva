@@ -13,6 +13,7 @@ var BookSchema = new mongoose.Schema({
     synopsis: String,
     language: String,
     pages: Number,
+    is_important: {type: Boolean, default:false},
     rating: Number,
     active: {type: Boolean, default: true},
     created_at: {type: Date, default: Date.now},
