@@ -18,6 +18,7 @@ var BookSchema = new mongoose.Schema({
     active: {type: Boolean, default: true},
     created_at: {type: Date, default: Date.now},
     updated_at: Date
+ 
 });
 
 export default mongoose.model('Book', BookSchema);

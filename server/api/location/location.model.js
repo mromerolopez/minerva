@@ -13,7 +13,10 @@ var LocationSchema = new mongoose.Schema({
   copys : [{type: mongoose.Schema.Types.ObjectId, ref: 'Incident'}],
   created_at : { type: Date , default: Date.now},
   updated_at: Date,
-  active: {type: Boolean, default: true}
+  active: {type: Boolean, default: true},
+  center: {
+      type: mongoose.Schema.Types.ObjectId, ref: 'Center'
+  }
 });
 
 export default mongoose.model('Location', LocationSchema);

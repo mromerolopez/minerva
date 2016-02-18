@@ -17,7 +17,10 @@ var UserSchema = new mongoose.Schema({
   updated_at : Date,
   is_admin : Boolean,
   last_login : Date,
-  configuration: {type: mongoose.Schema.Types.ObjectId, ref: 'Configuration'}
+  configuration: {type: mongoose.Schema.Types.ObjectId, ref: 'Configuration'},
+  center: {
+      type: mongoose.Schema.Types.ObjectId, ref: 'Center'
+  }
 
 });
 
