@@ -19,8 +19,6 @@ Then install the dependencies.
 npm install && bower install
 ```
 
-Then install the dependencies.
-
 To run this project just use grunt functions. To develop.
 
 ```
