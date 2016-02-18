@@ -25,7 +25,7 @@ To make a distribuible of this software.
 
 # Prerequisites
 
-MongoDB. Download and install [MongoDB]: https://www.mongodb.org/ .
+MongoDB. Download and install [MongoDB](https://www.mongodb.org/).
 
 # License
 
