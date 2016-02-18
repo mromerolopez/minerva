@@ -11,6 +11,7 @@ var CopySchema = new mongoose.Schema({
   incidents : [{type: mongoose.Schema.Types.ObjectId, ref: 'Incident'}],
   created_at : {type:Date , default : Date.now},
   updated_at : Date,
+  cdu: String,
   center: {
       type: mongoose.Schema.Types.ObjectId, ref: 'Center'
   }
