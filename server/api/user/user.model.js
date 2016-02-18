@@ -16,9 +16,9 @@ var UserSchema = new mongoose.Schema({
   created_at : {type: Date , default: Date.now},
   updated_at : Date,
   is_admin : Boolean,
-  last_login : Date
-  
-  
+  last_login : Date,
+  configuration: {type: mongoose.Schema.Types.ObjectId, ref: 'Configuration'}
+
 });
 
 export default mongoose.model('User', UserSchema);

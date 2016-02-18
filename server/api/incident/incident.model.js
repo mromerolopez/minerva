@@ -7,7 +7,11 @@ var IncidentSchema = new mongoose.Schema({
   borrower: { type: mongoose.Schema.Types.ObjectId, ref: 'Borrower' },
   copy: { type: mongoose.Schema.Types.ObjectId, ref: 'Copy' },
   observations: String,
-  type_incident : { type: mongoose.Schema.Types.ObjectId, ref: 'TypeIncident' ,required:true},
+  type : {
+            name: String, 
+            description: String, 
+            code: String
+        },
   active : {type: Boolean , default:true},
   created_at : {type: Date, default : Date.now},
   updated_at : Date
