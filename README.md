@@ -13,15 +13,14 @@ Install grunt-cli, and bower.
 npm install -g grunt-cli bower
 ```
 
-To run this project just use grunt functions.
+To run this project just use grunt functions. To develop.
 ```
 grunt serve 
 ```
-To develop.
+To make a distribuible of this software.
 ```
 grunt
 ```
-To make a distribuible of this software.
 
 # Prerequisites
 
