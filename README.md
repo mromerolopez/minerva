@@ -5,7 +5,7 @@ MongoDB, Express, AngularJS, and Node.
 
 
 
-# Usage
+## Usage
 
 Install grunt-cli, and bower.
 
@@ -31,11 +31,11 @@ To make a distribuible of this software.
 grunt
 ```
 
-# Prerequisites
+## Prerequisites
 
 MongoDB. Download and install [MongoDB](https://www.mongodb.org/).
 
-# License
+## License
 
 Minerva Copyright (C) 2016  GreyCode
 
