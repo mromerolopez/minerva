@@ -1,16 +1,16 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/type_incidents              ->  index
- * POST    /api/type_incidents              ->  create
- * GET     /api/type_incidents/:id          ->  show
- * PUT     /api/type_incidents/:id          ->  update
- * DELETE  /api/type_incidents/:id          ->  destroy
+ * GET     /api/configurations              ->  index
+ * POST    /api/configurations              ->  create
+ * GET     /api/configurations/:id          ->  show
+ * PUT     /api/configurations/:id          ->  update
+ * DELETE  /api/configurations/:id          ->  destroy
  */
 
 'use strict';
 
 import _ from 'lodash';
-import TypeIncident from './type_incident.model';
+import Configuration from './configuration.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -59,43 +59,43 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of TypeIncidents
+// Gets a list of Configurations
 export function index(req, res) {
-  TypeIncident.findAsync()
+  Configuration.findAsync()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Gets a single TypeIncident from the DB
+// Gets a single Configuration from the DB
 export function show(req, res) {
-  TypeIncident.findByIdAsync(req.params.id)
+  Configuration.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Creates a new TypeIncident in the DB
+// Creates a new Configuration in the DB
 export function create(req, res) {
-  TypeIncident.createAsync(req.body)
+  Configuration.createAsync(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
-// Updates an existing TypeIncident in the DB
+// Updates an existing Configuration in the DB
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  TypeIncident.findByIdAsync(req.params.id)
+  Configuration.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Deletes a TypeIncident from the DB
+// Deletes a Configuration from the DB
 export function destroy(req, res) {
-  TypeIncident.findByIdAsync(req.params.id)
+  Configuration.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));
