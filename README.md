@@ -1,4 +1,33 @@
-# Minerva
+# Minerva (still developing)
+
+Minerva is a application based on MEAN Stack. The purpose of this application is to help little libraries to manage themselves, using 
+MongoDB, Express, AngularJS, and Node.
+
+
+
+# Usage
+
+Install grunt-cli, and bower.
+
+```
+npm install -g grunt-cli bower
+```
+
+To run this project just use grunt functions.
+```
+grunt serve 
+```
+To develop.
+```
+grunt
+```
+To make a distribuible of this software.
+
+# Prerequisites
+
+MongoDB. Download and install [MongoDB]: https://www.mongodb.org/ .
+
+# License
 
 Minerva Copyright (C) 2016  GreyCode
 
