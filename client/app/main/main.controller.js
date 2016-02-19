@@ -10,10 +10,10 @@ function MainController($scope, $http, googleBooks) {
 //    }).catch(function(err){
 //        console.log(err);
 //    });
-    $http.get('api/books').success(function(books){
+    $http.get('api/books').success(function (books) {
         $scope.books = books;
     });
-    
+
     $scope.guardarLibro = guardaLibros;
 
     function guardaLibros() {
@@ -26,20 +26,20 @@ function MainController($scope, $http, googleBooks) {
             author: autor
         };
         console.log(libro);
-        
-        $http.post('api/books', libro).success(function(book){
+
+        $http.post('api/books', libro).success(function (book) {
             console.log("Win");
             $scope.books.push(book);
             $scope.insertando = false;
         });
     };
-    
-    
+
+
     googleBooks.getBookISBN('8493987743')
-            .then(function(book){
+            .then(function (book) {
                 $scope.book = book;
-            }).catch(function(err){
-                console.log(err);
-            });
+            }).catch(function (err) {
+        console.log(err);
+    });
 
 }
