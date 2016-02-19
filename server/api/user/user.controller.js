@@ -100,3 +100,15 @@ export function destroy(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 }
+
+// Login
+
+export function login(req, res){
+    var datos = req.body;
+    
+    console.log(datos);
+    User.findOne({username:datos.user, password:datos.pass}).then(function(datos){
+        res.json(datos);
+    });
+    //res.json("hola");
+}

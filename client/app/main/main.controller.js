@@ -41,5 +41,7 @@ function MainController($scope, $http, googleBooks) {
             }).catch(function (err) {
         console.log(err);
     });
+    
+  
 
 }
