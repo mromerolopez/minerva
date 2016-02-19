@@ -2,7 +2,7 @@
 
 app.controller('MainController', MainController);
 
-function MainController($scope, $http,) {
+function MainController($scope, $http, googleBooks) {
     $scope.forms = "active";
     $scope.hola = "pepe";
 //    dataVehicles.getVehiclesImei(['12421414']).then(function(datos){
@@ -33,5 +33,13 @@ function MainController($scope, $http,) {
             $scope.insertando = false;
         });
     };
+    
+    
+    googleBooks.getBookISBN('8493987743')
+            .then(function(book){
+                $scope.book = book;
+            }).catch(function(err){
+                console.log(err);
+            });
 
 }

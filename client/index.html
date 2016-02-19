@@ -20,6 +20,7 @@
         <!-- injector:css -->
         <link rel="stylesheet" href="app/app.css">
         <link rel="stylesheet" href="app/documentos/documentos.css">
+        <link rel="stylesheet" href="app/login/login.css">
         <link rel="stylesheet" href="app/main/main.css">
         <link rel="stylesheet" href="app/opcions/opcions.css">
         <link rel="stylesheet" href="app/prestamo-listaxe/prestamo-listaxe.css">
@@ -48,7 +49,7 @@
         <!-- Add your site or application content here -->
         <div class="wrapper">
 
-            <header class="main-header">
+            <header class="main-header" ng-hide="login">
                 <!-- Logo -->
                 <a href="../../index2.html" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -298,8 +299,10 @@
         <script src="app/app.js"></script>
         <!-- injector:js -->
         <script src="components/util/util.module.js"></script>
-        <script src="app/xestion-accesos/xestion-accesos.js"></script>
+        <script src="app/services/googleBooks.service.js"></script>
         <script src="app/documentos/documentos.js"></script>
+        <script src="app/login/login.controller.js"></script>
+        <script src="app/login/login.js"></script>
         <script src="app/main/main.controller.js"></script>
         <script src="app/main/main.js"></script>
         <script src="app/opcions/opcions.controller.js"></script>
@@ -309,8 +312,9 @@
         <script src="app/prestamo-novo/prestamo-novo.controller.js"></script>
         <script src="app/prestamo-novo/prestamo-novo.js"></script>
         <script src="app/services/dataVehicles.service.js"></script>
-        <script src="app/xestion-accesos/xestion-accesos.controller.js"></script>
         <script src="app/documentos/documentos.controller.js"></script>
+        <script src="app/xestion-accesos/xestion-accesos.controller.js"></script>
+        <script src="app/xestion-accesos/xestion-accesos.js"></script>
         <script src="app/xestion-biblioteca/xestion-biblioteca.controller.js"></script>
         <script src="app/xestion-biblioteca/xestion-biblioteca.js"></script>
         <script src="app/xestion-usuarios/xestion-usuarios.controller.js"></script>
