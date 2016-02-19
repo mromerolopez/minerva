@@ -1,5 +1,5 @@
 'use strict';
 
-app.controller('LoginCtrl', function ($scope, $window) {
-    $window.login = true;
+app.controller('LoginCtrl', function ($scope, $rootScope) {
+     $rootScope.login = true;
   });
