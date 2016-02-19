@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dam218/Desktop/minerva/client/app/main/main.controller.js</file>
-            <file>file:/C:/Users/dam218/Desktop/minerva/client/app/opcions/opcions.html</file>
-            <file>file:/C:/Users/dam218/Desktop/minerva/server/api/book/book.model.js</file>
-            <file>file:/C:/Users/dam218/Desktop/minerva/client/app/prestamo-novo/prestamo-novo.html</file>
-            <file>file:/C:/Users/dam218/Desktop/minerva/server/api/center/center.model.js</file>
-            <file>file:/C:/Users/dam218/Desktop/minerva/client/components/navbar/navbar.html</file>
-            <file>file:/C:/Users/dam218/Desktop/minerva/server/api/borrower/borrower.model.js</file>
-            <file>file:/C:/Users/dam218/Desktop/minerva/client/app/prestamo-listaxe/prestamo-listaxe.html</file>
+
+            <file>file:/Users/Elibo/Desktop/minerva/client/app/prestamo-novo/prestamo-novo.html</file>
+            <file>file:/Users/Elibo/Desktop/minerva/client/index.html</file>
+            <file>file:/Users/Elibo/Desktop/minerva/client/app/main/main.html</file>
         </group>
     </open-files>
 </project-private>

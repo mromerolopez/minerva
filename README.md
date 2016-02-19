@@ -1,31 +1,48 @@
-# Minerva
+# Minerva (still developing)
 
-This project was generated with the [Angular Full-Stack Generator](https://github.com/DaftMonk/generator-angular-fullstack) version 3.3.0.
+Minerva is a application based on MEAN Stack. The purpose of this application is to help little libraries to manage themselves, using 
+MongoDB, Express, AngularJS, and Node.
 
-## Getting Started
 
-### Prerequisites
 
-- [Git](https://git-scm.com/)
-- [Node.js and npm](nodejs.org) Node ^4.2.3, npm ^2.14.7
-- [Bower](bower.io) (`npm install --global bower`)
-- [Grunt](http://gruntjs.com/) (`npm install --global grunt-cli`)
-- [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod`
+## Usage
 
-### Developing
+Install grunt-cli, and bower.
 
-1. Run `npm install` to install server dependencies.
+```
+npm install -g grunt-cli bower
+```
 
-2. Run `bower install` to install front-end dependencies.
+Then install the dependencies.
 
-3. Run `mongod` in a separate shell to keep an instance of the MongoDB Daemon running
+```
+npm install && bower install
+```
 
-4. Run `grunt serve` to start the development server. It should automatically open the client in your browser when ready.
+To run this project just use grunt functions. To develop.
 
-## Build & development
+```
+grunt serve 
+```
 
-Run `grunt build` for building and `grunt serve` for preview.
+To make a distribuible of this software.
 
-## Testing
+```
+grunt
+```
 
-Running `npm test` will run the unit tests with karma.
+## Prerequisites
+
+MongoDB. Download and install [MongoDB](https://www.mongodb.org/).
+
+## License
+
+Minerva Copyright (C) 2016  GreyCode
+
+This file is part of Minerva.
+
+Minerva is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+Minerva is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with Minerva. If not, see http://www.gnu.org/licenses/ .
