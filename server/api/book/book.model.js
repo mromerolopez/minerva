@@ -7,7 +7,6 @@ var BookSchema = new mongoose.Schema({
     author: {type:String, required:true},
     isbn: {type:String, required:true},
     age_range: String,
-    cdu : String ,
     editorial: {type:String, required:true},
     publish_year: Number,
     synopsis: String,
