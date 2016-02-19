@@ -3,24 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/dam224/Desktop/minerva/server/api/location/location.model.js</file>
             <file>file:/C:/Users/dam224/Desktop/minerva/server/api/configuration/configuration.model.js</file>
+            <file>file:/C:/Users/dam224/Desktop/minerva/server/api/user/user.model.js</file>
             <file>file:/C:/Users/dam224/Desktop/minerva/server/api/borrower/borrower.model.js</file>
+            <file>file:/C:/Users/dam224/Desktop/minerva/client/assets/js/app.js</file>
             <file>file:/C:/Users/dam224/Desktop/minerva/server/routes.js</file>
             <file>file:/C:/Users/dam224/Desktop/minerva/client/index.html</file>
             <file>file:/C:/Users/dam224/Desktop/minerva/server/api/copy/copy.model.js</file>
-            <file>file:/C:/Users/dam224/Desktop/minerva/server/api/incident/incident.model.js</file>
-            <file>file:/C:/Users/dam224/Desktop/minerva/client/app/opcions/opcions.html</file>
-            <file>file:/C:/Users/dam224/Desktop/minerva/README.md</file>
-            <file>file:/C:/Users/dam224/Desktop/minerva/client/components/navbar/navbar.controller.js</file>
-            <file>file:/C:/Users/dam224/Desktop/minerva/server/api/location/location.model.js</file>
-            <file>file:/C:/Users/dam224/Desktop/minerva/server/api/user/user.model.js</file>
-            <file>file:/C:/Users/dam224/Desktop/minerva/client/app/main/main.html</file>
-            <file>file:/C:/Users/dam224/Desktop/minerva/server/api/book/book.model.js</file>
             <file>file:/C:/Users/dam224/Desktop/minerva/client/components/navbar/navbar.directive.js</file>
-            <file>file:/C:/Users/dam224/Desktop/minerva/client/app/xestion-biblioteca/xestion-biblioteca.html</file>
             <file>file:/C:/Users/dam224/Desktop/minerva/client/components/navbar/navbar.html</file>
-            <file>file:/C:/Users/dam224/Desktop/minerva/server/api/book/book.controller.js</file>
-            <file>file:/C:/Users/dam224/Desktop/minerva/client/app/documentos/documentos.html</file>
+            <file>file:/C:/Users/dam224/Desktop/minerva/server/api/incident/incident.model.js</file>
+            <file>file:/C:/Users/dam224/Desktop/minerva/client/components/navbar/navbar.controller.js</file>
         </group>
     </open-files>
 </project-private>
