@@ -38,3 +38,14 @@
 //    });
 //  });
 
+import User from '../api/user/user.model.js';
+
+User.find().removeAsync().then(()=>{
+    User.create({
+        name: "Nombre",
+        surname1: "Apellido1",
+        surname2: "Apellido2",
+        username: "usuario1",
+        password: "pass"
+    })
+});
