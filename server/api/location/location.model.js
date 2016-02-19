@@ -6,8 +6,7 @@ var LocationSchema = new mongoose.Schema({
   name: {type: String, required : true},
   located : {
       type: mongoose.Schema.Types.ObjectId, 
-      ref: 'Location', 
-      required:true
+      ref: 'Location'
   },
   is_content : [{type: mongoose.Schema.Types.ObjectId, ref: 'Location'}],
   copys : [{type: mongoose.Schema.Types.ObjectId, ref: 'Incident'}],
