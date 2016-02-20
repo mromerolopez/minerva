@@ -6,7 +6,8 @@ var app = angular.module('minervaApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'datatables'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

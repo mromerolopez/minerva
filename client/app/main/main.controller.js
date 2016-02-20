@@ -2,7 +2,8 @@
 
 app.controller('MainController', MainController);
 
-function MainController($scope, $http, googleBooks) {
+function MainController($scope, $http, googleBooks, $rootScope) {
+
     $scope.forms = "active";
     $scope.hola = "pepe";
 //    dataVehicles.getVehiclesImei(['12421414']).then(function(datos){
