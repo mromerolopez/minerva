@@ -14,6 +14,7 @@ var BookSchema = new mongoose.Schema({
     pages: Number,
     is_important: {type: Boolean, default:false},
     rating: Number,
+    copy: [{type: mongoose.Schema.Types.ObjectId, ref: 'Copy'}],
     active: {type: Boolean, default: true},
     created_at: {type: Date, default: Date.now},
     updated_at: Date
