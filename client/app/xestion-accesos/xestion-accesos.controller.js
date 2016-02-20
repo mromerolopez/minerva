@@ -28,6 +28,4 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder) {
     }
     
 
-    $scope.opcionesTablaUsuarios = opcionesTablaUsuarios;
-
-}
+   
