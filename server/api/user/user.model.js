@@ -20,8 +20,9 @@ var UserSchema = new mongoose.Schema({
     configuration: {type: mongoose.Schema.Types.ObjectId, ref: 'Configuration'},
     center: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Center'
-    }
-
+    },
+    books: [{type: mongoose.Schema.Types.ObjectId, ref: 'Book'}],
+    copies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Copy'}],
 });
 
 export default mongoose.model('User', UserSchema);

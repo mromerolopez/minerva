@@ -29,8 +29,8 @@
 
                                     <tr ng-repeat="book in books">
                                         <td>{{book._id}}</td>
-                                        <td>{{book.created_At| date}}</td>
-                                        <td>{{book.id}}</td>
+                                        <td>{{book.created_At| date:"dd 'de' MMMM 'do' yyyy"}}</td>
+                                        <td>{{book.title}}</td>
                                         <td>{{book.id}}</td>
                                         <td><button class="btn btn-warning" ng-click="editBook(book)">Editar</button></td>
                                     </tr>
@@ -44,126 +44,82 @@
                 </div>
                 <div  ng-show="editingBook">
                     <div class="row">
-                        <div class="col-lg-4 col-sm-12">
+                        <div class="col-lg-12">
                             <div class="box box-success">
                                 <div class="box-header">
-                                    <h3 class="box-title">Libros</h3>
+                                    <h3 class="box-title">Datos básicos</h3>
                                 </div><!-- /.box-header -->
-                                <div class="box-body">                          
+                                <div class="box-body">  
+                                    <div class="col-lg-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="date">Data de alta</label>
+                                            <input type="text" class="form-control" id="date" value="{{book.created_At|date}}" disabled >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="isbn10">ISBN-10*</label>
+                                            <input type="text" class="form-control" id="isbn10" placeholder="Introduza o ISBN-10" ng-model="book.isbn10" ng-change="checkIsbn(book.isbn10)">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="isbn13">ISBN-13*</label>
+                                            <input type="text" class="form-control" id="isbn13" placeholder="Introduza o ISBN-13" ng-model="book.isbn13" ng-change="checkIsbn(book.isbn13)">
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label for="isbn">ISBN</label>
-                                        <input type="text" class="form-control" id="isbn" placeholder="Introduza o ISBN" ng-model="book.isbn" ng-change="checkIsbn(book.isbn)">
+                                        <div class="form-group">
+                                            <label for="title">Título*</label>
+                                            <input type="text" class="form-control" id="title" placeholder="Introduza o título" ng-model="book.title">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="author">Autor*</label>
+                                            <input type="text" class="form-control" id="author" placeholder="Introduza o autor" ng-model="book.author">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="editorial">Editorial*</label>
+                                            <input type="text" class="form-control" id="editorial" placeholder="Introduza a editorial" ng-model="book.editorial">
+                                        </div>
+
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="date">Data de alta</label>
-                                        <input type="text" class="form-control" id="date" value="{{date| date:'fullDate'}}" disabled>
+                                    <div class="col-lg-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="idioma">Idioma</label>
+                                            <input type="text" class="form-control" id="idioma" placeholder="Introduza o idioma do exemplar" ng-model="book.language">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="paxinas">Número de páxinas</label>
+                                            <input type="text" class="form-control" id="paxinas" placeholder="Introduza o número de páxinas" ng-model="book.pages">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="synopsis">Sinopsis</label>
+                                            <textarea class="form-control" id="synopsis" rows="6" placeholder="Escriba a sinopsis ...">{{book.synopsis}}</textarea>
+                                        </div>
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" ng-model="book.important"> Importante
+                                            </label>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="title">Título</label>
-                                        <input type="text" class="form-control" id="title" placeholder="Introduza o título" ng-model="book.title">
+                                    <div class="col-lg-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Imaxe</label>
+                                            <br>
+                                            <image ng-src="{{book.image}}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="rating">Puntuación</label>
+                                            <input type="text" class="form-control" id="rating" placeholder="Introduza a puntuación" ng-model="book.rating">
+                                        </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="author">Autor</label>
-                                        <input type="text" class="form-control" id="author" placeholder="Introduza o autor" ng-model="book.author">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="editorial">Editorial</label>
-                                        <input type="text" class="form-control" id="editorial" placeholder="Introduza a editorial" ng-model="book.editorial">
-                                    </div>
-
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" ng-model="book.important"> Importante
-                                        </label>
-                                    </div>
-
-
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-sm-12">
-                            <div class="box box-info">
-                                <div class="box-header">
-                                    <h3 class="box-title">Libros</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">                          
-
-                                    <div class="form-group">
-                                        <label for="isbn">ISBN</label>
-                                        <input type="text" class="form-control" id="isbn" placeholder="Introduza o ISBN" ng-model="book.isbn" ng-change="checkIsbn(book.isbn)">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="title">Título</label>
-                                        <input type="text" class="form-control" id="title" placeholder="Introduza o título" ng-model="book.title">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="author">Autor</label>
-                                        <input type="text" class="form-control" id="author" placeholder="Introduza o autor" ng-model="book.author">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="editorial">Editorial</label>
-                                        <input type="text" class="form-control" id="editorial" placeholder="Introduza a editorial" ng-model="book.editorial">
-                                    </div>
-
-
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" ng-model="book.important"> Importante
-                                        </label>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-sm-12">
-                            <div class="box box-warning">
-                                <div class="box-header">
-                                    <h3 class="box-title">Libros</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">                          
-
-                                    <div class="form-group">
-                                        <label for="isbn">ISBN</label>
-                                        <input type="text" class="form-control" id="isbn" placeholder="Introduza o ISBN" ng-model="book.isbn" ng-change="checkIsbn(book.isbn)">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="title">Título</label>
-                                        <input type="text" class="form-control" id="title" placeholder="Introduza o título" ng-model="book.title">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="author">Autor</label>
-                                        <input type="text" class="form-control" id="author" placeholder="Introduza o autor" ng-model="book.author">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="editorial">Editorial</label>
-                                        <input type="text" class="form-control" id="editorial" placeholder="Introduza a editorial" ng-model="book.editorial">
-                                    </div>
-
-
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" ng-model="book.important"> Importante
-                                        </label>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
                         <center>

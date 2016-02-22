@@ -4,15 +4,15 @@ angular.module('minervaApp')
         .controller('XestionBibliotecaCtrl', XestionBibliotecaCtrl);
 
 function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks) {
-    $scope.message = 'Hello';
     $scope.book = new Object;
     $scope.books = [];
     $scope.editingBook = false;
-    $scope.date = new Date();
-    
     $scope.newBook = function () {
         $scope.book = new Object;
+        $scope.book.created_At = new Date();
+        $scope.book.image = "/assets/images/logo.png";
         $scope.editingBook = true;
+        
     };
 
     $scope.editBook = function (book) {
@@ -33,7 +33,13 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
                     var searchedBook = datos.items[0].volumeInfo;
                     $scope.book.title = searchedBook.title;
                     $scope.book.author = searchedBook.authors[0];
-
+                    $scope.book.isbn13 = searchedBook.industryIdentifiers[0].identifier;
+                    $scope.book.image = searchedBook.imageLinks.thumbnail;
+                    $scope.book.synopsis = searchedBook.description;
+                    $scope.book.language = searchedBook.language;
+                    $scope.book.pages = searchedBook.pageCount;
+                    $scope.book.editorial = searchedBook.publisher;
+                    $scope.book.rating = searchedBook.averageRating;
                     console.log(searchedBook);
                 }
             }).catch(function (err) {
@@ -44,6 +50,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
         }
 
     };
+    
 
     $scope.saveBook = function (book) {
         console.log(book);
