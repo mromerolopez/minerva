@@ -4,8 +4,9 @@ angular.module('minervaApp')
         .controller('XestionAccesosCtrl', XestionAccesosCtrl);
 
 function XestionAccesosCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataUsers) {
-    $scope.message = 'Hello';
+    $scope.user=new Object;
     $scope.users=[];
+    
     
      dataUsers.getUsers()
             .then(function (users) {
@@ -16,8 +17,25 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataUs
             });
     
 
-    $scope.editarUsuario = function(user){
-      console.log(user);  
+   $scope.saveUser=function(user){
+       dataUsers.saveUser(user)
+        .then(function(data){
+        $scope.editingUser=false;
+       }).catch(function(err){
+           console.log(err);
+       });
+   };
+   
+
+    $scope.editUser = function(user){
+        $scope.user=user;
+        $scope.editingUser = true;
+       
+    };
+    
+      $scope.cancelEditingUser = function(){
+        $scope.user = new Object;
+        $scope.editingUser = false;
     };
 
     (function () {
@@ -26,7 +44,7 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataUs
         opcionesTablaUsuarios.dtOptions = DTOptionsBuilder
                 .newOptions().withPaginationType('full_numbers')
                 .withDisplayLength(10)
-                .withLanguageSource('//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Spanish.json');
+                .withLanguageSource('//cdn.datatables.net/plug-ins/1.10.11/i18n/Galician.json');
 
         opcionesTablaUsuarios.dtColumnDefs = [
             DTColumnDefBuilder.newColumnDef(0),
@@ -35,6 +53,8 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataUs
             DTColumnDefBuilder.newColumnDef(3),
             DTColumnDefBuilder.newColumnDef(4)
         ];
+        
+        $scope.opcionesTablaUsuarios = opcionesTablaUsuarios;
     })();
 
 
