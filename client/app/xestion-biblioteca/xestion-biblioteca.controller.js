@@ -33,7 +33,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
                     var searchedBook = datos.items[0].volumeInfo;
                     $scope.book.title = searchedBook.title;
                     $scope.book.author = searchedBook.authors[0];
-                    $scope.book.isbn13 = searchedBook.industryIdentifiers[0].identifier;
+                    $scope.book.isbn13 = searchedBook.industryIdentifiers[1].identifier;
                     $scope.book.image = searchedBook.imageLinks.thumbnail;
                     $scope.book.synopsis = searchedBook.description;
                     $scope.book.language = searchedBook.language;
