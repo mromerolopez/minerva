@@ -2,7 +2,7 @@
 
 app.controller('LoginCtrl', LoginCtrl);
 
-function LoginCtrl($scope, $rootScope, dataUsers) {
+function LoginCtrl($scope, $rootScope, dataUsers, $location) {
     $rootScope.login = true;
 
 
@@ -11,15 +11,20 @@ function LoginCtrl($scope, $rootScope, dataUsers) {
 
         var username = $scope.username;
         var password = $scope.password;
-        
-        console.log(username);
+
         dataUsers.login(username, password)
                 .then(function (datos) {
+
                     console.log(datos);
+                    if (datos !== null) {
+                        $rootScope.login = false;
+                        $location.path('/');
+                    }
+                    
                 }).catch(function (err) {
             console.log(err);
         });
 
-    }
+    };
 
 }

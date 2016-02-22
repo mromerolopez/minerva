@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('minervaApp')
-  .config(function ($stateProvider) {
+app.config(function ($stateProvider) {
     $stateProvider
       .state('documentos', {
         url: '/documentos',

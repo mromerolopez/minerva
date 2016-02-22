@@ -1,7 +1,9 @@
 'use strict';
 
-angular.module('minervaApp')
-        .controller('DocumentosCtrl', function ($scope) {
+app.controller('DocumentosCtrl', DocumentosCtrl);
+
+
+function DocumentosCtrl($scope) {
             $scope.message = 'Hello';
 
             var documentos = [];
@@ -20,4 +22,4 @@ angular.module('minervaApp')
                 console.log(doc);
             };
 
-        });
+        }

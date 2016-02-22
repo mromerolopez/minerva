@@ -14,6 +14,8 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(client) app/vendor.css -->
         <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
+        <link rel="stylesheet" href="bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css({.tmp,client}) app/app.css -->
@@ -293,13 +295,25 @@
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="bower_components/lodash/dist/lodash.compat.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+        <script src="bower_components/angular-datatables/dist/angular-datatables.js"></script>
+        <script src="bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.js"></script>
+        <script src="bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
+        <script src="bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
+        <script src="bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.js"></script>
+        <script src="bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js"></script>
+        <script src="bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.js"></script>
+        <script src="bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js"></script>
+        <script src="bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.js"></script>
+        <script src="bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js"></script>
+        <script src="bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:js(.tmp) app/app.js -->
         <script src="app/app.js"></script>
         <!-- injector:js -->
         <script src="components/util/util.module.js"></script>
-        <script src="app/services/googleBooks.service.js"></script>
+        <script src="app/services/dataVehicles.service.js"></script>
         <script src="app/documentos/documentos.js"></script>
         <script src="app/login/login.controller.js"></script>
         <script src="app/login/login.js"></script>
@@ -311,9 +325,11 @@
         <script src="app/prestamo-listaxe/prestamo-listaxe.js"></script>
         <script src="app/prestamo-novo/prestamo-novo.controller.js"></script>
         <script src="app/prestamo-novo/prestamo-novo.js"></script>
+        <script src="app/services/dataBooks.service.js"></script>
+        <script src="app/services/dataCopies.service.js"></script>
         <script src="app/services/dataUsers.service.js"></script>
-        <script src="app/services/dataVehicles.service.js"></script>
         <script src="app/documentos/documentos.controller.js"></script>
+        <script src="app/services/googleBooks.service.js"></script>
         <script src="app/xestion-accesos/xestion-accesos.controller.js"></script>
         <script src="app/xestion-accesos/xestion-accesos.js"></script>
         <script src="app/xestion-biblioteca/xestion-biblioteca.controller.js"></script>

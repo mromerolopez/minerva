@@ -11,10 +11,44 @@
                 Xestión de biblioteca
             </h1>
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
+                <div class="col-xs-12 col-lg-6">
+                    <div class="box box-success">
                         <div class="box-header">
-                            <h3 class="box-title">Cosas</h3>
+                            <h3 class="box-title">Libros</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">                          
+                            <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLibros.dtOptions" dt-column-defs="opcionesTablaLibros.dtColumnDefs">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>User</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Reason</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr ng-repeat="book in books">
+                                        <td>{{book.id}}</td>
+                                        <td>{{book.id}}</td>
+                                        <td>{{book.id}}</td>
+                                        <td>{{book.id}}</td>
+                                        <td><button class="btn btn-warning">Editar</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <button class="btn btn-success pull-right" data-toggle="modal" data-target="#newBook">Novo libro</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-lg-6">
+                    <div class="box box-warning">
+                        <div class="box-header">
+                            <h3 class="box-title">Ubicacións da biblioteca</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">                          
 
@@ -26,3 +60,53 @@
         </section>
     </section>
 </div><!-- /.content-wrapper -->
+
+
+<!-- Modal -->
+<div id="newBook" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Dar de alta novo libro</h4>
+            </div>
+            <div class="modal-body">
+                
+                <div class="form-group">
+                  <label for="isbn">ISBN</label>
+                  <input type="text" class="form-control" id="isbn" placeholder="Introduza o ISBN" ng-model="book.isbn" ng-change="checkIsbn(book.isbn)">
+                </div>
+                
+                <div class="form-group">
+                  <label for="title">Título</label>
+                  <input type="text" class="form-control" id="title" placeholder="Introduza o título" ng-model="book.title">
+                </div>
+                
+                <div class="form-group">
+                  <label for="author">Autor</label>
+                  <input type="text" class="form-control" id="author" placeholder="Introduza o autor" ng-model="book.author">
+                </div>
+                
+                <div class="form-group">
+                  <label for="editorial">Editorial</label>
+                  <input type="text" class="form-control" id="editorial" placeholder="Introduza a editorial" ng-model="book.editorial">
+                </div>
+               
+                
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="book.important"> Importante
+                  </label>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="saveBook(book)">Gardar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
