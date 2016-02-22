@@ -7,7 +7,24 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     $scope.message = 'Hello';
     $scope.book = new Object;
     $scope.books = [];
+    $scope.editingBook = false;
+    $scope.date = new Date();
     
+    $scope.newBook = function () {
+        $scope.book = new Object;
+        $scope.editingBook = true;
+    };
+
+    $scope.editBook = function (book) {
+        $scope.book = book;
+        $scope.editingBook = true;
+    };
+    
+    $scope.cancelEditingBook = function(){
+        $scope.book = new Object;
+        $scope.editingBook = false;
+    };
+
     $scope.checkIsbn = function (isbn) {
 
         if (isbn !== "") {
@@ -16,7 +33,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
                     var searchedBook = datos.items[0].volumeInfo;
                     $scope.book.title = searchedBook.title;
                     $scope.book.author = searchedBook.authors[0];
-                    
+
                     console.log(searchedBook);
                 }
             }).catch(function (err) {
@@ -25,10 +42,10 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
         } else {
             $scope.book = new Object;
         }
-        
+
     };
-    
-    $scope.saveBook = function(book){
+
+    $scope.saveBook = function (book) {
         console.log(book);
         $scope.book = new Object;
     };
@@ -37,8 +54,8 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     // $scope.books = books;
 
     dataBooks.getBooks()
-            .then(function (libros) {
-                $scope.books = libros;
+            .then(function (books) {
+                $scope.books = books;
             })
             .catch(function (err) {
                 console.log(err);
@@ -50,7 +67,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
         opcionesTablaLibros.dtOptions = DTOptionsBuilder
                 .newOptions().withPaginationType('full_numbers')
                 .withDisplayLength(10)
-                .withLanguageSource('//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Spanish.json');
+                .withLanguageSource('//cdn.datatables.net/plug-ins/1.10.11/i18n/Galician.json');
 
 
         opcionesTablaLibros.dtColumnDefs = [
