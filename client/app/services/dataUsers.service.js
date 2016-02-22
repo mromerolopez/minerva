@@ -7,7 +7,8 @@ function dataUsers($q, $http) {
 
     return {
         login: login,
-        getUsers: getUsers
+        getUsers: getUsers,
+        saveUser: saveUser
 
     };
 
@@ -52,7 +53,23 @@ function dataUsers($q, $http) {
         return promise;
     }
 
+   function saveUser(user){
+        var defered = $q.defer();
+        var promise = defered.promise;
 
+
+        $http({
+            method: 'PUT',
+            url: '/api/users/'+user._id,
+            data: user
+        }).success(function (datos) {
+            defered.resolve(datos);
+        }).error(function (err) {
+            defered.reject(err);
+        });
+
+        return promise;
+    }
 
 
 }
