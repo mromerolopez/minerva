@@ -61,7 +61,7 @@ function handleError(res, statusCode) {
 
 // Gets a list of Users
 export function index(req, res) {
-  User.findAsync()
+  User.findAsync({active:true})
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

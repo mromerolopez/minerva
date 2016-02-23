@@ -14,7 +14,6 @@ function LoginCtrl($scope, $rootScope, dataUsers, $location) {
 
         dataUsers.login(username, password)
                 .then(function (datos) {
-
                     console.log(datos);
                     if (datos !== null) {
                         $rootScope.login = false;
