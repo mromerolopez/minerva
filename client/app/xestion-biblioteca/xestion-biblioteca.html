@@ -18,27 +18,29 @@
                             <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLibros.dtOptions" dt-column-defs="opcionesTablaLibros.dtColumnDefs">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>User</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Reason</th>
+                                        <th>Título</th>
+                                        <th>Autor</th>
+                                        <th>Editorial</th>
+                                        <th>Fecha</th>
+                                        <th>Usuario</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                     <tr ng-repeat="book in books">
-                                        <td>{{book._id}}</td>
-                                        <td>{{book.created_At| date:"dd 'de' MMMM 'do' yyyy"}}</td>
                                         <td>{{book.title}}</td>
-                                        <td>{{book.id}}</td>
+                                        <td>{{book.author}}</td>
+                                        <td>{{book.editorial}}</td>
+                                        <td>{{book.created_at| date:"dd 'de' MMMM 'do' yyyy"}}</td>
+                                        <td>{{book.user}}</td>
                                         <td><button class="btn btn-warning" ng-click="editBook(book)">Editar</button></td>
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <button class="btn btn-success pull-right" ng-click="newBook()">Novo libro</button>
-
+                            <div class="box-footer pull-right">
+                                <button class="btn btn-success" ng-click="newBook()">Novo libro</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -53,7 +55,7 @@
                                     <div class="col-lg-4 col-sm-12">
                                         <div class="form-group">
                                             <label for="date">Data de alta</label>
-                                            <input type="text" class="form-control" id="date" value="{{book.created_At|date}}" disabled >
+                                            <input type="text" class="form-control" id="date" value="{{book.created_at|date}}" disabled >
                                         </div>
                                         <div class="form-group">
                                             <label for="isbn10">ISBN-10*</label>
@@ -123,14 +125,14 @@
                     </div>
                     <div class="row">
                         <center>
-                            <button class="btn btn-success">Gardar libro</button>
+                            <button class="btn btn-success" ng-click="saveBook(book)">Gardar libro</button>
                             <button class="btn btn-danger" ng-click="cancelEditingBook()">Cancelar</button>
                         </center>
                     </div>
                 </div>
 
                 <div class="col-xs-12 col-lg-6" ng-hide="editingBook">
-                    <div class="box box-warning">
+                    <div class="box box-success">
                         <div class="box-header">
                             <h3 class="box-title">Ubicacións da biblioteca</h3>
                         </div><!-- /.box-header -->
