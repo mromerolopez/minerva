@@ -7,20 +7,21 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     $scope.book = new Object;
     $scope.books = [];
     $scope.editingBook = false;
+
     $scope.newBook = function () {
         $scope.book = new Object;
-        $scope.book.created_At = new Date();
+        $scope.book.created_at = new Date();
         $scope.book.image = "/assets/images/logo.png";
         $scope.editingBook = true;
-        
+
     };
 
     $scope.editBook = function (book) {
         $scope.book = book;
         $scope.editingBook = true;
     };
-    
-    $scope.cancelEditingBook = function(){
+
+    $scope.cancelEditingBook = function () {
         $scope.book = new Object;
         $scope.editingBook = false;
     };
@@ -28,37 +29,63 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     $scope.checkIsbn = function (isbn) {
 
         if (isbn !== "") {
-            googleBooks.getBookISBN(isbn).then(function (datos) {
-                if (datos.totalItems > 0) {
-                    var searchedBook = datos.items[0].volumeInfo;
-                    $scope.book.title = searchedBook.title;
-                    $scope.book.author = searchedBook.authors[0];
-                    $scope.book.isbn13 = searchedBook.industryIdentifiers[1].identifier;
-                    $scope.book.image = searchedBook.imageLinks.thumbnail;
-                    $scope.book.synopsis = searchedBook.description;
-                    $scope.book.language = searchedBook.language;
-                    $scope.book.pages = searchedBook.pageCount;
-                    $scope.book.editorial = searchedBook.publisher;
-                    $scope.book.rating = searchedBook.averageRating;
-                    console.log(searchedBook);
-                }
-            }).catch(function (err) {
-                console.log(err);
-            });
+            googleBooks.getBookISBN(isbn)
+                    .then(function (datos) {
+                        if (datos.totalItems > 0) {
+                            var searchedBook = datos.items[0].volumeInfo;
+                            $scope.book.title = searchedBook.title;
+                            $scope.book.author = searchedBook.authors[0];
+                            $scope.book.isbn10 = searchedBook.industryIdentifiers[0].identifier;
+                            $scope.book.isbn13 = searchedBook.industryIdentifiers[1].identifier;
+                            $scope.book.image = searchedBook.imageLinks.thumbnail;
+                            $scope.book.synopsis = searchedBook.description;
+                            $scope.book.language = searchedBook.language;
+                            $scope.book.pages = searchedBook.pageCount;
+                            $scope.book.editorial = searchedBook.publisher;
+                            $scope.book.rating = searchedBook.averageRating;
+                            //console.log(searchedBook);
+                        }
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
         } else {
             $scope.book = new Object;
+            $scope.book.created_at = new Date();
+            $scope.book.image = "/assets/images/logo.png";
         }
 
     };
-    
+
 
     $scope.saveBook = function (book) {
-        console.log(book);
-        $scope.book = new Object;
-    };
+        if (typeof book._id !== "undefined") {
+            // edit
+            dataBooks.saveBook(book)
+                    .then(function (modifiedBook) {
 
-    // var books = [];
-    // $scope.books = books;
+                        $scope.editingBook = false;
+                        $scope.book = new Object;
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+
+        } else {
+            // insert
+            dataBooks.addBook(book)
+                    .then(function (insertedBook) {
+                        console.log(insertedBook);
+                        $scope.books.push(insertedBook);
+                        $scope.editingBook = false;
+                        $scope.book = new Object;
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+        }
+
+    };
 
     dataBooks.getBooks()
             .then(function (books) {
@@ -80,9 +107,10 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
         opcionesTablaLibros.dtColumnDefs = [
             DTColumnDefBuilder.newColumnDef(0),
             DTColumnDefBuilder.newColumnDef(1),
-            DTColumnDefBuilder.newColumnDef(2).notSortable(),
+            DTColumnDefBuilder.newColumnDef(2),
             DTColumnDefBuilder.newColumnDef(3),
-            DTColumnDefBuilder.newColumnDef(4)
+            DTColumnDefBuilder.newColumnDef(4),
+            DTColumnDefBuilder.newColumnDef(5).notSortable()
 
         ];
 
