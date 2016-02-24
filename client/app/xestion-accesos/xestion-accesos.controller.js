@@ -6,10 +6,10 @@ angular.module('minervaApp')
 function XestionAccesosCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataUsers) {
     $scope.user = new Object;
     $scope.users = [];
-
+    $scope.last_logins = [];
 
     dataUsers.getUsers()
-    //get a list of all users
+            //get a list of all users
             .then(function (users) {
                 $scope.users = users;
             })
@@ -17,10 +17,20 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataUs
                 console.log(err);
             });
 
+    dataUsers.lastLogins()
+            .then(function (users)
+            {
+                $scope.last_logins = users;
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+
+
 
     $scope.saveUser = function (user) {
-        
-        
+
+
         if (typeof user._id !== 'undefined') {
             //updates the actual user
             dataUsers.saveUser(user)
@@ -67,7 +77,8 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataUs
             DTColumnDefBuilder.newColumnDef(1),
             DTColumnDefBuilder.newColumnDef(2),
             DTColumnDefBuilder.newColumnDef(3),
-            DTColumnDefBuilder.newColumnDef(4).notSortable()
+            DTColumnDefBuilder.newColumnDef(4),
+            DTColumnDefBuilder.newColumnDef(5).notSortable()
         ];
 
         $scope.opcionesTablaUsuarios = opcionesTablaUsuarios;

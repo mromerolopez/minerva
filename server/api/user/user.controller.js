@@ -108,7 +108,23 @@ export function login(req, res){
     
     console.log(datos);
     User.findOne({username:datos.user, password:datos.pass}).then(function(datos){
+        
+        datos.last_login = Date.now();
+        datos.save();
         res.json(datos);
+        
     });
     //res.json("hola");
+}
+
+
+    
+    
+export function lastLogins(req, res){
+    
+    User.find({active:true}).sort({'last_login':-1}).limit(10).then(function(users){
+        res.json(users);
+    });
+     
+            
 }
