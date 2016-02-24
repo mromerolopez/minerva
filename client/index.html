@@ -252,12 +252,19 @@
                                 <i class="fa fa-gears"></i> <span>Opcións da aplicación</span> 
                             </a>
                         </li>
+                        
+                         <li>
+                            <a href="#" ng-click="salir()">
+                                <i class="fa fa-gears"></i> <span>Saír</span> 
+                            </a>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
             </aside>
 
             <div ui-view=""></div>
+
 
         </div>
         <footer></footer>
@@ -313,6 +320,7 @@
         <!-- injector:js -->
         <script src="components/util/util.module.js"></script>
         <script src="app/services/googleBooks.service.js"></script>
+        <script src="app/login/login.controller.js"></script>
         <script src="app/login/login.js"></script>
         <script src="app/main/main.controller.js"></script>
         <script src="app/main/main.js"></script>
@@ -325,7 +333,7 @@
         <script src="app/services/dataBooks.service.js"></script>
         <script src="app/services/dataCopies.service.js"></script>
         <script src="app/services/dataUsers.service.js"></script>
-        <script src="app/login/login.controller.js"></script>
+        <script src="app/factories/auth.factory.js"></script>
         <script src="app/xestion-accesos/xestion-accesos.controller.js"></script>
         <script src="app/xestion-accesos/xestion-accesos.js"></script>
         <script src="app/xestion-biblioteca/xestion-biblioteca.controller.js"></script>
