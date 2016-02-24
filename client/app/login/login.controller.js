@@ -18,6 +18,7 @@ function LoginCtrl($scope, $rootScope, dataUsers, $location) {
                     if (datos !== null) {
                         $rootScope.login = false;
                         $location.path('/');
+                        
                     }
                     
                 }).catch(function (err) {
