@@ -108,16 +108,13 @@ export function login(req, res){
     
     console.log(datos);
     User.findOne({username:datos.user, password:datos.pass}).then(function(datos){
-        
         datos.last_login = Date.now();
         datos.save();
+        datos.password = null;
         res.json(datos);
-        
     });
     //res.json("hola");
 }
-
-
     
     
 export function lastLogins(req, res){

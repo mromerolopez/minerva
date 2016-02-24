@@ -2,10 +2,14 @@
 
 app.controller('MainController', MainController);
 
-function MainController($scope, $http, googleBooks, $rootScope) {
-
+function MainController($scope, $http, googleBooks, $rootScope, auth) {
     $scope.forms = "active";
     $scope.hola = "pepe";
+    $rootScope.salir = function(){
+        auth.logout();
+    };
+    //$rootScope.logout = auth.logout();
+    
 //    dataVehicles.getVehiclesImei(['12421414']).then(function(datos){
 //        var datos = datos;
 //    }).catch(function(err){

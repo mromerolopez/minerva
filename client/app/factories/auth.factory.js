@@ -21,13 +21,13 @@ function auth($cookies, $cookieStore, $location) {
 
     function logout() {
         $cookies.remove('minerva_dev_user');
-        $location.path("/");
+        $location.path("/login");
     }
 
     function checkStatus() {
         //creamos un array con las rutas que queremos controlar
-        console.log("check");
-        console.log($cookies.getObject('minerva_dev_user'));
+//        console.log("check");
+//        console.log($cookies.getObject('minerva_dev_user'));
         var rutasPrivadas = ["/", "/main", "/opcions", "/prestamo-listaxe", "/prestamo-novo", "/xestion-accesos", "xestion-biblioteca", "xestion-usuarios"];
         //console.log($location.path());
         
