@@ -27,6 +27,7 @@
                                         <th>Dirección</th>
                                         <th>Última conexión</th>
                                         <th>Correo</th>
+                                        <th>Administrador</th>
                                         <th>Editar</th>
                                     </tr>
                                 </thead>
@@ -39,6 +40,8 @@
                                         <td>{{user.address}}</td>
                                         <td>{{user.last_login | date : "dd 'de' MMMM 'do' yyyy 'as' h:mm"}}</td>
                                         <td>{{user.email}}</td>
+                                        <td ng-if="user.is_admin">Si</td>
+                                        <td ng-if="!user.is_admin">No</td>
                                         <td><button class="btn btn-warning" ng-click="editUser(user)">Editar</button></td>
                                     </tr>
                                 </tbody>
@@ -131,13 +134,13 @@
                                        <div class="form-group">
                                         <label for="is_admin">É o usuario administrador?</label>
                                         <br>
-                                        <input type="checkbox">
+                                        <input type="checkbox" id="is_admin" ng-model="user.is_admin">
                                        </div>
                                         
                                        <div class="form-group">
-                                        <label for="is_admin">Eliminar usuario?</label>
+                                           <label for="active">Activo</label>
                                         <br>
-                                        <input type="checkbox">
+                                        <input type="checkbox" id="active" ng-model="user.active">
                                        </div>
                                     </div>
                             </div>
