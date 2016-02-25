@@ -76,6 +76,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
 
         } else {
             // insert
+            book.user = auth.get_user()._id;
             dataBooks.addBook(book)
                     .then(function (insertedBook) {
                         console.log(insertedBook);

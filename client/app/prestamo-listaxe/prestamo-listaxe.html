@@ -14,10 +14,43 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Cosas</h3>
+                            <h3 class="box-title">Préstamos</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">                          
-
+                            <div class="box-body">                          
+                            <table class="table table-hover" datatable="ng" dt-options="optionsTableLoans.dtOptions" dt-column-defs="optionsTableLoans.dtColumnDefs">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Fecha creación</th>
+                                        <th>Nombre</th>
+                                        <th>Apellidos</th>
+                                        <th>Dirección</th>
+                                        <th>Última conexión</th>
+                                        <th>Correo</th>
+                                        <th>Administrador</th>
+                                        <th>Editar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="user in users">
+                                        <td>{{user.username}}</td>
+                                        <td>{{user.created_at| date:"dd 'de' MMMM 'do' yyyy "}}</td>
+                                        <td>{{user.name}}</td>
+                                        <td>{{user.surname1 + " " + user.surname2}}</td>
+                                        <td>{{user.address}}</td>
+                                        <td>{{user.last_login| date : "dd 'de' MMMM 'do' yyyy 'as' h:mm"}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td ng-if="user.is_admin"><i class="fa fa-check text-green fa-2x"></i></td>
+                                <td ng-if="!user.is_admin"><i class="fa fa-close text-red fa-2x"></i></td>
+                                <td><button class="btn btn-warning" ng-click="editUser(user)">Editar</button></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="box-footer pull-right">
+                                <button class="btn btn-success" ng-click="newBorrow()">Novo préstamo</button>
+                            </div>
+                        </div>
 
                         </div>
                     </div>
