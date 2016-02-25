@@ -44,6 +44,7 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
             });
         } else {
             // create user
+            user.parent = auth.get_user()._id;
             dataUsers.addUser(user)
                     .then(function (newUser) {
                         $scope.editingUser = false;

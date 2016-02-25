@@ -8,7 +8,7 @@ var LoanSchema = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref: 'User',required:true},
   limit_date : Date,
   borrow_date : {type:Date, required:true},
-  incidents: [{type: mongoose.Schema.Types.ObjectId, ref: 'Incident' }],
+  incidents: [{type: mongoose.Schema.Types.ObjectId, ref: 'Incident'}],
   returned: Boolean,
   created_at : {type: Date, default : Date.now },
   updated_at : Date

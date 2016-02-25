@@ -18,11 +18,11 @@ var UserSchema = new mongoose.Schema({
     is_admin: {type: Boolean, default: false},
     last_login: Date,
     configuration: {type: mongoose.Schema.Types.ObjectId, ref: 'Configuration'},
-    center: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Center'
-    },
+    center: {type: mongoose.Schema.Types.ObjectId, ref: 'Center'},
     books: [{type: mongoose.Schema.Types.ObjectId, ref: 'Book'}],
     copies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Copy'}],
+    users:[{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+    parent: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 
 export default mongoose.model('User', UserSchema);
