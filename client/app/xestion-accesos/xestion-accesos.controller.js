@@ -7,7 +7,7 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
     $scope.user = new Object;
     $scope.users = [];
     $scope.last_logins = [];
-     $rootScope.salir = function(){
+    $rootScope.salir = function(){
         auth.logout();
     };
 

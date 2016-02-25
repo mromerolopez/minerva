@@ -3,10 +3,13 @@
 angular.module('minervaApp')
         .controller('XestionBibliotecaCtrl', XestionBibliotecaCtrl);
 
-function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks) {
+function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks, $rootScope, auth) {
     $scope.book = new Object;
     $scope.books = [];
     $scope.editingBook = false;
+    $rootScope.salir = function(){
+        auth.logout();
+    };
 
     $scope.newBook = function () {
         $scope.book = new Object;
