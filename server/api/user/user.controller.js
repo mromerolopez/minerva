@@ -110,6 +110,7 @@ export function login(req, res){
         //console.log(user);
         user.save();
         //user.password = null;
+        
         res.json(user);
     });
 }
