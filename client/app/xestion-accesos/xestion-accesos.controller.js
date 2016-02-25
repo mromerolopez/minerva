@@ -59,6 +59,10 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
     $scope.editUser = function (user) {
         $scope.user = user;
         $scope.editingUser = true;
+        if (typeof user === 'undefined') {
+            $scope.user = new Object;
+            $scope.user.active = true;
+        }
 
     };
 
