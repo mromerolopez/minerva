@@ -8,15 +8,9 @@ function MainController($scope, $http, googleBooks, $rootScope, auth) {
     $rootScope.salir = function(){
         auth.logout();
     };
+    
     console.log(auth.get_user());
-    
-    //$rootScope.logout = auth.logout();
-    
-//    dataVehicles.getVehiclesImei(['12421414']).then(function(datos){
-//        var datos = datos;
-//    }).catch(function(err){
-//        console.log(err);
-//    });
+   
     $http.get('api/books').success(function (books) {
         $scope.books = books;
     });

@@ -107,8 +107,9 @@ export function login(req, res){
     var datos = req.body;
     User.findOne({username:datos.user, password:datos.pass}).then(function(user){
         user.last_login = Date.now();
+        //console.log(user);
         user.save();
-        user.password = null;
+        //user.password = null;
         res.json(user);
     });
 }

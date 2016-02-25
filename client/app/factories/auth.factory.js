@@ -16,6 +16,7 @@ function auth($cookies, $cookieStore, $location, cookieConfig) {
 
 
     function login(user) {
+        user.password = null;
         $cookies.putObject(cookieConfig.name, user);
         //$location.path("/panel");
     }
