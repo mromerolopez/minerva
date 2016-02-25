@@ -105,15 +105,12 @@ export function destroy(req, res) {
 
 export function login(req, res){
     var datos = req.body;
-    
-    console.log(datos);
-    User.findOne({username:datos.user, password:datos.pass}).then(function(datos){
-        datos.last_login = Date.now();
-        datos.save();
-        datos.password = null;
-        res.json(datos);
+    User.findOne({username:datos.user, password:datos.pass}).then(function(user){
+        user.last_login = Date.now();
+        user.save();
+        user.password = null;
+        res.json(user);
     });
-    //res.json("hola");
 }
     
     
