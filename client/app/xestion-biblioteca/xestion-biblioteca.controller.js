@@ -5,16 +5,18 @@ angular.module('minervaApp')
 
 function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks, $rootScope, auth) {
     $scope.book = new Object;
+    $scope.loan = new Object;
     $scope.books = [];
     $scope.editingBook = false;
-
-
+    $scope.creatingLoan = false;
+    
+    // nuevo libro
+    
     $scope.newBook = function () {
         $scope.book = new Object;
         $scope.book.created_at = new Date();
         $scope.book.image = "/assets/images/logo.png";
         $scope.editingBook = true;
-
     };
 
     $scope.editBook = function (book) {
@@ -58,13 +60,11 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
 
     };
 
-
     $scope.saveBook = function (book) {
         if (typeof book._id !== "undefined") {
             // edit
             dataBooks.saveBook(book)
                     .then(function (modifiedBook) {
-
                         $scope.editingBook = false;
                         $scope.book = new Object;
                     })
@@ -86,9 +86,10 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
                         console.log(err);
                     });
         }
-
     };
-
+    // fin nuevo libro
+    
+    // population
     dataBooks.getBooks()
             .then(function (books) {
                 $scope.books = books;
@@ -96,6 +97,24 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
             .catch(function (err) {
                 console.log(err);
             });
+    // fin population
+
+
+    // nuevo préstamp
+    $scope.newLoan = function (book) {
+        $scope.creatingLoan = true;
+        $scope.book = book;
+    };
+
+    $scope.cancelNewLoan = function () {
+        $scope.creatingLoan = false;
+        $scope.book = new Object;
+        $scope.loan = new Object;
+    };
+
+    // fin de nuevo préstamo
+
+    // configuración
 
     (function () {
         var opcionesTablaLibros = new Object;
