@@ -42,10 +42,12 @@ import User from '../api/user/user.model.js';
 
 User.find().removeAsync().then(()=>{
     User.create({
-        name: "Nombre",
-        surname1: "Apellido1",
-        surname2: "Apellido2",
+        _id: "56d00af1deb492e4006e612f",
+        name: "Miss",
+        surname1: "paso",
+        surname2: "de venir a clase",
         username: "usuario1",
-        password: "pass"
+        password: "pass",
+        last_login: Date.now()
     })
 });

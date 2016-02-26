@@ -1,17 +1,13 @@
 'use strict';
 
 angular.module('minervaApp')
-  .controller('XestionUsuariosCtrl', XestionUsuariosCtrl);
-      
-function XestionUsuariosCtrl ($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder , dataBorrowers) {
-    $scope.borrowers=[];
-    $scope.borrower=new Object;
-    $rootScope.salir = function(){
-        auth.logout();
-    };
-    
-    
-     dataBorrowers.getBorrowers()
+        .controller('XestionUsuariosCtrl', XestionUsuariosCtrl);
+
+function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers) {
+    $scope.borrowers = [];
+    $scope.borrower = new Object;
+
+    dataBorrowers.getBorrowers()
             //get a list of all borrowers
             .then(function (borrowers) {
                 $scope.borrowers = borrowers;
@@ -19,12 +15,8 @@ function XestionUsuariosCtrl ($scope, $rootScope, auth, DTOptionsBuilder, DTColu
             .catch(function (err) {
                 console.log(err);
             });
-    
-    
-    
-    
-    
-       (function () {
+
+    (function () {
         var opcionesTablaBorrowers = new Object;
 
         opcionesTablaBorrowers.dtOptions = DTOptionsBuilder
@@ -45,4 +37,12 @@ function XestionUsuariosCtrl ($scope, $rootScope, auth, DTOptionsBuilder, DTColu
 
         $scope.opcionesTablaBorrowers = opcionesTablaBorrowers;
     })();
-  }
+
+    (function () {
+        $rootScope.user = auth.get_user();
+        $rootScope.login = false;
+        $rootScope.salir = function () {
+            auth.logout();
+        };
+    })();
+}

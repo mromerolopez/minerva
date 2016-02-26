@@ -40,10 +40,13 @@
                                         <td>{{user.address}}</td>
                                         <td>{{user.last_login| date : "dd 'de' MMMM 'do' yyyy 'as' h:mm"}}</td>
                                         <td>{{user.email}}</td>
-                                        <td ng-if="user.is_admin"><i class="fa fa-check text-green fa-2x"></i></td>
-                                <td ng-if="!user.is_admin"><i class="fa fa-close text-red fa-2x"></i></td>
-                                <td><button class="btn btn-warning" ng-click="editUser(user)">Editar</button></td>
-                                </tr>
+                                        <td>
+                                            <i ng-if="user.is_admin" class="fa fa-check text-green fa-2x"></i>
+                                            <i ng-if="!user.is_admin" class="fa fa-close text-red fa-2x"></i>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-warning" ng-click="editUser(user)">Editar</button></td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <div class="box-footer pull-right">
@@ -52,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-             
+
             </div>
 
             <div class="row" ng-show="editingUser" >

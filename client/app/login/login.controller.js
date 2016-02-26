@@ -5,8 +5,6 @@ app.controller('LoginCtrl', LoginCtrl);
 function LoginCtrl($scope, $rootScope, dataUsers, $location, auth) {
     $rootScope.login = true;
 
-
-
     $scope.login = function () {
 
         var username = $scope.username;

@@ -1,41 +1,64 @@
+<style>
+
+    /* enable absolute positioning */
+    .inner-addon { 
+        position: relative; 
+    }
+
+    /* style icon */
+    .inner-addon .glyphicon {
+        position: absolute;
+        padding: 10px;
+        pointer-events: none;
+    }
+
+    /* align icon */
+    .left-addon .glyphicon  { left:  0px;}
+    .right-addon .glyphicon { right: 0px;}
+
+    /* add padding  */
+    .left-addon input  { padding-left:  30px; }
+    .right-addon input { padding-right: 30px; }
+</style>
+
 <div class="hold-transition login-page">
 
     <div class="login-box">
         <div class="login-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
-
+            <b>Minerva</b>
+            <br>
+            Xestión de bibliotecas
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
-
-            <form action="../../index2.html" method="post">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email" ng-model="username">
-                    <span class="glyphicon glyphicon-envelope"></span>
+            <p class="login-box-msg">Introduce o teu usuario e a tua contrasinal para iniciar sesión</p>
+            <form ng-submit="login()">
+                <div class="form-group inner-addon right-addon">
+                    <input type="text" class="form-control" placeholder="Nome de usuario" ng-model="username" required>
+                    <span class="glyphicon glyphicon-user"></span>
                 </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" ng-model="password">
-                    <i class="glyphicon glyphicon-lock"></i>
+                <div class="form-group inner-addon right-addon">
+                    <input type="password" class="form-control" placeholder="Contrasinal" ng-model="password" right-addon>
+                    <span class="glyphicon glyphicon-lock"></span>
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox"> Remember Me
+                                <input type="checkbox"> Recórdame
                             </label>
                         </div>
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="button" class="btn btn-primary btn-block btn-flat" ng-click="login()">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
 
-            <a href="#">I forgot my password</a><br>
-            <a href="register.html" class="text-center">Register a new membership</a>
+            <a href="#">Olvidei o meu contrasinal</a><br>
+<!--            <a href="register.html" class="text-center">Register a new membership</a>-->
 
         </div>
         <!-- /.login-box-body -->

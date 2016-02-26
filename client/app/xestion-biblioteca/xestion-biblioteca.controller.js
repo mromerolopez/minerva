@@ -7,9 +7,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     $scope.book = new Object;
     $scope.books = [];
     $scope.editingBook = false;
-    $rootScope.salir = function(){
-        auth.logout();
-    };
+
 
     $scope.newBook = function () {
         $scope.book = new Object;
@@ -119,5 +117,13 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
         ];
 
         $scope.opcionesTablaLibros = opcionesTablaLibros;
+    })();
+
+    (function () {
+        $rootScope.user = auth.get_user();
+        $rootScope.login = false;
+        $rootScope.salir = function () {
+            auth.logout();
+        };
     })();
 }

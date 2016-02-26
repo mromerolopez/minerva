@@ -3,14 +3,20 @@
 app.controller('MainController', MainController);
 
 function MainController($scope, $http, googleBooks, $rootScope, auth) {
-    $scope.forms = "active";
-    $scope.hola = "pepe";
-    $rootScope.salir = function(){
-        auth.logout();
-    };
-    
-    console.log(auth.get_user());
-   
+    // $scope.forms = "active";
+    //$scope.hola = "pepe";
+
+    (function () {
+        $rootScope.user = auth.get_user();
+        $rootScope.login = false;
+        $rootScope.salir = function () {
+            auth.logout();
+        };
+    })();
+
+
+    //console.log(auth.get_user());
+
     $http.get('api/books').success(function (books) {
         $scope.books = books;
     });
@@ -33,7 +39,8 @@ function MainController($scope, $http, googleBooks, $rootScope, auth) {
             $scope.books.push(book);
             $scope.insertando = false;
         });
-    };
+    }
+    ;
 
 
     googleBooks.getBookISBN('8493987743')
@@ -42,7 +49,7 @@ function MainController($scope, $http, googleBooks, $rootScope, auth) {
             }).catch(function (err) {
         console.log(err);
     });
-    
-  
+
+
 
 }

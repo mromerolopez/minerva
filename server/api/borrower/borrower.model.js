@@ -10,7 +10,7 @@ var BorrowerSchema = new mongoose.Schema({
   phone : String,
   address :  String,
   classroom :  String,
-  dni : String,
+  nif : String,
   studentId : String,
   loans : [{type: mongoose.Schema.Types.ObjectId, ref: 'Loan'}],
   incidents : [{type: mongoose.Schema.Types.ObjectId, ref: 'Incident'}],

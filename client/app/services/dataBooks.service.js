@@ -6,8 +6,8 @@ function dataBooks($q, $http){
     return {
         getBooks: getBooks, // function para obtener un listado de libros
         getBook: getBook, // (_id) obtiene el libro
-        addBook: addBook, // inserta libro
-        saveBook: saveBook // guarda libro
+        addBook: addBook, // (book) inserta libro
+        saveBook: saveBook // (book) guarda libro
     };
     
     function getBooks(){

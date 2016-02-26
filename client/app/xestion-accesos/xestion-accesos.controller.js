@@ -1,15 +1,11 @@
 'use strict';
 
-angular.module('minervaApp')
-        .controller('XestionAccesosCtrl', XestionAccesosCtrl);
+app.controller('XestionAccesosCtrl', XestionAccesosCtrl);
 
-function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBuilder, dataUsers , auth) {
+function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBuilder, dataUsers, auth) {
     $scope.user = new Object;
     $scope.users = [];
     $scope.last_logins = [];
-    $rootScope.salir = function(){
-        auth.logout();
-    };
 
     dataUsers.getUsers()
             //get a list of all users
@@ -95,8 +91,13 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
         $scope.opcionesTablaUsuarios = opcionesTablaUsuarios;
     })();
 
-
-
+    (function () {
+        $rootScope.user = auth.get_user();
+        $rootScope.login = false;
+        $rootScope.salir = function () {
+            auth.logout();
+        };
+    })();
 }
 
 

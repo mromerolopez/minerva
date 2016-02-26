@@ -15,8 +15,6 @@ function dataBorrowers($q, $http) {
         var defered = $q.defer();
         var promise = defered.promise;
 
-
-
         $http({
             method: 'GET',
             url: '/api/borrowers'
