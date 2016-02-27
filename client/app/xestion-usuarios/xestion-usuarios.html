@@ -10,49 +10,244 @@
             <h1>
                 Xestión de usuarios
             </h1>
-            <div class="row">
+            <div class="row" ng-hide="editingBorrower || creatingLoan">
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Cosas</h3>
+                            <h3 class="box-title">Prestatarios</h3>
                         </div><!-- /.box-header -->
-                           <div class="box-body">                          
+                        <div class="box-body">                          
                             <table class="table table-hover" datatable="ng" dt-options="opcionesTablaBorrowers.dtOptions" dt-column-defs="opcionesTablaBorrowers.dtColumnDefs">
                                 <thead>
                                     <tr>
-                                        <th>Usuario</th>
-                                        <th>Fecha creación</th>
-                                        <th>Nombre</th>
-                                        <th>Apellidos</th>
-                                        <th>Dirección</th>
-                                        <th>Última conexión</th>
+                                        <th>Nome</th>
+                                        <th>Apelidos</th>
+                                        <th>Clase</th>
+                                        <th>NIF</th>
                                         <th>Correo</th>
-                                        <th>Administrador</th>
+                                        <th>Teléfono</th>
+                                        <th>Dirección</th>
                                         <th>Editar</th>
+                                        <th>Novo Préstamo</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="borrower in borrowers">
-                                        <td>{{user.username}}</td>
-                                        <td>{{user.created_at| date:"dd 'de' MMMM 'do' yyyy "}}</td>
-                                        <td>{{user.name}}</td>
-                                        <td>{{user.surname1 + " " + user.surname2}}</td>
-                                        <td>{{user.address}}</td>
-                                        <td>{{user.last_login| date : "dd 'de' MMMM 'do' yyyy 'as' h:mm"}}</td>
-                                        <td>{{user.email}}</td>
-                                        <td ng-if="user.is_admin"><i class="fa fa-check text-green fa-2x"></i></td>
-                                <td ng-if="!user.is_admin"><i class="fa fa-close text-red fa-2x"></i></td>
-                                <td><button class="btn btn-warning" ng-click="editUser(user)">Editar</button></td>
-                                </tr>
+                                        <td>{{borrower.name}}</td>
+                                        <td>{{borrower.surname1 + " " + borrower.surname2}}</td>
+                                        <td>{{borrower.classroom}}</td>
+                                        <td>{{borrower.nif}}</td>
+                                        <td>{{borrower.email}}</td>
+                                        <td>{{borrower.phone}}</td>
+                                        <td>{{borrower.address}}</td>
+                                        <td><button class="btn btn-warning" ng-click="editBorrower(borrower)"><i class="fa fa-edit"></i></button></td>
+                                        <td><button class="btn btn-primary" ng-click="newLoan(borrower)"><i class="fa fa-book"></i></button></td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <div class="box-footer pull-right">
-                                <button class="btn btn-success" ng-click="editUser()">Novo Usuario</button>
+                                <button class="btn btn-success" ng-click="editBorrower()">Novo Usuario</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row" ng-show="editingBorrower" >
+                <div class="col-xs-12 col-lg-12">
+                    <div class="box box-success">
+                        <div class="box-header">
+                            <h3 class="box-title">Editar Usuario</h3>
+                        </div> 
+                        <div class="box-body">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="name">Nome*</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Nome" ng-model="borrower.name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="surname1">Primeiro Apelido*</label>
+                                    <input type="text" class="form-control" id="surname1" placeholder="Primeiro Apelido" ng-model="borrower.surname1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="surname2">Segundo Apelido*</label>
+                                    <input type="text" class="form-control" id="surname2" placeholder="Segundo Apelido" ng-model="borrower.surname2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Dirección</label>
+                                    <input type="text" class="form-control" id="address" placeholder="Dirección" ng-model="borrower.address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Teléfono</label>
+                                    <input type="number" class="form-control" id="phone" placeholder="Teléfono" ng-model="borrower.phone">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="classroom">Clase</label>
+                                    <input type="text" class="form-control" id="classroom" placeholder="Clase" ng-model="borrower.classroom">
+                                </div>
+                                <div class="form-group">
+                                    <label for="studentId">ID Estudiante</label>
+                                    <input type="text" class="form-control" id="studentId" placeholder="ID Estudiante" ng-model="borrower.studentId">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Conta de correo</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Conta de correo" ng-model="borrower.email">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="nif">NIF</label>
+                                    <input type="text" class="form-control" id="nif" placeholder="NIF" ng-model="borrower.nif">
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label for="active">Activo</label>
+                                        <br>
+                                        <input type="checkbox" id="active" ng-model="borrower.active">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <center>
+                            <div class="box-footer" >
+                                <button type="button" class="btn btn-success" ng-click="saveBorrower(borrower)">Gardar</button>
+                                <button type="button" class="btn btn-danger" ng-click="cancelEditingBorrower()">Cancelar</button>
+                            </div></center>
+                    </div> 
+                </div>
+            </div>
+            
+                <div ng-show="creatingLoan">
+                    <div class="row">        
+                        <div class="col-lg-4">
+                            <div class="box box-success">
+                                <div class="box-header">
+                                    <h3 class="box-title">Datos do libro</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">  
+
+                                    <div class="col-lg-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="date_loan">Data de alta</label>
+                                            <input type="text" class="form-control" id="date_loan"  >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="isbn10">ISBN-10*</label>
+                                            <input type="text" class="form-control" id="isbn10" placeholder="Introduza o ISBN-10">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="isbn13">ISBN-13*</label>
+                                            <input type="text" class="form-control" id="isbn13" placeholder="Introduza o ISBN-13">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="title">Título*</label>
+                                            <input type="text" class="form-control" id="title" placeholder="Introduza o título" >
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="author">Autor*</label>
+                                            <input type="text" class="form-control" id="author" placeholder="Introduza o autor" >
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="editorial">Editorial*</label>
+                                            <input type="text" class="form-control" id="editorial" placeholder="Introduza a editorial" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exemplar">Exemplar*</label>
+                                            <select id="exemplar" class="form-control">
+                                                <option>Copia 1</option>
+                                                <option>Copia 2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4">
+                            <div class="box box-warning">
+                                <div class="box-header">
+                                    <h3 class="box-title">Datos do prestatario</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">  
+
+                                    <div class="col-lg-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="nome">Nome*</label>
+                                            <input type="text" class="form-control" id="nome" placeholder="Introduza o nome" ng-model="borrower.name">
+                                        </div>   <div class="form-group">
+                                            <label for="apelido1">Primeiro apelido*</label>
+                                            <input type="text" class="form-control" id="apelido1" placeholder="Primeiro apelido" ng-model="borrower.surname1">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="apelido2">Segundo apelido*</label>
+                                            <input type="text" class="form-control" id="apelido2" placeholder="Segundo apelido" ng-model="borrower.surname2">
+                                        </div>
+                                          
+                                        <div class="form-group">
+                                            <label for="nif">NIF*</label>
+                                            <input type="text" class="form-control" id="nif" placeholder="Introduza o NIF" ng-model="borrower.nif">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="telefono">Teléfono</label>
+                                            <input type="text" class="form-control" id="telefono" placeholder="Introduza o teléfono" ng-model="borrower.phone">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="text" class="form-control" id="email" placeholder="Introduza o email" ng-model="borrower.email">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="dirección">Dirección</label>
+                                            <input type="text" class="form-control" id="dirección" placeholder="Introduza a dirección" ng-model="borrower.address">
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4">
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Datos do préstamo</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">  
+
+                                    <div class="col-lg-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="borrow_date">Data do préstamo</label>
+                                            <input type="date" class="form-control" id="borrow_date">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="limit_date">Data límite</label>
+                                            <input type="date" class="form-control" id="limit_date">
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <center>
+                            <button class="btn btn-success" ng-click="saveLoan(loan)">Gardar préstamo</button>
+                            <button class="btn btn-danger" ng-click="cancelNewLoan()">Cancelar</button>
+                        </center>
+                    </div>
+                </div>
+            
+            
+            
         </section>
     </section>
 </div><!-- /.content-wrapper -->

@@ -43,11 +43,26 @@ import User from '../api/user/user.model.js';
 User.find().removeAsync().then(()=>{
     User.create({
         _id: "56d00af1deb492e4006e612f",
-        name: "Miss",
-        surname1: "paso",
-        surname2: "de venir a clase",
+        name: "Señor",
+        surname1: "me enfado pero",
+        surname2: "si me compras patatas se me pasa",
         username: "usuario1",
         password: "pass",
         last_login: Date.now()
     })
 });
+
+
+//import Borrower from '../api/borrower/borrower.model.js';
+//
+//Borrower.find().removeAsync().then(()=>{
+//    Borrower.create({
+//        _id: "",
+//        name: "Paco",
+//        surname1: "Martinez",
+//        surname2: "Soria",
+//        classroom: "FP Basica 2",
+//        nif: "Y-56985-HJ",
+//        email: "falso@yosoy.com"
+//    })
+//});

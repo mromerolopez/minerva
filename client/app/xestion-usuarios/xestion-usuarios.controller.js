@@ -6,6 +6,9 @@ angular.module('minervaApp')
 function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers) {
     $scope.borrowers = [];
     $scope.borrower = new Object;
+    $scope.loan = new Object;
+    $scope.editingBorrower = false;
+    $scope.creatingLoan = false;
 
     dataBorrowers.getBorrowers()
             //get a list of all borrowers
@@ -15,6 +18,59 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
             .catch(function (err) {
                 console.log(err);
             });
+
+    $scope.saveBorrower = function (borrower) {
+
+
+        if (typeof borrower._id !== 'undefined') {
+            //updates the actual user
+            dataBorrowers.saveBorrower(borrower)
+                    .then(function (modifiedBorrower) {
+                        $scope.editingBorrower = false;
+                    }).catch(function (err) {
+                console.log(err);
+            });
+        } else {
+            // create user
+            borrower.parent = auth.get_user()._id;
+            dataBorrowers.addBorrower(borrower)
+                    .then(function (newBorrower) {
+                        $scope.editingBorrower = false;
+                        $scope.borrowers.push(newBorrower);
+                    }).catch(function (err) {
+                console.log(err);
+            });
+        }
+
+    };
+
+
+    $scope.editBorrower = function (borrower) {
+        $scope.borrower = borrower;
+        $scope.editingBorrower = true;
+        if (typeof borrower === 'undefined') {
+            $scope.borrower = new Object;
+            $scope.borrower.active = true;
+        }
+
+    };
+
+    $scope.cancelEditingBorrower = function () {
+        $scope.borrower = new Object;
+        $scope.editingBorrower = false;
+    };
+
+    $scope.newLoan = function (borrower) {
+        $scope.creatingLoan = true;
+        $scope.borrower = borrower;
+    };
+
+    $scope.cancelNewLoan = function () {
+        $scope.creatingLoan = false;
+        $scope.borrower = new Object;
+        $scope.loan = new Object;
+    };
+
 
     (function () {
         var opcionesTablaBorrowers = new Object;
