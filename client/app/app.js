@@ -14,4 +14,6 @@ var app = angular.module('minervaApp', [
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
-  });
+  })
+    .constant('cookieConfig', {name:'minerva_dev_user'})
+;

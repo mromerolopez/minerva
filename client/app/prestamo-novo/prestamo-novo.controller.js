@@ -1,6 +1,13 @@
 'use strict';
 
-angular.module('minervaApp')
-  .controller('PrestamoNovoCtrl', function ($scope) {
-    $scope.message = 'Hello';
-  });
+app.controller('PrestamoNovoCtrl', function ($scope, $rootScope, auth) {
+
+    (function () {
+        $rootScope.user = auth.get_user();
+        $rootScope.login = false;
+        $rootScope.salir = function () {
+            auth.logout();
+        };
+    })();
+    
+});

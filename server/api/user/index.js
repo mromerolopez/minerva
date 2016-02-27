@@ -12,5 +12,6 @@ router.post('/login', controller.login);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
+router.get('/last/logins', controller.lastLogins);
 
 module.exports = router;

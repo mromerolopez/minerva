@@ -105,10 +105,22 @@ export function destroy(req, res) {
 
 export function login(req, res){
     var datos = req.body;
-    
-    console.log(datos);
-    User.findOne({username:datos.user, password:datos.pass}).then(function(datos){
-        res.json(datos);
+    User.findOne({username:datos.user, password:datos.pass}).then(function(user){
+        user.last_login = Date.now();
+        //console.log(user);
+        user.save();
+        //user.password = null;
+        
+        res.json(user);
     });
-    //res.json("hola");
+}
+    
+    
+export function lastLogins(req, res){
+    
+    User.find({active:true}).sort({'last_login':-1}).limit(10).then(function(users){
+        res.json(users);
+    });
+     
+            
 }
