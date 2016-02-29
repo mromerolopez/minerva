@@ -17,9 +17,57 @@
                             <h3 class="box-title">Cosas</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">                          
+                            <uib-accordion close-others="oneAtATime">
+                                <div class="col-lg-6">
+                                      <uib-accordion-group heading="Opcións dos préstamos" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled" panel-class="panel-success">
+                                          <div>
+                                               <div class="col-lg-6 form-group">
+                                    <label for="studentId">Opcion 1</label>
+                                    <input type="text" class="form-control" id="studentId" >
+                                </div>
+                                               <div class="col-lg-6 form-group">
+                                    <label for="studentId">Opcion 2</label>
+                                    <input type="text" class="form-control" id="studentId">
+                                </div>
+                                          </div>
+                                </uib-accordion-group>
+                                </div>
+                                
+                                                            </uib-accordion>
+                            <uib-accordion close-others="oneAtATime">
+
+                               <div class="col-lg-6">
+                               <uib-accordion-group heading="Opción dos libros"  panel-class="panel-warning">
+                                   <div>
+                                           <div class="form-group">
+                                    <label for="studentId">Opcion 2</label>
+                                    <input type="text" class="form-control" id="studentId">
+                                </div>
+                                   
+                                       </div>
+                               </uib-accordion-group>
+                                     <uib-accordion-group heading="Opción dos libros"  panel-class="panel-warning">
+                                         <div>
+                                              <div class="col-lg-6 form-group">
+                                    <label for="studentId">Opcion 1</label>
+                                    <input type="text" class="form-control" id="studentId" >
+                                </div>
+                                               <div class="col-lg-6 form-group">
+                                    <label for="studentId">Opcion 2</label>
+                                    <input type="text" class="form-control" id="studentId">
+                                </div>
+                                         </div>
+                               </uib-accordion-group>
+                               
+                               </div>
+                               
+                            </uib-accordion>
 
 
                         </div>
+                        <!-- /.box-body -->
+
+
                     </div>
                 </div>
             </div>
