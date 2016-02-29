@@ -53,16 +53,16 @@ User.find().removeAsync().then(()=>{
 });
 
 
-//import Borrower from '../api/borrower/borrower.model.js';
-//
-//Borrower.find().removeAsync().then(()=>{
-//    Borrower.create({
-//        _id: "",
-//        name: "Paco",
-//        surname1: "Martinez",
-//        surname2: "Soria",
-//        classroom: "FP Basica 2",
-//        nif: "Y-56985-HJ",
-//        email: "falso@yosoy.com"
-//    })
-//});
+import Borrower from '../api/borrower/borrower.model.js';
+
+Borrower.find().removeAsync().then(()=>{
+    Borrower.create({
+        _id: "56d40abe4df0c37c0601942b",
+        name: "Paco",
+        surname1: "Martinez",
+        surname2: "Soria",
+        classroom: "FP Basica 2",
+        nif: "Y-56985-HJ",
+        email: "falso@yosoy.com"
+    })
+});

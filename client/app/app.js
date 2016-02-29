@@ -8,7 +8,8 @@ var app = angular.module('minervaApp', [
   'ui.router',
   'ui.bootstrap',
   'datatables',
-  'ngAnimate'
+  'ngAnimate',
+  'chart.js'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

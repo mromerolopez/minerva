@@ -2,9 +2,7 @@
 
 app.controller('MainController', MainController);
 
-function MainController($scope, $http, googleBooks, $rootScope, auth) {
-    // $scope.forms = "active";
-    //$scope.hola = "pepe";
+function MainController($scope, $rootScope, auth) {
 
     (function () {
         $rootScope.user = auth.get_user();
@@ -14,41 +12,22 @@ function MainController($scope, $http, googleBooks, $rootScope, auth) {
         };
     })();
 
+    $scope.labelsd = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+    $scope.datad = [300, 500, 100];
+
+    $scope.labelsp = ["Downloads", " Sales", "Mail-Orders"];
+    $scope.datap = [200, 400, 350];
+
+    $scope.labelsl = ["January", "February", "March", "April", "May", "June", "July"];
+    $scope.series = ['Series A', 'Series B'];
+    $scope.datal = [
+        [65, 59, 80, 81, 56, 55, 40],
+        [28, 48, 40, 19, 86, 27, 90]
+    ];
+
 
     //console.log(auth.get_user());
 
-    $http.get('api/books').success(function (books) {
-        $scope.books = books;
-    });
-
-    $scope.guardarLibro = guardaLibros;
-
-    function guardaLibros() {
-        $scope.insertando = true;
-        var titulo = $scope.titulo;
-        var autor = $scope.autor;
-
-        var libro = {
-            title: titulo,
-            author: autor
-        };
-        console.log(libro);
-
-        $http.post('api/books', libro).success(function (book) {
-            console.log("Win");
-            $scope.books.push(book);
-            $scope.insertando = false;
-        });
-    }
-    ;
-
-
-    googleBooks.getBookISBN('8493987743')
-            .then(function (book) {
-                $scope.book = book;
-            }).catch(function (err) {
-        console.log(err);
-    });
 
 
 
