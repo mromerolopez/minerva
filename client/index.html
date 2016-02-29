@@ -25,7 +25,6 @@
         <link rel="stylesheet" href="app/main/main.css">
         <link rel="stylesheet" href="app/opcions/opcions.css">
         <link rel="stylesheet" href="app/prestamo-listaxe/prestamo-listaxe.css">
-        <link rel="stylesheet" href="app/prestamo-novo/prestamo-novo.css">
         <link rel="stylesheet" href="app/xestion-accesos/xestion-accesos.css">
         <link rel="stylesheet" href="app/xestion-biblioteca/xestion-biblioteca.css">
         <link rel="stylesheet" href="app/xestion-usuarios/xestion-usuarios.css">
@@ -223,18 +222,13 @@
                             </ul>
                         </li>
 
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-book"></i>
-                                <span>Préstamos</span>
-                                <i class="fa fa-angle-left pull-right"></i>
+                             <li>
+                            <a href="/prestamo-listaxe">
+                                <i class="fa fa-book"></i> <span>Listaxe de préstamos</span> 
                             </a>
-                            <ul class="treeview-menu">
-                               <!-- <li><a href="/prestamo-novo" title="Formulario para novo préstamo"><i class="fa fa-circle-o"></i>Novo</a></li>-->
-                                <li><a href="/prestamo-listaxe" title="Listaxe de préstamos do centro"><i class="fa fa-circle-o"></i>Listaxe</a></li>
-<!--                                                    <li><a href="#"><i class="fa fa-circle-o"></i></a></li>-->
-                            </ul>
                         </li>
+                        
+
 
                         <li>
                             <a href="/opcions">
@@ -308,7 +302,7 @@
         <script src="app/app.js"></script>
         <!-- injector:js -->
         <script src="components/util/util.module.js"></script>
-        <script src="app/services/dataUsers.service.js"></script>
+        <script src="app/services/googleBooks.service.js"></script>
         <script src="app/login/login.controller.js"></script>
         <script src="app/login/login.js"></script>
         <script src="app/main/main.controller.js"></script>
@@ -317,14 +311,12 @@
         <script src="app/opcions/opcions.js"></script>
         <script src="app/prestamo-listaxe/prestamo-listaxe.controller.js"></script>
         <script src="app/prestamo-listaxe/prestamo-listaxe.js"></script>
-        <script src="app/prestamo-novo/prestamo-novo.controller.js"></script>
-        <script src="app/prestamo-novo/prestamo-novo.js"></script>
         <script src="app/services/dataBooks.service.js"></script>
         <script src="app/services/dataBorrowers.service.js"></script>
         <script src="app/services/dataCopies.service.js"></script>
         <script src="app/services/dataLoans.service.js"></script>
+        <script src="app/services/dataUsers.service.js"></script>
         <script src="app/factories/auth.factory.js"></script>
-        <script src="app/services/googleBooks.service.js"></script>
         <script src="app/xestion-accesos/xestion-accesos.controller.js"></script>
         <script src="app/xestion-accesos/xestion-accesos.js"></script>
         <script src="app/xestion-biblioteca/xestion-biblioteca.controller.js"></script>
