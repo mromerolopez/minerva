@@ -17,19 +17,15 @@
                             <h3 class="box-title">Cosas</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">                          
-
                             <h4>Asynchronous results</h4>
-                            <pre>Model: {{asyncSelected| json}}</pre>
-                            <input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                            <pre>Model: {{borrower| json}}</pre>
+                            <input type="text" ng-model="borrower.name" placeholder="Locations loaded via $http" uib-typeahead="borrower for borrower in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control" typeahead-on-select="selectBorrower($item, $model, $label, $event)">
                             <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
                             <div ng-show="noResults">
                                 <i class="glyphicon glyphicon-remove"></i> No se han encontrado resultados
                             </div>
-
                         </div>
                         <!-- /.box-body -->
-
-
                     </div>
                 </div>
             </div>
@@ -49,7 +45,7 @@
 
                             <h4>Asynchronous results</h4>
                             <pre>Model: {{asyncSelected| json}}</pre>
-                            <input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                            <input type="text" ng-model="borrower.surname1" placeholder="Locations loaded via $http" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
                             <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
                             <div ng-show="noResults">
                                 <i class="glyphicon glyphicon-remove"></i> No Results Found

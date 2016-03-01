@@ -100,3 +100,19 @@ export function destroy(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 }
+
+export function findByFilter(req, res){
+var query = req.params.query;
+        
+    Borrower.find({
+                $or: [
+                        {'name':{$regex: query,  $options:'i'}}, 
+                        {'surname1':{$regex: query,  $options:'i'}}, 
+                        {'surname2':{$regex: query,  $options:'i'}}, 
+                        {'nif':{$regex: query,  $options:'i'}}
+                    ]
+            })
+        .then(function(datos){
+            res.json(datos);
+        });
+        }

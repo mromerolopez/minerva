@@ -98,8 +98,8 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
             auth.logout();
         };
     })();
-    
-       $scope.getLocation = function (value) {
+
+    $scope.getLocation = function (value) {
         return dataMaps.getLocations(value).then(function (response) {
             return response.results.map(function (item) {
                 return item.formatted_address;
