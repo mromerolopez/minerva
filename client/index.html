@@ -26,6 +26,7 @@
         <link rel="stylesheet" href="app/main/main.css">
         <link rel="stylesheet" href="app/opcions/opcions.css">
         <link rel="stylesheet" href="app/prestamo-listaxe/prestamo-listaxe.css">
+        <link rel="stylesheet" href="app/tests/tests.css">
         <link rel="stylesheet" href="app/xestion-accesos/xestion-accesos.css">
         <link rel="stylesheet" href="app/xestion-biblioteca/xestion-biblioteca.css">
         <link rel="stylesheet" href="app/xestion-usuarios/xestion-usuarios.css">
@@ -151,13 +152,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="assets/images/yeoman.png" class="user-image" alt="User Image">
+                                    <img src="assets/images/minervaowl.jpg" class="user-image" alt="User Image">
                                     <span class="hidden-xs">{{user.username}}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="assets/images/yeoman.png" class="user-image" alt="User Image">
+                                        <img src="assets/images/minervaowl.jpg" class="user-image" alt="User Image">
                                         <p>
                                             {{user.name}} {{user.surname1}} {{user.surname2}} - <span ng-if="user.is_admin">Administrador</span> <span ng-if="!user.is_admin">Usuario</span> 
                                             <small>Membro desde {{user.created_at | date}}</small>
@@ -191,7 +192,7 @@
 <!--                     Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="assets/images/yeoman.png" class="user-image" alt="User Image">
+                            <img src="assets/images/minervaowl.jpg" class="user-image" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p>{{user.username}}</p>
@@ -306,7 +307,7 @@
         <script src="app/app.js"></script>
         <!-- injector:js -->
         <script src="components/util/util.module.js"></script>
-        <script src="app/services/googleBooks.service.js"></script>
+        <script src="app/tests/tests.controller.js"></script>
         <script src="app/login/login.controller.js"></script>
         <script src="app/login/login.js"></script>
         <script src="app/main/main.controller.js"></script>
@@ -320,7 +321,9 @@
         <script src="app/services/dataCopies.service.js"></script>
         <script src="app/services/dataLoans.service.js"></script>
         <script src="app/services/dataUsers.service.js"></script>
+        <script src="app/services/googleBooks.service.js"></script>
         <script src="app/factories/auth.factory.js"></script>
+        <script src="app/tests/tests.js"></script>
         <script src="app/xestion-accesos/xestion-accesos.controller.js"></script>
         <script src="app/xestion-accesos/xestion-accesos.js"></script>
         <script src="app/xestion-biblioteca/xestion-biblioteca.controller.js"></script>
