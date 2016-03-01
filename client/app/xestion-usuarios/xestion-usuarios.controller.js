@@ -3,7 +3,7 @@
 angular.module('minervaApp')
         .controller('XestionUsuariosCtrl', XestionUsuariosCtrl);
 
-function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers) {
+function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers, $http, dataMaps) {
     $scope.borrowers = [];
     $scope.borrower = new Object;
     $scope.loan = new Object;
@@ -101,4 +101,27 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
             auth.logout();
         };
     })();
+
+//    $scope.getLocation = function (val) {
+//        return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+//            params: {
+//                address: val,
+//                sensor: false
+//            }
+//        }).then(function (response) {
+//            return response.data.results.map(function (item) {
+//                return item.formatted_address;
+//            });
+//        });
+//    };
+
+    $scope.getLocation = function (value) {
+        return dataMaps.getLocations(value).then(function (response) {
+            return response.results.map(function (item) {
+                return item.formatted_address;
+            });
+        }).catch(function (err) {
+            console.log(err);
+        });
+    };
 }

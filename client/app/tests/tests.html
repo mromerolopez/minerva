@@ -17,8 +17,43 @@
                             <h3 class="box-title">Cosas</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">                          
-                            
-                            
+
+                            <h4>Asynchronous results</h4>
+                            <pre>Model: {{asyncSelected| json}}</pre>
+                            <input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                            <div ng-show="noResults">
+                                <i class="glyphicon glyphicon-remove"></i> No se han encontrado resultados
+                            </div>
+
+                        </div>
+                        <!-- /.box-body -->
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content">
+            <h1>
+                Tests
+            </h1>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Cosas</h3>
+                        </div><!-- /.box-header -->
+                        <div class="box-body">                          
+
+                            <h4>Asynchronous results</h4>
+                            <pre>Model: {{asyncSelected| json}}</pre>
+                            <input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                            <div ng-show="noResults">
+                                <i class="glyphicon glyphicon-remove"></i> No Results Found
+                            </div>
 
                         </div>
                         <!-- /.box-body -->

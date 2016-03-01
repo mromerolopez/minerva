@@ -74,8 +74,18 @@
                                     <input type="text" class="form-control" id="surname2" placeholder="Segundo Apelido" ng-model="borrower.surname2">
                                 </div>
                                 <div class="form-group">
-                                    <label for="address">Dirección</label>
-                                    <input type="text" class="form-control" id="address" placeholder="Dirección" ng-model="borrower.address">
+<!--                                    <label for="address">Dirección</label>-->
+                                    <div class="form-group">
+                                        <label for="dirección">Dirección</label>
+                                        <input type="text" ng-model="borrower.address" placeholder="Dirección" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                                        <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                                        <div ng-show="noResults">
+                                            <i class="glyphicon glyphicon-remove"></i> No se han encontrado resultados
+                                        </div>
+                                        <!--                                            <input type="text" class="form-control" id="dirección" placeholder="Introduza a dirección" ng-model="borrower.address">-->
+                                    </div>
+                                    
+<!--                                    <input type="text" class="form-control" id="address" placeholder="Dirección" ng-model="borrower.address">-->
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Teléfono</label>
