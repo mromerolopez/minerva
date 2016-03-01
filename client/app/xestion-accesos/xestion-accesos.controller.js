@@ -2,7 +2,7 @@
 
 app.controller('XestionAccesosCtrl', XestionAccesosCtrl);
 
-function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBuilder, dataUsers, auth) {
+function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBuilder, dataUsers, auth, dataMaps) {
     $scope.user = new Object;
     $scope.users = [];
     $scope.last_logins = [];
@@ -98,6 +98,16 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
             auth.logout();
         };
     })();
+    
+       $scope.getLocation = function (value) {
+        return dataMaps.getLocations(value).then(function (response) {
+            return response.results.map(function (item) {
+                return item.formatted_address;
+            });
+        }).catch(function (err) {
+            console.log(err);
+        });
+    };
 }
 
 

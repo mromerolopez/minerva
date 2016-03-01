@@ -62,7 +62,7 @@
                 <div class="col-xs-12 col-lg-12">
                     <div class="box box-success">
                         <div class="box-header">
-                            <h3 class="box-title">Editar Usuario</h3>
+                            <h3 class="box-title">Editar Acceso</h3>
                         </div> 
                         <div class="box-body">
                             <div class="col-lg-6">
@@ -78,10 +78,15 @@
                                     <label for="surname2">Segundo Apelido*</label>
                                     <input type="text" class="form-control" id="surname2" placeholder="Segundo Apelido" ng-model="user.surname2">
                                 </div>
-                                <div class="form-group">
-                                    <label for="address">Dirección</label>
-                                    <input type="text" class="form-control" id="address" placeholder="Dirección" ng-model="user.address">
-                                </div>
+                                 <div class="form-group">
+                                        <label for="dirección">Dirección</label>
+                                        <input type="text" ng-model="borrower.address" placeholder="Dirección" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                                        <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                                        <div ng-show="noResults">
+                                            <i class="glyphicon glyphicon-remove"></i> No se han encontrado resultados
+                                        </div>
+                                        <!--                                            <input type="text" class="form-control" id="dirección" placeholder="Introduza a dirección" ng-model="borrower.address">-->
+                                    </div>
                                 <div class="form-group">
                                     <label for="phone">Teléfono</label>
                                     <input type="number" class="form-control" id="phone" placeholder="Teléfono" ng-model="user.phone">
