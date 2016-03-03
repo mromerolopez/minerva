@@ -17,7 +17,8 @@ var ConfigurationSchema = new mongoose.Schema({
         start_date: Date,
         finish_date: Date
     },
-    default_borrow_time: {type: Number, default: 15}
+    //default_borrow_time: {type: Number, default: 15},
+    borrower_types: [{type:String, default_loan_time: Number, default_loan_end: Date}]
 });
 
 export default mongoose.model('Configuration', ConfigurationSchema);
