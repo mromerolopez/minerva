@@ -47,6 +47,7 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
 
     $scope.editBorrower = function (borrower) {
         $scope.borrower = borrower;
+        console.log(borrower);
         $scope.editingBorrower = true;
         if (typeof borrower === 'undefined') {
             $scope.borrower = new Object;
