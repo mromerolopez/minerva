@@ -3,15 +3,15 @@
 angular.module('minervaApp')
         .controller('XestionBibliotecaCtrl', XestionBibliotecaCtrl);
 
-function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks, $rootScope, auth) {
+function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks, $rootScope, auth, dataBorrowers) {
     var user = auth.get_user();
-    
+
     $scope.book = new Object;
     $scope.loan = new Object;
     $scope.books = [];
     $scope.editingBook = false;
     $scope.creatingLoan = false;
-    
+
     // nuevo libro
 
     $scope.newBook = function () {
@@ -104,19 +104,19 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
 
     // nuevo préstamo
     $scope.newLoan = function (book) {
-        
+
         var limit = new Date();
         limit.setDate(limit.getDate() + 7);
-        
+
         $scope.loan = new Object;
-        
+
         $scope.loan.date = new Date;
         $scope.loan.limit = limit;
-        
+
         $scope.creatingLoan = true;
         $scope.book = book;
-        
-        
+
+
     };
 
     $scope.cancelNewLoan = function () {
@@ -126,6 +126,39 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     };
 
     // fin de nuevo préstamo
+
+
+    // buscar borrower
+
+    var searched_item = new Object;
+
+    $scope.getBorrower = function (val) {
+        if (!$scope.noResults) {
+            $scope.borrower = new Object;
+        }
+        return dataBorrowers.getBorrowerTypeHead(val).then(function (response) {
+            //console.log(response);
+            return response.map(function (item) {
+                searched_item = item;
+                return item.name + " " + item.surname1 + " " + item.surname2 + " - " + item.nif;
+            });
+        }).catch(function (err) {
+            console.log(err);
+        });
+    };
+
+    $scope.selectBorrower = function () {
+        $scope.borrower = searched_item;
+        console.log(searched_item);
+    };
+
+    $scope.resetBorrower = function(model){
+        if (model === '') {
+            $scope.borrower = new Object;
+        }  
+    };
+
+    // fin buscar borrower 
 
     // configuración
 
@@ -157,5 +190,5 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
             auth.logout();
         };
     })();
-    
+
 }
