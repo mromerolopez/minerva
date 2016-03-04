@@ -4,6 +4,8 @@ angular.module('minervaApp')
         .controller('PrestamoListaxeCtrl', function ($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataLoans) {
             $scope.loans = [];
             $scope.loan = new Object;
+            $scope.editingLoan = false;
+
 
             $scope.newLoan = function () {
                 $scope.loan = new Object;
@@ -17,6 +19,16 @@ angular.module('minervaApp')
                         console.log(err);
                     });
 
+            $scope.editLoan = function (loan) {
+                $scope.editingLoan = true;
+                $scope.loan = loan;
+                $scope.book = loan.book;
+                $scope.borrower = loan.borrower;
+            };
+            
+            $scope.cancelEditLoan = function(){
+                $scope.editingLoan = false;
+            };
 
             (function () {
                 var optionsTableLoans = new Object;

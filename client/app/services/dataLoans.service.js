@@ -35,7 +35,7 @@ function dataLoans($q, $http) {
 
         $http({
             method: 'GET',
-            url: '/api/borrowers/' + id
+            url: '/api/loans/' + id
         }).success(function (datos) {
             defered.resolve(datos);
         }).error(function (err) {
@@ -52,7 +52,7 @@ function dataLoans($q, $http) {
 
         $http({
             method: 'POST',
-            url: '/api/borrowers',
+            url: '/api/loans',
             data: loan
         }).success(function (datos) {
             defered.resolve(datos);
@@ -69,7 +69,7 @@ function dataLoans($q, $http) {
 
         $http({
             method: 'POST',
-            url: '/api/borrowers/' + loan._id,
+            url: '/api/loans/' + loan._id,
             data: loan
         }).success(function (datos) {
             defered.resolve(datos);
