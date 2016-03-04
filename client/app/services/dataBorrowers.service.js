@@ -9,7 +9,7 @@ function dataBorrowers($q, $http) {
         getBorrowers: getBorrowers, // get a list of all the borrowers
         saveBorrower : saveBorrower , // updates a borrower
         addBorrower : addBorrower,  // creates a new borrower
-        getBorrowerTypeHead: getBorrowerTypeHead
+        getBorrowerTypeHead: getBorrowerTypeHead // searches a borrower with TypeHead
     };
 
 

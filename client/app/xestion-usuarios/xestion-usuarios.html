@@ -29,7 +29,7 @@
                                         <th>Dirección</th>
                                         <th>Editar</th>
                                         <th>Novo Préstamo</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,7 +74,7 @@
                                     <input type="text" class="form-control" id="surname2" placeholder="Segundo Apelido" ng-model="borrower.surname2">
                                 </div>
                                 <div class="form-group">
-<!--                                    <label for="address">Dirección</label>-->
+                                    <!--                                    <label for="address">Dirección</label>-->
                                     <div class="form-group">
                                         <label for="dirección">Dirección</label>
                                         <input type="text" ng-model="borrower.address" placeholder="Dirección" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
@@ -84,8 +84,8 @@
                                         </div>
                                         <!--                                            <input type="text" class="form-control" id="dirección" placeholder="Introduza a dirección" ng-model="borrower.address">-->
                                     </div>
-                                    
-<!--                                    <input type="text" class="form-control" id="address" placeholder="Dirección" ng-model="borrower.address">-->
+
+                                    <!--                                    <input type="text" class="form-control" id="address" placeholder="Dirección" ng-model="borrower.address">-->
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Teléfono</label>
@@ -130,135 +130,155 @@
                     </div> 
                 </div>
             </div>
-            
-                <div ng-show="creatingLoan">
-                    <div class="row">        
-                        <div class="col-lg-4">
-                            <div class="box box-success">
-                                <div class="box-header">
-                                    <h3 class="box-title">Datos do libro</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">  
 
-                                    <div class="col-lg-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="date_loan">Data de alta</label>
-                                            <input type="text" class="form-control" id="date_loan"  >
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="isbn10">ISBN-10*</label>
-                                            <input type="text" class="form-control" id="isbn10" placeholder="Introduza o ISBN-10">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="isbn13">ISBN-13*</label>
-                                            <input type="text" class="form-control" id="isbn13" placeholder="Introduza o ISBN-13">
-                                        </div>
+            <div ng-show="creatingLoan">
+                <div class="row">        
+                    <div class="col-lg-4">
+                        <div class="box box-success">
+                            <div class="box-header">
+                                <h3 class="box-title">Datos do libro</h3>
+                            </div><!-- /.box-header -->
+                            <div class="box-body">  
 
-                                        <div class="form-group">
-                                            <label for="title">Título*</label>
-                                            <input type="text" class="form-control" id="title" placeholder="Introduza o título" >
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="date_loan">Data de alta</label>
+                                        <input type="text" class="form-control" id="date_loan"  ng-model="book.created_at | date">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="isbn10">ISBN-10*</label>
+                                        <input type="text" class="form-control" id="isbn10" placeholder="Introduza o ISBN-10"  uib-popover="Escriba o ISBN-10 para ver as opcións suxeridas" popover-trigger="mouseenter" ng-model="book.isbn10" uib-typeahead="book for book in getBook($viewValue)" typeahead-loading="loadingBook10" typeahead-no-results="noResultsBook10" typeahead-on-select="selectBook($item, $model, $label, $event)" ng-change="resetBook(book.isbn10)">
+                                        <i ng-show="loadingBook10" class="glyphicon glyphicon-refresh"></i>
+                                        <div ng-show="noResultsBook10">
+                                            <i class="glyphicon glyphicon-remove"></i> No se han encontrado resultados
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="isbn13">ISBN-13*</label>
+                                        <input type="text" class="form-control" id="isbn13" placeholder="Introduza o ISBN-13"  uib-popover="Escriba o ISBN-13 para ver as opcións suxeridas" popover-trigger="mouseenter" ng-model="book.isbn13" uib-typeahead="book for book in getBook($viewValue)" typeahead-loading="loadingBook13" typeahead-no-results="noResultsBook13" typeahead-on-select="selectBook($item, $model, $label, $event)" ng-change="resetBook(book.isbn13)">
+                                        <i ng-show="loadingBook13" class="glyphicon glyphicon-refresh"></i>
+                                        <div ng-show="noResultsBook13">
+                                            <i class="glyphicon glyphicon-remove"></i> No se han encontrado resultados
+                                        </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label for="author">Autor*</label>
-                                            <input type="text" class="form-control" id="author" placeholder="Introduza o autor" >
+                                    <div class="form-group">
+                                        <label for="title">Título*</label>
+                                        <input type="text" class="form-control" id="title" placeholder="Introduza o título"  uib-popover="Escriba o título para ver as opcións suxeridas" popover-trigger="mouseenter" ng-model="book.title" uib-typeahead="book for book in getBook($viewValue)" typeahead-loading="loadingBookTitle" typeahead-no-results="noResultsBookTitle" typeahead-on-select="selectBook($item, $model, $label, $event)" ng-change="resetBook(book.title)">
+                                        <i ng-show="loadingBookTitle" class="glyphicon glyphicon-refresh"></i>
+                                        <div ng-show="noResultsBookTitle">
+                                            <i class="glyphicon glyphicon-remove"></i> No se han encontrado resultados
                                         </div>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label for="editorial">Editorial*</label>
-                                            <input type="text" class="form-control" id="editorial" placeholder="Introduza a editorial" >
+                                    <div class="form-group">
+                                        <label for="author">Autor*</label>
+                                        <input type="text" class="form-control" id="author" placeholder="Introduza o autor"  uib-popover="Escriba o autor para ver as opcións suxeridas" popover-trigger="mouseenter" ng-model="book.author" uib-typeahead="book for book in getBook($viewValue)" typeahead-loading="loadingBookAuthor" typeahead-no-results="noResultsBookAuthor" typeahead-on-select="selectBook($item, $model, $label, $event)" ng-change="resetBook(book.author)">
+                                        <i ng-show="loadingBookAuthor" class="glyphicon glyphicon-refresh"></i>
+                                        <div ng-show="noResultsBookAuthor">
+                                            <i class="glyphicon glyphicon-remove"></i> No se han encontrado resultados
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exemplar">Exemplar*</label>
-                                            <select id="exemplar" class="form-control">
-                                                <option>Copia 1</option>
-                                                <option>Copia 2</option>
-                                            </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="editorial">Editorial*</label>
+                                        <input type="text" class="form-control" id="editorial" placeholder="Introduza a editorial"  uib-popover="Escriba a editorial para ver as opcións suxeridas" popover-trigger="mouseenter" ng-model="book.editorial" uib-typeahead="book for book in getBook($viewValue)" typeahead-loading="loadingBookEditorial" typeahead-no-results="noResultsBookEditorial" typeahead-on-select="selectBook($item, $model, $label, $event)" ng-change="resetBook(book.editorial)">
+                                        <i ng-show="loadingBookEditorial" class="glyphicon glyphicon-refresh"></i>
+                                        <div ng-show="noResultsBookEditorial">
+                                            <i class="glyphicon glyphicon-remove"></i> No se han encontrado resultados
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exemplar">Exemplar*</label>
+                                        <select id="exemplar" class="form-control">
+                                            <option>Copia 1</option>
+                                            <option>Copia 2</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="col-lg-4">
-                            <div class="box box-warning">
-                                <div class="box-header">
-                                    <h3 class="box-title">Datos do prestatario</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">  
-
-                                    <div class="col-lg-12 col-sm-12">
-                                             <div class="form-group">
-                                            <label for="nif">NIF*</label>
-                                            <input type="text" class="form-control" id="nif" placeholder="Introduza o NIF" ng-model="borrower.nif">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="nome">Nome*</label>
-                                            <input type="text" class="form-control" id="nome" placeholder="Introduza o nome" ng-model="borrower.name">
-                                        </div>   <div class="form-group">
-                                            <label for="apelido1">Primeiro apelido*</label>
-                                            <input type="text" class="form-control" id="apelido1" placeholder="Primeiro apelido" ng-model="borrower.surname1">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="apelido2">Segundo apelido*</label>
-                                            <input type="text" class="form-control" id="apelido2" placeholder="Segundo apelido" ng-model="borrower.surname2">
-                                        </div>
-                                          
-                                   
-                                        
-                                        <div class="form-group">
-                                            <label for="telefono">Teléfono</label>
-                                            <input type="text" class="form-control" id="telefono" placeholder="Introduza o teléfono" ng-model="borrower.phone">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input type="text" class="form-control" id="email" placeholder="Introduza o email" ng-model="borrower.email">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="dirección">Dirección</label>
-                                            <input type="text" class="form-control" id="dirección" placeholder="Introduza a dirección" ng-model="borrower.address">
-                                        </div>
-                                      
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-lg-4">
-                            <div class="box box-primary">
-                                <div class="box-header">
-                                    <h3 class="box-title">Datos do préstamo</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">  
-
-                                    <div class="col-lg-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="borrow_date">Data do préstamo*</label>
-                                            <input uib-datepicker ng-model="loan.date" id="loan_date" max-date="loan.limit">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="limit_date">Data límite*</label>
-                                            <input uib-datepicker ng-model="loan.limit" id="limit_date" min-date="loan.date">
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
                     </div>
-                    <div class="row">
-                        <center>
-                            <button class="btn btn-success" ng-click="saveLoan(loan)">Gardar préstamo</button>
-                            <button class="btn btn-danger" ng-click="cancelNewLoan()">Cancelar</button>
-                        </center>
+
+                    <div class="col-lg-4">
+                        <div class="box box-warning">
+                            <div class="box-header">
+                                <h3 class="box-title">Datos do prestatario</h3>
+                            </div><!-- /.box-header -->
+                            <div class="box-body">  
+
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="nif">NIF*</label>
+                                        <input type="text" class="form-control" id="nif" placeholder="Introduza o NIF" ng-model="borrower.nif" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nome">Nome*</label>
+                                        <input type="text" class="form-control" id="nome" placeholder="Introduza o nome" ng-model="borrower.name" disabled>
+                                    </div>   <div class="form-group">
+                                        <label for="apelido1">Primeiro apelido*</label>
+                                        <input type="text" class="form-control" id="apelido1" placeholder="Primeiro apelido" ng-model="borrower.surname1" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apelido2">Segundo apelido*</label>
+                                        <input type="text" class="form-control" id="apelido2" placeholder="Segundo apelido" ng-model="borrower.surname2" disabled>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label for="telefono">Teléfono</label>
+                                        <input type="text" class="form-control" id="telefono" placeholder="Introduza o teléfono" ng-model="borrower.phone" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" class="form-control" id="email" placeholder="Introduza o email" ng-model="borrower.email" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="dirección">Dirección</label>
+                                        <input type="text" class="form-control" id="dirección" placeholder="Introduza a dirección" ng-model="borrower.address" disabled>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="col-lg-4">
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <h3 class="box-title">Datos do préstamo</h3>
+                            </div><!-- /.box-header -->
+                            <div class="box-body">  
+
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="borrow_date">Data do préstamo*</label>
+                                        <input uib-datepicker ng-model="loan.date" id="loan_date" max-date="loan.limit">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="limit_date">Data límite*</label>
+                                        <input uib-datepicker ng-model="loan.limit" id="limit_date" min-date="loan.date">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            
-            
-            
+                <div class="row">
+                    <center>
+                        <button class="btn btn-success" ng-click="saveLoan(loan)">Gardar préstamo</button>
+                        <button class="btn btn-danger" ng-click="cancelNewLoan()">Cancelar</button>
+                    </center>
+                </div>
+            </div>
+
+
+
         </section>
     </section>
 </div><!-- /.content-wrapper -->

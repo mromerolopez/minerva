@@ -3,7 +3,7 @@
 angular.module('minervaApp')
         .controller('XestionUsuariosCtrl', XestionUsuariosCtrl);
 
-function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers, $http, dataMaps) {
+function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers, dataBooks, dataMaps) {
     $scope.borrowers = [];
     $scope.borrower = new Object;
     $scope.loan = new Object;
@@ -79,8 +79,43 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         $scope.borrower = new Object;
         $scope.loan = new Object;
     };
+    
+    
+    
+        // buscar book
 
+    var searched_item = new Object;
 
+    $scope.getBook = function (val) {
+        if (!$scope.noResults) {
+            $scope.book = new Object;
+        }
+        return dataBooks.getBookTypeHead(val).then(function (response) {
+            //console.log(response);
+            return response.map(function (item) {
+                searched_item = item;
+                return item.title + "  " + item.author + " - " +item.editorial;
+            });
+        }).catch(function (err) {
+            console.log(err);
+        });
+    };
+
+    $scope.selectBook = function () {
+        $scope.book = searched_item;
+        console.log(searched_item);
+    };
+
+    $scope.resetBook = function(model){
+        if (model === '') {
+            $scope.book = new Object;
+        }  
+    };
+
+    // fin buscar book 
+    
+
+  
     (function () {
         var opcionesTablaBorrowers = new Object;
 

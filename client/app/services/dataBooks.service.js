@@ -4,10 +4,11 @@ app.service('dataBooks', dataBooks);
 
 function dataBooks($q, $http){
     return {
-        getBooks: getBooks, // function para obtener un listado de libros
-        getBook: getBook, // (_id) obtiene el libro
-        addBook: addBook, // (book) inserta libro
-        saveBook: saveBook // (book) guarda libro
+        getBooks: getBooks, // function that gets a list of books
+        getBook: getBook, // (_id) gets the book
+        addBook: addBook, // (book) inserts a book
+        saveBook: saveBook, // (book) saves a book
+        getBookTypeHead : getBookTypeHead //searches a book with TypeHead
     };
     
     function getBooks(){
@@ -75,4 +76,25 @@ function dataBooks($q, $http){
         
         return promise;
     }
+    
+        function getBookTypeHead(value){
+        var defered = $q.defer();
+        var promise = defered.promise;
+        
+         $http({
+            method: 'GET',
+            url: 'api/books/get/filter/'+value
+           
+        }).success(function (datos) {
+            defered.resolve(datos);
+        }).error(function (err) {
+            defered.reject(err);
+        });
+
+        return promise;
+    }
+    
+    
+    
+    
 }

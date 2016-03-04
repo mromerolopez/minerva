@@ -100,3 +100,34 @@ export function destroy(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 }
+
+export function findByFilter(req, res){
+var query = req.params.query;
+var keywords = query.split(' ');
+
+var busqueda = [];
+
+for (var i = 0; i < keywords.length; i++) {
+    var queryIsbn10 = {'isbn10':{$regex:keywords[i], $options:'i'}};
+    var queryIsbn13 = {'isbn13':{$regex: keywords[i], $options:'i'}};
+    var queryTitle = {'title': {$regex: keywords[i], $options:'i'}}
+    var queryAuthor = {'author': {$regex: keywords[i], $options:'i'}};
+    var queryEditorial = {'editorial': {$regex: keywords[i], $options:'i'}};
+   
+    busqueda.push(queryIsbn10);
+    busqueda.push(queryIsbn13); 
+    busqueda.push(queryTitle); 
+    busqueda.push(queryAuthor);
+    busqueda.push(queryEditorial);
+    
+}
+
+
+
+    Book.find({
+        $or: busqueda
+    })
+    .then(function(datos){
+        res.json(datos);
+    });
+}
