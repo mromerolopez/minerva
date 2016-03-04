@@ -106,7 +106,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     $scope.newLoan = function (book) {
 
         var limit = new Date();
-        limit.setDate(limit.getDate() + 7);
+        limit.setDate(limit.getDate() + 14);
 
         $scope.loan = new Object;
 
