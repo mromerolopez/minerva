@@ -25,8 +25,8 @@ angular.module('minervaApp')
                 $scope.book = loan.book;
                 $scope.borrower = loan.borrower;
             };
-            
-            $scope.cancelEditLoan = function(){
+
+            $scope.cancelEditLoan = function () {
                 $scope.editingLoan = false;
             };
 
@@ -47,7 +47,8 @@ angular.module('minervaApp')
                     DTColumnDefBuilder.newColumnDef(5),
                     DTColumnDefBuilder.newColumnDef(6),
                     DTColumnDefBuilder.newColumnDef(7),
-                    DTColumnDefBuilder.newColumnDef(8).notSortable()
+                    DTColumnDefBuilder.newColumnDef(8),
+                    DTColumnDefBuilder.newColumnDef(9).notSortable()
                 ];
 
                 $scope.optionsTableLoans = optionsTableLoans;

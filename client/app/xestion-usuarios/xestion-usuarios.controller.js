@@ -3,12 +3,16 @@
 angular.module('minervaApp')
         .controller('XestionUsuariosCtrl', XestionUsuariosCtrl);
 
-function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers, dataBooks, dataMaps) {
+function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers, dataLoans, dataBooks, dataMaps) {
     $scope.borrowers = [];
     $scope.borrower = new Object;
     $scope.loan = new Object;
     $scope.editingBorrower = false;
     $scope.creatingLoan = false;
+    var user = auth.get_user();
+    
+    console.log(user);
+    
 
     dataBorrowers.getBorrowers()
             //get a list of all borrowers
@@ -67,8 +71,8 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         
         $scope.loan = new Object;
         
-        $scope.loan.date = new Date;
-        $scope.loan.limit = limit;
+        $scope.loan.loan_date = new Date;
+        $scope.loan.limit_date = limit;
         
         $scope.creatingLoan = true;
         $scope.borrower = borrower;
@@ -78,6 +82,25 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         $scope.creatingLoan = false;
         $scope.borrower = new Object;
         $scope.loan = new Object;
+    };
+    
+    
+       $scope.saveLoan = function (loan) {
+
+        loan.borrower = $scope.borrower._id;
+        loan.book = $scope.book._id;
+        loan.user = user._id;
+       // console.log(loan);
+        
+        if (typeof loan.borrower !== 'undefined' && typeof loan.book !== 'undefined' && typeof loan.user !== 'undefined') {
+            dataLoans.addLoan(loan).then(function(insertedLoan){
+                loan = new Object;
+                $scope.creatingLoan = false;
+            }).catch(function(err){
+                console.log(err);
+            });
+        }
+       
     };
     
     
