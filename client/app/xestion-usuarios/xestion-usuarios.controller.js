@@ -63,7 +63,7 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
 
     $scope.newLoan = function (borrower) {
         var limit = new Date();
-        limit.setDate(limit.getDate() + 7);
+        limit.setDate(limit.getDate() + 14);
         
         $scope.loan = new Object;
         

@@ -103,13 +103,27 @@ export function destroy(req, res) {
 
 export function findByFilter(req, res){
 var query = req.params.query;
+var keywords = query.split(' ');
+
+var busqueda = [];
+
+for (var i = 0; i < keywords.length; i++) {
+    var queryName = {'name':{$regex:keywords[i], $options:'i'}};
+    var querySurname1 = {'surname1':{$regex: keywords[i], $options:'i'}};
+    var querySurname2 = {'surname2': {$regex: keywords[i], $options:'i'}}
+    var queryNif = {'nif': {$regex: keywords[i], $options:'i'}};
+   
+    busqueda.push(queryName);
+    busqueda.push(querySurname1); 
+    busqueda.push(querySurname2); 
+    busqueda.push(queryNif);
+    
+}
+
+
+
     Borrower.find({
-        $or: [
-                {'name': {$regex: query, $options:'i'}},
-                {'surname1':{$regex: query, $options:'i'}},
-                {'surname2': {$regex: query, $options:'i'}},
-                {'nif': {$regex: query, $options:'i'}}
-            ]
+        $or: busqueda
     })
     .then(function(datos){
         res.json(datos);
