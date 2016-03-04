@@ -3,7 +3,7 @@
 angular.module('minervaApp')
         .controller('XestionBibliotecaCtrl', XestionBibliotecaCtrl);
 
-function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks, $rootScope, auth, dataBorrowers) {
+function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks, $rootScope, auth, dataBorrowers, dataLoans) {
     var user = auth.get_user();
 
     $scope.book = new Object;
@@ -76,10 +76,10 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
 
         } else {
             // insert
-            book.user = auth.get_user()._id;
+            book.user = user._id;
             dataBooks.addBook(book)
                     .then(function (insertedBook) {
-                        console.log(insertedBook);
+                        //console.log(insertedBook);
                         $scope.books.push(insertedBook);
                         $scope.editingBook = false;
                         $scope.book = new Object;
@@ -110,8 +110,8 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
 
         $scope.loan = new Object;
 
-        $scope.loan.date = new Date;
-        $scope.loan.limit = limit;
+        $scope.loan.loan_date = new Date;
+        $scope.loan.limit_date = limit;
 
         $scope.creatingLoan = true;
         $scope.book = book;
@@ -126,7 +126,6 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     };
 
     // fin de nuevo préstamo
-
 
     // buscar borrower
 
@@ -149,16 +148,38 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
 
     $scope.selectBorrower = function () {
         $scope.borrower = searched_item;
-        console.log(searched_item);
+        // console.log(searched_item);
     };
 
-    $scope.resetBorrower = function(model){
+    $scope.resetBorrower = function (model) {
         if (model === '') {
             $scope.borrower = new Object;
-        }  
+        }
     };
 
     // fin buscar borrower 
+
+    //save Loan
+
+    $scope.saveLoan = function (loan) {
+
+        loan.borrower = $scope.borrower._id;
+        loan.book = $scope.book._id;
+        loan.user = user._id;
+       // console.log(loan);
+        
+        if (typeof loan.borrower !== 'undefined' && typeof loan.book !== 'undefined' && typeof loan.user !== 'undefined') {
+            dataLoans.addLoan(loan).then(function(insertedLoan){
+                loan = new Object;
+                $scope.creatingLoan = false;
+            }).catch(function(err){
+                console.log(err);
+            });
+        }
+       
+    };
+
+    // fin save Loan
 
     // configuración
 

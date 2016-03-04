@@ -145,27 +145,27 @@
                                             <input type="text" class="form-control" id="date_loan" value="{{book.created_at|date}}" disabled >
                                         </div>
                                         <div class="form-group">
-                                            <label for="isbn10">ISBN-10*</label>
-                                            <input type="text" class="form-control" id="isbn10" placeholder="Introduza o ISBN-10" ng-model="book.isbn10">
+                                            <label for="isbn10">ISBN-10</label>
+                                            <input type="text" class="form-control" id="isbn10" placeholder="Introduza o ISBN-10" ng-model="book.isbn10" ng-disabled="true">
                                         </div>
                                         <div class="form-group">
-                                            <label for="isbn13">ISBN-13*</label>
-                                            <input type="text" class="form-control" id="isbn13" placeholder="Introduza o ISBN-13" ng-model="book.isbn13">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="title">Título*</label>
-                                            <input type="text" class="form-control" id="title" placeholder="Introduza o título" ng-model="book.title">
+                                            <label for="isbn13">ISBN-13</label>
+                                            <input type="text" class="form-control" id="isbn13" placeholder="Introduza o ISBN-13" ng-model="book.isbn13" ng-disabled="true">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="author">Autor*</label>
-                                            <input type="text" class="form-control" id="author" placeholder="Introduza o autor" ng-model="book.author">
+                                            <label for="title">Título</label>
+                                            <input type="text" class="form-control" id="title" placeholder="Introduza o título" ng-model="book.title" ng-disabled="true">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="editorial">Editorial*</label>
-                                            <input type="text" class="form-control" id="editorial" placeholder="Introduza a editorial" ng-model="book.editorial">
+                                            <label for="author">Autor</label>
+                                            <input type="text" class="form-control" id="author" placeholder="Introduza o autor" ng-model="book.author" ng-disabled="true">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="editorial">Editorial</label>
+                                            <input type="text" class="form-control" id="editorial" placeholder="Introduza a editorial" ng-model="book.editorial" ng-disabled="true">
                                         </div>
                                         <div class="form-group">
                                             <label for="exemplar">Exemplar*</label>
@@ -198,7 +198,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="nome">Nome*</label>
-                                            <input  uib-typeahead="borrower for borrower in getBorrower($viewValue)" typeahead-loading="loadingName" typeahead-no-results="noResultsName" typeahead-on-select="selectBorrower($item, $model, $label, $event)" type="text" class="form-control" id="nome" placeholder="Introduza o nome" ng-model="borrower.name" ng-change="resetBorrower(borrower.name)">
+                                            <input uib-popover="Escriba un nome para ver as opcións" popover-trigger="mouseenter"   uib-typeahead="borrower for borrower in getBorrower($viewValue)" typeahead-loading="loadingName" typeahead-no-results="noResultsName" typeahead-on-select="selectBorrower($item, $model, $label, $event)" type="text" class="form-control" id="nome" placeholder="Introduza o nome" ng-model="borrower.name" ng-change="resetBorrower(borrower.name)">
                                             <i ng-show="loadingName" class="glyphicon glyphicon-refresh"></i>
                                             <div ng-show="noResultsName">
                                                 <i class="glyphicon glyphicon-remove"></i> No se han encontrado resultados
@@ -253,12 +253,12 @@
 
                                         <div class="form-group">
                                             <label for="loan_date">Data do préstamo*</label><br>
-                                            <input uib-datepicker ng-model="loan.date" id="loan_date" max-date="loan.limit">
+                                            <input uib-datepicker ng-model="loan.loan_date" id="loan_date" max-date="loan.limit_date">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="limit_date">Data límite*</label><br>
-                                            <input uib-datepicker ng-model="loan.limit" id="limit_date" min-date="loan.date">
+                                            <input uib-datepicker ng-model="loan.limit_date" id="limit_date" min-date="loan.loan_date">
                                         </div>
 
                                     </div>

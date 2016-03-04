@@ -61,7 +61,10 @@ function handleError(res, statusCode) {
 
 // Gets a list of Loans
 export function index(req, res) {
-  Loan.findAsync()
+  Loan.find()
+    .populate('user')
+    .populate('book')
+    .populate('borrower')
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
