@@ -31,7 +31,7 @@
                                         <td>{{book.author}}</td>
                                         <td>{{book.editorial}}</td>
                                         <td>{{book.created_at| date:"dd 'de' MMMM 'do' yyyy"}}</td>
-                                        <td>{{book.user}}</td>
+                                        <td>{{book.user.name}} {{book.user.surname1}} {{book.user.surname2}}</td>
                                         <td><button class="btn btn-warning" ng-click="editBook(book)"><i class="fa fa-edit"></i></button></td>
                                         <td><button class="btn btn-primary" ng-click="newLoan(book)"><i class="fa fa-book"></i></button></td>
                                     </tr>

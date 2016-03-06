@@ -61,7 +61,8 @@ function handleError(res, statusCode) {
 
 // Gets a list of Books
 export function index(req, res) {
-  Book.findAsync()
+  Book.find()
+    .populate('user')
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

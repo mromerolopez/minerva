@@ -92,13 +92,15 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     // fin nuevo libro
 
     // population
-    dataBooks.getBooks()
-            .then(function (books) {
-                $scope.books = books;
-            })
-            .catch(function (err) {
-                console.log(err);
-            });
+    (function () {
+        dataBooks.getBooks()
+                .then(function (books) {
+                    $scope.books = books;
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+    })();
     // fin population
 
 
@@ -166,17 +168,17 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
         loan.borrower = $scope.borrower._id;
         loan.book = $scope.book._id;
         loan.user = user._id;
-       // console.log(loan);
-        
+        // console.log(loan);
+
         if (typeof loan.borrower !== 'undefined' && typeof loan.book !== 'undefined' && typeof loan.user !== 'undefined') {
-            dataLoans.addLoan(loan).then(function(insertedLoan){
+            dataLoans.addLoan(loan).then(function (insertedLoan) {
                 loan = new Object;
                 $scope.creatingLoan = false;
-            }).catch(function(err){
+            }).catch(function (err) {
                 console.log(err);
             });
         }
-       
+
     };
 
     // fin save Loan
@@ -191,14 +193,14 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
                 .withDisplayLength(10)
                 .withLanguageSource('//cdn.datatables.net/plug-ins/1.10.11/i18n/Galician.json');
 
-
         opcionesTablaLibros.dtColumnDefs = [
             DTColumnDefBuilder.newColumnDef(0),
             DTColumnDefBuilder.newColumnDef(1),
             DTColumnDefBuilder.newColumnDef(2),
             DTColumnDefBuilder.newColumnDef(3),
             DTColumnDefBuilder.newColumnDef(4),
-            DTColumnDefBuilder.newColumnDef(5).notSortable()
+            DTColumnDefBuilder.newColumnDef(5).notSortable(),
+            DTColumnDefBuilder.newColumnDef(6).notSortable()
         ];
 
         $scope.opcionesTablaLibros = opcionesTablaLibros;
