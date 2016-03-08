@@ -100,3 +100,10 @@ export function destroy(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 }
+
+export function getConfiguration(req,res){
+    Configuration.findOne({'user': req.params.idUser})
+    .then(handleEntityNotFound(res))
+    .then(removeEntity(res))
+    .catch(handleError(res));
+}
