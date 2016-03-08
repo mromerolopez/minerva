@@ -21,11 +21,25 @@
                                 <div class="col-lg-6">
                                     <uib-accordion-group heading="Localizacións" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled" panel-class="panel-success">
                                         <div>
-                                            <div class="col-lg-6 form-group">
-                                                <label for="studentId">Opcion 1</label>
-                                                <input type="text" class="form-control" id="studentId" >
+                                            <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLocations.dtOptions" dt-column-defs="opcionesTablaLocations.dtColumnDefs">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Localización</th>
+                                                        <th>Editar</th>
+                                                        <th>Eliminar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="location in locations">
+                                                        <td>{{location.name}}</td> 
+                                                        <td><button class="btn btn-warning" ng-click="editLocation(location)"><i class="fa fa-edit"></i></button></td>
+                                                        <td><button class="btn btn-primary" ng-click="deleteLocation(location)"><i class="fa fa-trash-o"></i></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="box-footer pull-right">
+                                                <button class="btn btn-success" ng-click="">Nova Localización</button>
                                             </div>
-
                                         </div>
                                     </uib-accordion-group>
                                 </div>
@@ -34,7 +48,7 @@
                             <uib-accordion close-others="oneAtATime">
 
                                 <div class="col-lg-6">
-                                    <uib-accordion-group heading="Tipos de libros"  panel-class="panel-warning">
+                                    <uib-accordion-group heading="Tipos de libros"  panel-class="panel-success">
                                         <div>
                                             <div class="form-group">
                                                 <label for="studentId">Opcion 2</label>
@@ -43,7 +57,7 @@
 
                                         </div>
                                     </uib-accordion-group>
-                                    <uib-accordion-group heading="Tipos de usuarios"  panel-class="panel-warning">
+                                    <uib-accordion-group heading="Tipos de usuarios"  panel-class="panel-success">
                                         <div>
                                             <div class="col-lg-6 form-group">
                                                 <label for="studentId">Opcion 1</label>
@@ -59,12 +73,8 @@
                                 </div>
 
                             </uib-accordion>
-
-
                         </div>
                         <!-- /.box-body -->
-
-
                     </div>
                 </div>
             </div>
