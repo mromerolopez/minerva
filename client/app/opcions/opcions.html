@@ -20,7 +20,7 @@
                             <uib-accordion close-others="oneAtATime">
                                 <div class="col-lg-6">
                                     <uib-accordion-group heading="Localizacións" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled" panel-class="panel-success">
-                                        <div>
+                                        <div ng-hide="editingLocation">
                                             <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLocations.dtOptions" dt-column-defs="opcionesTablaLocations.dtColumnDefs">
                                                 <thead>
                                                     <tr>
@@ -33,13 +33,24 @@
                                                     <tr ng-repeat="location in locations">
                                                         <td>{{location.name}}</td> 
                                                         <td><button class="btn btn-warning" ng-click="editLocation(location)"><i class="fa fa-edit"></i></button></td>
-                                                        <td><button class="btn btn-primary" ng-click="deleteLocation(location)"><i class="fa fa-trash-o"></i></button></td>
+                                                        <td><button class="btn btn-danger" ng-click="deleteLocation(location)"><i class="fa fa-trash-o"></i></button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <div class="box-footer pull-right">
-                                                <button class="btn btn-success" ng-click="">Nova Localización</button>
+                                                <button class="btn btn-success" ng-click="editLocation()">Nova Localización</button>
                                             </div>
+                                        </div>
+                                        <div ng-show="editingLocation">
+                                            <div class="form-group">
+                                                <label for="location">Nome localización</label>
+                                                <input type="text" class="form-control" id="location">
+                                                <div class="box-footer pull-right">
+                                                    <button class="btn btn-success" ng-click="newLocation()">Gardar</button>
+                                                    <button class="btn btn-danger" ng-click="cancelLocation()">Cancelar</button>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </uib-accordion-group>
                                 </div>
@@ -78,6 +89,7 @@
                     </div>
                 </div>
             </div>
+
         </section>
     </section>
 </div><!-- /.content-wrapper -->

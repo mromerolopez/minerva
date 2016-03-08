@@ -3,7 +3,7 @@
 app.controller('OpcionsCtrl', OpcionsCtrl);
 
 function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataConfiguration) {
-    $scope.modal=false;
+    $scope.modal = false;
     $scope.location = new Object;
     $scope.locations = [];
 
@@ -11,26 +11,31 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         dataConfiguration.addLocation(location)
                 .then(function (newLocation) {
                     $scope.locations.push(newLocation);
+                    $scope.editingLocation = false;
                 }).catch(function (err) {
             console.log(err);
         });
     };
-    
-    $scope.editLocation = function () {
+
+    $scope.editLocation = function (location) {
+        $scope.location = location;
+        $scope.editingLocation = true;
+
+    };
+
+
+    $scope.saveLocation = function () {
 
 
     };
-    $scope.deleteLocation = function () {
 
-
+    $scope.cancelLocation = function () {
+        $scope.location = new Object;
+        $scope.editingLocation = false;
     };
-    
-    
-   $scope.modal = function(){
-       $scope.modal=true;
-   };
-    
-    
+
+
+
     (function () {
         $rootScope.user = auth.get_user();
         $rootScope.login = false;

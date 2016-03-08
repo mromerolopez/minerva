@@ -31,8 +31,8 @@ function dataConfiguration($q,$http){
         
        $http({
             method: 'POST',
-            url: '/api/configurations/',
-            data:location
+            url: '/api/configurations/'
+            
         }).success(function(data){
             defered.resolve(data);
         }).error(function(err){
