@@ -3,7 +3,7 @@
 angular.module('minervaApp')
         .controller('XestionBibliotecaCtrl', XestionBibliotecaCtrl);
 
-function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks, $rootScope, auth, dataBorrowers, dataLoans) {
+function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks, $rootScope, auth, dataBorrowers, dataLoans, SweetAlert) {
     var user = auth.get_user();
 
     $scope.book = new Object;
@@ -69,8 +69,10 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
                     .then(function (modifiedBook) {
                         $scope.editingBook = false;
                         $scope.book = new Object;
+                        SweetAlert.swal("Libro actualizado correctamente", null, "success");
                     })
                     .catch(function (err) {
+                        SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
                         console.log(err);
                     });
 
@@ -83,8 +85,11 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
                         $scope.books.push(insertedBook);
                         $scope.editingBook = false;
                         $scope.book = new Object;
+                        SweetAlert.swal("Libro engadido correctamente", null, "success");
+
                     })
                     .catch(function (err) {
+                        SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
                         console.log(err);
                     });
         }
@@ -98,6 +103,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
                     $scope.books = books;
                 })
                 .catch(function (err) {
+                    SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
                     console.log(err);
                 });
     })();
@@ -174,8 +180,10 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
             dataLoans.addLoan(loan).then(function (insertedLoan) {
                 loan = new Object;
                 $scope.creatingLoan = false;
+                SweetAlert.swal("Préstamo engadido correctamente", null, "success");
             }).catch(function (err) {
                 console.log(err);
+                SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
             });
         }
 

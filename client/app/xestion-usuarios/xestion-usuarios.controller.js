@@ -3,16 +3,16 @@
 angular.module('minervaApp')
         .controller('XestionUsuariosCtrl', XestionUsuariosCtrl);
 
-function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers, dataLoans, dataBooks, dataMaps) {
+function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers, dataLoans, dataBooks, dataMaps, SweetAlert) {
     $scope.borrowers = [];
     $scope.borrower = new Object;
     $scope.loan = new Object;
     $scope.editingBorrower = false;
     $scope.creatingLoan = false;
     var user = auth.get_user();
-    
+
     console.log(user);
-    
+
 
     dataBorrowers.getBorrowers()
             //get a list of all borrowers
@@ -31,9 +31,12 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
             dataBorrowers.saveBorrower(borrower)
                     .then(function (modifiedBorrower) {
                         $scope.editingBorrower = false;
-                    }).catch(function (err) {
-                console.log(err);
-            });
+                        SweetAlert.swal("Prestatario modificado correctamente", null, "success");
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                        SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
+                    });
         } else {
             // create user
             borrower.parent = auth.get_user()._id;
@@ -41,23 +44,25 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
                     .then(function (newBorrower) {
                         $scope.editingBorrower = false;
                         $scope.borrowers.push(newBorrower);
-                    }).catch(function (err) {
-                console.log(err);
-            });
+                        SweetAlert.swal("Prestatario engadido correctamente", null, "success");
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                        SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
+                    });
         }
 
     };
 
 
     $scope.editBorrower = function (borrower) {
+
         $scope.borrower = borrower;
-        console.log(borrower);
         $scope.editingBorrower = true;
         if (typeof borrower === 'undefined') {
             $scope.borrower = new Object;
             $scope.borrower.active = true;
         }
-
     };
 
     $scope.cancelEditingBorrower = function () {
@@ -68,12 +73,12 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
     $scope.newLoan = function (borrower) {
         var limit = new Date();
         limit.setDate(limit.getDate() + 14);
-        
+
         $scope.loan = new Object;
-        
+
         $scope.loan.loan_date = new Date;
         $scope.loan.limit_date = limit;
-        
+
         $scope.creatingLoan = true;
         $scope.borrower = borrower;
     };
@@ -83,29 +88,29 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         $scope.borrower = new Object;
         $scope.loan = new Object;
     };
-    
-    
-       $scope.saveLoan = function (loan) {
+
+
+    $scope.saveLoan = function (loan) {
 
         loan.borrower = $scope.borrower._id;
         loan.book = $scope.book._id;
         loan.user = user._id;
-       // console.log(loan);
-        
+        // console.log(loan);
+
         if (typeof loan.borrower !== 'undefined' && typeof loan.book !== 'undefined' && typeof loan.user !== 'undefined') {
-            dataLoans.addLoan(loan).then(function(insertedLoan){
+            dataLoans.addLoan(loan).then(function (insertedLoan) {
                 loan = new Object;
                 $scope.creatingLoan = false;
-            }).catch(function(err){
+                SweetAlert.swal("Préstamo engadido correctamente", null, "success");
+            }).catch(function (err) {
                 console.log(err);
+                SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
             });
         }
-       
+
     };
-    
-    
-    
-        // buscar book
+
+    // buscar book
 
     var searched_item = new Object;
 
@@ -117,28 +122,28 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
             //console.log(response);
             return response.map(function (item) {
                 searched_item = item;
-                return item.title + "  " + item.author + " - " +item.editorial;
+                return item.title + "  " + item.author + " - " + item.editorial;
             });
         }).catch(function (err) {
             console.log(err);
+            SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
         });
     };
 
     $scope.selectBook = function () {
         $scope.book = searched_item;
-        console.log(searched_item);
     };
 
-    $scope.resetBook = function(model){
+    $scope.resetBook = function (model) {
         if (model === '') {
             $scope.book = new Object;
-        }  
+        }
     };
 
     // fin buscar book 
-    
 
-  
+
+
     (function () {
         var opcionesTablaBorrowers = new Object;
 

@@ -9,8 +9,6 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
     $scope.incidences = [];
     $scope.incidence = new Object;
 
-		SweetAlert.swal("Here's a message");
-
     $scope.newLoan = function () {
         $scope.loan = new Object;
     };
@@ -46,6 +44,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         dataIncidents.addIncident(incidence)
                 .then(function (incidence) {
                     $scope.incidences.push(incidence);
+                    SweetAlert.swal("Incidencia gardada", null, "success");
                 })
                 .catch(function (err) {
                     console.log(err);
