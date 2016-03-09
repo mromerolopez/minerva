@@ -12,6 +12,9 @@
 import _ from 'lodash';
 import Incident from './incident.model';
 import Loan from '../loan/loan.model.js';
+import Book from '../book/book.model.js';
+import Borrower from '../borrower/borrower.model.js';
+
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -83,6 +86,24 @@ export function create(req, res) {
           
             Loan.findByIdAndUpdate(
                  data.loan,
+                { $push: { incidents: data._id } },
+                {safe: true, upsert: true},
+                function(err, model) {
+                    console.log(err);
+                }
+             );
+     
+            Book.findByIdAndUpdate(
+                 data.book,
+                { $push: { incidents: data._id } },
+                {safe: true, upsert: true},
+                function(err, model) {
+                    console.log(err);
+                }
+             );
+     
+            Borrower.findByIdAndUpdate(
+                 data.borrower,
                 { $push: { incidents: data._id } },
                 {safe: true, upsert: true},
                 function(err, model) {

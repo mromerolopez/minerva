@@ -2,13 +2,14 @@
 
 app.controller('PrestamoListaxeCtrl', PrestamoListaxeCtrl);
 
-function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataLoans, dataIncidents) {
+function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataLoans, dataIncidents, SweetAlert) {
     $scope.loans = [];
     $scope.loan = new Object;
     $scope.editingLoan = false;
     $scope.incidences = [];
     $scope.incidence = new Object;
 
+		SweetAlert.swal("Here's a message");
 
     $scope.newLoan = function () {
         $scope.loan = new Object;
