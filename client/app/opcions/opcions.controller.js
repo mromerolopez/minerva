@@ -4,9 +4,11 @@ app.controller('OpcionsCtrl', OpcionsCtrl);
 
 function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataConfiguration) {
 
-  
+
     $scope.location = new Object;
     $scope.locations = [];
+    $scope.books = [];
+    $scope.borrowers = [];
     $scope.configuration = new Object;
     var userId = auth.get_user()._id;
 
@@ -16,13 +18,15 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
             .then(function (configuration) {
                 $scope.configuration = configuration;
                 $scope.locations = configuration.locations;
+                $scope.books = configuration.book_type;
+                $scope.borrowers = configuration.borrower_types;
             })
             .catch(function (err) {
                 console.log(err);
             });
 
 
-    $scope.newLocation = function (location) {
+    $scope.saveLocation = function (location) {
         $scope.locations.push(location);
         $scope.editingLocation = false;
     };
@@ -33,8 +37,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
 
     };
 
-
-    $scope.saveLocation = function () {
+    $scope.deleteLocation = function () {
 
 
     };
