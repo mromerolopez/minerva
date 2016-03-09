@@ -3,21 +3,28 @@
 app.controller('OpcionsCtrl', OpcionsCtrl);
 
 function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataConfiguration) {
-    
-    $scope.modal = false;
+
+  
     $scope.location = new Object;
     $scope.locations = [];
+    $scope.configuration = new Object;
+    var userId = auth.get_user()._id;
 
-    
+
+    dataConfiguration.getConfiguration(userId)
+            //get the configuration of a specific user
+            .then(function (configuration) {
+                $scope.configuration = configuration;
+                $scope.locations = configuration.locations;
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+
 
     $scope.newLocation = function (location) {
-        dataConfiguration.getConfiguration(location)
-                .then(function (newLocation) {
-                    $scope.locations.push(newLocation);
-                    $scope.editingLocation = false;
-                }).catch(function (err) {
-            console.log(err);
-        });
+        $scope.locations.push(location);
+        $scope.editingLocation = false;
     };
 
     $scope.editLocation = function (location) {
@@ -46,7 +53,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
             auth.logout();
         };
     })();
-    
+
     $scope.oneAtATime = true;
     $scope.groups = [
         {
@@ -67,7 +74,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         isFirstOpen: true,
         isFirstDisabled: false
     };
-    
+
     (function () {
         var opcionesTablaLocations = new Object;
         opcionesTablaLocations.dtOptions = DTOptionsBuilder
