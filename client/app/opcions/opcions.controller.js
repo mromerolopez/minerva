@@ -8,7 +8,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
     $scope.locations = [];
 
     $scope.newLocation = function (location) {
-        dataConfiguration.addLocation(location)
+        dataConfiguration.getConfiguration(location)
                 .then(function (newLocation) {
                     $scope.locations.push(newLocation);
                     $scope.editingLocation = false;
