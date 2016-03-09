@@ -6,11 +6,15 @@ function TestsCtrl($scope, $http, dataBorrowers, dataConfiguration, auth) {
 
     var searched_item = new Object;
     var user = auth.get_user();
-    
-    dataConfiguration.getConfiguration(user._id).then(function(config){
-        console.log(config);
-    }).catch();
-    
+
+    dataConfiguration.getConfiguration(user._id)
+            .then(function (config) {
+                console.log(config);
+            })
+            .catch(function(err){
+                console.log(err);
+            });
+
     $scope.getBorrower = function (val) {
 
         if (!$scope.noResults) {
