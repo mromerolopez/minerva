@@ -5,8 +5,6 @@ app.service('dataConfiguration', dataConfiguration );
 function dataConfiguration($q,$http){
     return {
         getConfiguration : getConfiguration
-        
-  
     };
     
     function getConfiguration(userId){
