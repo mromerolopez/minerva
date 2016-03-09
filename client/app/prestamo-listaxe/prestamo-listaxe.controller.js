@@ -2,13 +2,12 @@
 
 app.controller('PrestamoListaxeCtrl', PrestamoListaxeCtrl);
 
-function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataLoans, dataIncidents) {
+function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataLoans, dataIncidents, SweetAlert) {
     $scope.loans = [];
     $scope.loan = new Object;
     $scope.editingLoan = false;
     $scope.incidences = [];
     $scope.incidence = new Object;
-
 
     $scope.newLoan = function () {
         $scope.loan = new Object;
@@ -45,6 +44,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         dataIncidents.addIncident(incidence)
                 .then(function (incidence) {
                     $scope.incidences.push(incidence);
+                    SweetAlert.swal("Incidencia gardada", null, "success");
                 })
                 .catch(function (err) {
                     console.log(err);

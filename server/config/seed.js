@@ -43,9 +43,9 @@ import User from '../api/user/user.model.js';
 User.find().removeAsync().then(()=>{
     User.create({
         _id: "56d00af1deb492e4006e612f",
-        name: "Señor",
-        surname1: "me enfado pero",
-        surname2: "si me compras patatas se me pasa",
+        name: "Manolo",
+        surname1: "Fernández",
+        surname2: "Vázquez",
         username: "usuario1",
         password: "pass",
         last_login: Date.now()

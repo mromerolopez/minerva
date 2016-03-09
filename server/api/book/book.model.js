@@ -21,6 +21,7 @@ var BookSchema = new mongoose.Schema({
     center: {type: mongoose.Schema.Types.ObjectId, ref: 'Center'},
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     loans: [{type: mongoose.Schema.Types.ObjectId, ref: 'Loan'}],
+    incidents: [{type: mongoose.Schema.Types.ObjectId, ref: 'Incident'}],
     active: {type: Boolean, default: true},
     created_at: {type: Date, default: Date.now},
     updated_at: Date

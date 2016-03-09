@@ -2,7 +2,7 @@
 
 app.controller('XestionAccesosCtrl', XestionAccesosCtrl);
 
-function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBuilder, dataUsers, auth, dataMaps) {
+function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBuilder, dataUsers, auth, dataMaps, SweetAlert) {
     $scope.user = new Object;
     $scope.users = [];
     $scope.last_logins = [];
@@ -14,6 +14,7 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
             })
             .catch(function (err) {
                 console.log(err);
+                SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
             });
 
     dataUsers.lastLogins()
@@ -23,6 +24,7 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
             })
             .catch(function (err) {
                 console.log(err);
+                SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
             });
 
 
@@ -35,9 +37,13 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
             dataUsers.saveUser(user)
                     .then(function (modifiedUser) {
                         $scope.editingUser = false;
-                    }).catch(function (err) {
-                console.log(err);
-            });
+                        SweetAlert.swal("Usuario modificado correctamente", null, "success");
+
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                        SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
+                    });
         } else {
             // create user
             user.parent = auth.get_user()._id;
@@ -45,9 +51,13 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
                     .then(function (newUser) {
                         $scope.editingUser = false;
                         $scope.users.push(newUser);
-                    }).catch(function (err) {
-                console.log(err);
-            });
+                        SweetAlert.swal("Usuario engadido correctamente", null, "success");
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                        SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
+
+                    });
         }
 
     };
