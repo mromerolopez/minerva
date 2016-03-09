@@ -39,6 +39,8 @@
 //  });
 
 import User from '../api/user/user.model.js';
+import Configuration from '../api/configuration/configuration.model.js';
+import Borrower from '../api/borrower/borrower.model.js';
 
 User.find().removeAsync().then(()=>{
     User.create({
@@ -52,9 +54,6 @@ User.find().removeAsync().then(()=>{
     })
 });
 
-
-import Borrower from '../api/borrower/borrower.model.js';
-
 Borrower.find().removeAsync().then(()=>{
     Borrower.create({
         _id: "56d40abe4df0c37c0601942b",
@@ -67,4 +66,15 @@ Borrower.find().removeAsync().then(()=>{
     })
 });
 
+
+
+Configuration.find().removeAsync().then(()=>{
+    Configuration.create({
+        user: "56d00af1deb492e4006e612f",
+        incindent_types: [{name: "Esnaquizado"}, {name: "Retraso"}],
+        borrower_types: [{name:"Profesor"}, {name:"Alumno"}, {name:"FP básica"}],
+        book_type: [{name:"Fp básica"}, {name:"Sanitario"}],
+        locations: [{name:"Biblioteca"}, {name:"Aula de bioloxía"}]
+    })
+});
 
