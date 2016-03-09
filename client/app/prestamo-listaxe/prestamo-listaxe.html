@@ -13,44 +13,42 @@
                             <h3 class="box-title">Préstamos</h3>
                         </div><!-- /.box-header -->
                         <div class="box-body">                          
-                            <div class="box-body">                          
-                                <table class="table table-hover" datatable="ng" dt-options="optionsTableLoans.dtOptions" dt-column-defs="optionsTableLoans.dtColumnDefs">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome do prestatario</th>
-                                            <th>NIF do prestatario</th>
-                                            <th>Número de teléfono</th>
-                                            <th>Correo electrónico</th>
-                                            <th>Libro emprestado</th>
-                                            <th>Data de préstamo</th>
-                                            <th>Data límite</th>
-                                            <th>Devolto</th>
-                                            <th>Data de creación</th>
-                                            <th>Editar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="loan in loans">
-                                            <td>{{loan.borrower.name}} {{loan.borrower.surname1}} {{loan.borrower.surname2}}</td>
-                                            <td>{{loan.borrower.nif}}</td>
-                                            <td>{{loan.borrower.phone}}</td>
-                                            <td><a ng-href="mailto:{{loan.borrower.email}}">{{loan.borrower.email}}</a></td>
-                                            <td>{{loan.book.title}}</td>
-                                            <td>{{loan.loan_date| date}}</td>
-                                            <td>{{loan.limit_date| date}}</td>
-                                            <td> 
-                                                <i ng-if="loan.devolto" class="fa fa-check text-green fa-2x"></i>
-                                                <i ng-if="!loan.devolto" class="fa fa-close text-red fa-2x"></i>
-                                            </td>
-                                            <td>{{loan.created_at| date}}</td>
-                                            <td><button class="btn btn-warning fa fa-edit" ng-click="editLoan(loan)"></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!--                                <div class="box-footer pull-right">
-                                                                    <a href="/prestamo-novo" class="btn btn-success">Novo préstamo</a>
-                                                                </div>-->
-                            </div>
+                            <table class="table table-hover table-responsive" datatable="ng" dt-options="optionsTableLoans.dtOptions" dt-column-defs="optionsTableLoans.dtColumnDefs">
+                                <thead>
+                                    <tr>
+                                        <th>Nome do prestatario</th>
+                                        <th>NIF do prestatario</th>
+                                        <th>Número de teléfono</th>
+                                        <th>Correo electrónico</th>
+                                        <th>Libro emprestado</th>
+                                        <th>Data de préstamo</th>
+                                        <th>Data límite</th>
+                                        <th>Devolto</th>
+                                        <th>Data de creación</th>
+                                        <th>Editar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="loan in loans">
+                                        <td>{{loan.borrower.name}} {{loan.borrower.surname1}} {{loan.borrower.surname2}}</td>
+                                        <td>{{loan.borrower.nif}}</td>
+                                        <td>{{loan.borrower.phone}}</td>
+                                        <td><a ng-href="mailto:{{loan.borrower.email}}">{{loan.borrower.email}}</a></td>
+                                        <td>{{loan.book.title}}</td>
+                                        <td>{{loan.loan_date| date}}</td>
+                                        <td>{{loan.limit_date| date}}</td>
+                                        <td> 
+                                            <i ng-if="loan.devolto" class="fa fa-check text-green fa-2x"></i>
+                                            <i ng-if="!loan.devolto" class="fa fa-close text-red fa-2x"></i>
+                                        </td>
+                                        <td>{{loan.created_at| date}}</td>
+                                        <td><button class="btn btn-warning fa fa-edit" ng-click="editLoan(loan)"></button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--                                <div class="box-footer pull-right">
+                                                                <a href="/prestamo-novo" class="btn btn-success">Novo préstamo</a>
+                                                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -59,7 +57,7 @@
                 <div ng-show="editingLoan">
                     <div class="row">   
                         <div class="col-xs-12">
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <div class="box box-success">
                                     <div class="box-header">
                                         <h3 class="box-title">Datos do libro</h3>
@@ -94,19 +92,27 @@
                                                 <label>Editorial: </label>
                                                 <span>{{book.editorial}}</span>
                                             </div>
-<!--                                            <div class="form-group">
-                                                <label for="exemplar">Exemplar*</label>
-                                                <select id="exemplar" class="form-control">
-                                                    <option>Copia 1</option>
-                                                    <option>Copia 2</option>
-                                                </select>
-                                            </div>-->
+
+                                            <div class="form-group">
+                                                <center>
+                                                    <button class="btn btn-success">
+                                                        Recoller
+                                                    </button>
+                                                </center>
+                                            </div>
+                                            <!--                                            <div class="form-group">
+                                                                                            <label for="exemplar">Exemplar*</label>
+                                                                                            <select id="exemplar" class="form-control">
+                                                                                                <option>Copia 1</option>
+                                                                                                <option>Copia 2</option>
+                                                                                            </select>
+                                                                                        </div>-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <div class="box box-warning">
                                     <div class="box-header">
                                         <h3 class="box-title">Datos do prestatario</h3>
@@ -146,12 +152,20 @@
                                                 <span>{{borrower.address}}</span>
                                             </div>
 
+                                            <div class="form-group">
+                                                <center>
+                                                    <button class="btn btn-warning" data-toggle="modal" data-target="#extendDate">
+                                                        Ampliar préstamo
+                                                    </button>
+                                                </center>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <div class="box box-primary">
                                     <div class="box-header">
                                         <h3 class="box-title">Datos do préstamo</h3>
@@ -160,16 +174,49 @@
 
                                         <div class="col-lg-12 col-sm-12">
 
-                                            <div class="form-group">
+                                            <div class="form-group col-lg-6">
                                                 <label>Data do préstamo:</label>
-                                              <input uib-datepicker ng-model="loan.loan_date" id="loan_date" max-date="loan.limit_date"  ng-disabled="true">
+                                                <input uib-datepicker ng-model="loan.loan_date" id="loan_date" max-date="loan.limit_date"  ng-disabled="true">
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="limit_date">Data límite*</label><br>
+                                            <div class="form-group col-lg-6">
+                                                <label for="limit_date">Data límite:</label><br>
                                                 <input uib-datepicker ng-model="loan.limit_date" id="limit_date" min-date="loan.loan_date" ng-disabled="true">
                                             </div>
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="box box-danger">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Incidencias</h3>
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body">  
+                                        <table width="100%" class="table table-hover table-responsive" datatable="ng" dt-options="optionsTableIncidences.dtOptions" dt-column-defs="optionsTableIncidences.dtColumnDefs">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tipo</th>
+                                                    <th>Observación</th>
+                                                    <th>Data</th>
+                                                    <th>Editar</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="incidence in incidences">
+                                                    <td>{{incidence.type}}</td>
+                                                    <td>{{incidence.observation}}</td>
+                                                    <td>{{incidence.created_at}}</td>
+                                                    <td><button class="btn btn-warning fa fa-edit" ng-click="editIncidence(incidence)"></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="box-footer">
+                                        <div class="pull-right">
+                                            <button class="btn btn-success" data-toggle="modal" data-target="#newIncident">Nova incidencia</button>
                                         </div>
                                     </div>
                                 </div>
@@ -179,8 +226,8 @@
                     </div>
                     <div class="row">
                         <center>
-                            <button class="btn btn-success" ng-click="saveLoan(loan)">Gardar préstamo</button>
-                            <button class="btn btn-danger" ng-click="cancelEditLoan()">Cancelar</button>
+                            <!--<button class="btn btn-success" ng-click="saveLoan(loan)">Gardar préstamo</button>-->
+                            <button class="btn btn-primary" ng-click="cancelEditLoan()">Volver</button>
                         </center>
                     </div>
                 </div>
@@ -189,3 +236,50 @@
         </section>
     </section>
 </div><!-- /.content-wrapper -->
+
+
+<div id="extendDate" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ampliar data</h4>
+            </div>
+            <div class="modal-body">
+                <p>Ampliamos.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Pechar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="newIncident" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Novo incidente</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Tipo:</label>
+                    <select ng-model="incidence.type">
+                        <option>Prueba 1</option>
+                        <option>Prueba 2</option>
+                        <option>Prueba 3</option>
+                    </select>
+                </div>      </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Pechar</button>
+            </div>
+        </div>
+
+    </div>
+</div>

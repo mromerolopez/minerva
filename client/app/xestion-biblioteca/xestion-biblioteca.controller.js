@@ -213,5 +213,4 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
             auth.logout();
         };
     })();
-
 }

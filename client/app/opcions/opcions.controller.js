@@ -3,9 +3,12 @@
 app.controller('OpcionsCtrl', OpcionsCtrl);
 
 function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataConfiguration) {
+    
     $scope.modal = false;
     $scope.location = new Object;
     $scope.locations = [];
+
+    
 
     $scope.newLocation = function (location) {
         dataConfiguration.getConfiguration(location)
@@ -43,6 +46,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
             auth.logout();
         };
     })();
+    
     $scope.oneAtATime = true;
     $scope.groups = [
         {
@@ -63,6 +67,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         isFirstOpen: true,
         isFirstDisabled: false
     };
+    
     (function () {
         var opcionesTablaLocations = new Object;
         opcionesTablaLocations.dtOptions = DTOptionsBuilder
