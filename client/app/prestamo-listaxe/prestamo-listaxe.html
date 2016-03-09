@@ -207,8 +207,8 @@
                                             <tbody>
                                                 <tr ng-repeat="incidence in incidences">
                                                     <td>{{incidence.type}}</td>
-                                                    <td>{{incidence.observation}}</td>
-                                                    <td>{{incidence.created_at}}</td>
+                                                    <td>{{incidence.observations}}</td>
+                                                    <td>{{incidence.created_at | date:"dd 'de' MMMM 'do' yyyy"}}</td>
                                                     <td><button class="btn btn-warning fa fa-edit" ng-click="editIncidence(incidence)"></button></td>
                                                 </tr>
                                             </tbody>
@@ -216,7 +216,7 @@
                                     </div>
                                     <div class="box-footer">
                                         <div class="pull-right">
-                                            <button class="btn btn-success" data-toggle="modal" data-target="#newIncident">Nova incidencia</button>
+                                            <button class="btn btn-success" data-toggle="modal" data-target="#newIncident" ng-click="newIncidence()">Nova incidencia</button>
                                         </div>
                                     </div>
                                 </div>
@@ -275,9 +275,16 @@
                         <option>Prueba 2</option>
                         <option>Prueba 3</option>
                     </select>
-                </div>      </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Observacións:</label>
+                    <textarea class="form-control" id="synopsis" rows="4" placeholder="Escriba as observacións da incidencia ..." ng-model="incidence.observations"></textarea>
+                </div>
+            </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Pechar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Pechar</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="saveIncidence(incidence)">Gardar a incidencia</button>
             </div>
         </div>
 

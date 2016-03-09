@@ -1,25 +1,22 @@
 'user strict';
 
-app.service('dataBorrowers', dataBorrowers);
+app.service('dataIncidents', dataIncidents);
 
-
-function dataBorrowers($q, $http) {
-
+function dataIncidents($q, $http) {
     return {
-        getBorrowers: getBorrowers, // get a list of all the borrowers
-        saveBorrower: saveBorrower, // updates a borrower
-        addBorrower: addBorrower, // creates a new borrower
-        getBorrowerTypeHead: getBorrowerTypeHead // searches a borrower with TypeHead
+        getIncidents: getIncidents,
+        getIncident: getIncident,
+        addIncident: addIncident,
+        saveIncident: saveIncident
     };
 
-
-    function getBorrowers() {
+    function getIncidents() {
         var defered = $q.defer();
         var promise = defered.promise;
 
         $http({
             method: 'GET',
-            url: '/api/borrowers'
+            url: '/api/incidents'
         }).success(function (datos) {
             defered.resolve(datos);
         }).error(function (err) {
@@ -29,50 +26,48 @@ function dataBorrowers($q, $http) {
         return promise;
     }
 
-    function saveBorrower(borrower) {
+    function getIncident(id) {
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http({
+            method: 'GET',
+            url: '/api/incidents/' + id
+        }).success(function (datos) {
+            defered.resolve(datos);
+        }).error(function (err) {
+            defered.reject(err);
+        });
+
+        return promise;
+    }
+
+    function addIncident(incident) {
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http({
+            method: 'POST',
+            url: '/api/incidents/',
+            data: incident
+        }).success(function (datos) {
+            defered.resolve(datos);
+        }).error(function (err) {
+            defered.reject(err);
+        });
+
+        return promise;
+    }
+
+    function saveIncident(incident) {
         var defered = $q.defer();
         var promise = defered.promise;
 
 
         $http({
             method: 'PUT',
-            url: '/api/borrowers/' + borrower._id,
-            data: borrower
-        }).success(function (datos) {
-            defered.resolve(datos);
-        }).error(function (err) {
-            defered.reject(err);
-        });
-
-        return promise;
-    }
-
-    function addBorrower(borrower) {
-        var defered = $q.defer();
-        var promise = defered.promise;
-
-
-        $http({
-            method: 'POST',
-            url: '/api/borrowers/',
-            data: borrower
-        }).success(function (datos) {
-            defered.resolve(datos);
-        }).error(function (err) {
-            defered.reject(err);
-        });
-
-        return promise;
-    }
-
-    function getBorrowerTypeHead(value) {
-        var defered = $q.defer();
-        var promise = defered.promise;
-
-        $http({
-            method: 'GET',
-            url: 'api/borrowers/get/filter/' + value
-
+            url: '/api/incidents/' + incident._id,
+            data: incident
         }).success(function (datos) {
             defered.resolve(datos);
         }).error(function (err) {

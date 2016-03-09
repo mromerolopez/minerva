@@ -65,6 +65,7 @@ export function index(req, res) {
     .populate('user')
     .populate('book')
     .populate('borrower')
+    .populate('incidents')
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 import Incident from './incident.model';
+import Loan from '../loan/loan.model.js';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -76,10 +77,23 @@ export function show(req, res) {
 
 // Creates a new Incident in the DB
 export function create(req, res) {
-  Incident.createAsync(req.body)
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
-}
+
+    Incident.createAsync(req.body)
+        .then(function(data){
+          
+            Loan.findByIdAndUpdate(
+                 data.loan,
+                { $push: { incidents: data._id } },
+                {safe: true, upsert: true},
+                function(err, model) {
+                    console.log(err);
+                }
+             );
+            res.json(data);
+
+        })
+        .catch(handleError(res));
+        }
 
 // Updates an existing Incident in the DB
 export function update(req, res) {

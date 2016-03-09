@@ -2,11 +2,11 @@
 
 app.controller('PrestamoListaxeCtrl', PrestamoListaxeCtrl);
 
-function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataLoans) {
+function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataLoans, dataIncidents) {
     $scope.loans = [];
     $scope.loan = new Object;
     $scope.editingLoan = false;
-    $scope.incindences = [];
+    $scope.incidences = [];
     $scope.incidence = new Object;
 
 
@@ -27,10 +27,28 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         $scope.loan = loan;
         $scope.book = loan.book;
         $scope.borrower = loan.borrower;
+        $scope.incidences=loan.incidents;
     };
 
     $scope.cancelEditLoan = function () {
         $scope.editingLoan = false;
+    };
+
+    $scope.newIncidence = function () {
+        $scope.incidence = new Object;
+        $scope.incidence.loan = $scope.loan._id;
+        $scope.incidence.book = $scope.loan.book._id;
+        $scope.incidence.borrower = $scope.loan.borrower._id;
+    };
+
+    $scope.saveIncidence = function (incidence) {
+        dataIncidents.addIncident(incidence)
+                .then(function (incidence) {
+                    $scope.incidences.push(incidence);
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
     };
 
     (function () {
@@ -56,8 +74,8 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
 
         $scope.optionsTableLoans = optionsTableLoans;
     })();
-    
-    
+
+
     (function () {
         var optionsTableIncidences = new Object;
 
