@@ -45,9 +45,9 @@
                                             
                                             <div class="form-group">
                                                 <label for="location">Nome localización</label>
-                                                <input type="text" class="form-control" id="location">
+                                                <input type="text" class="form-control" id="location" ng-model="configuration.locations">
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveLocation()">Gardar</button>
+                                                    <button class="btn btn-success" ng-click="saveLocation(location)">Gardar</button>
                                                     
                                                     <button class="btn btn-danger" ng-click="cancelLocation()">Cancelar</button>
                                                 </div>

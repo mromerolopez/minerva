@@ -4,7 +4,6 @@ app.controller('OpcionsCtrl', OpcionsCtrl);
 
 function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataConfiguration) {
 
-
     $scope.location = new Object;
     $scope.locations = [];
     $scope.books = [];
@@ -27,6 +26,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
 
 
     $scope.saveLocation = function (location) {
+        $scope.location = location;
         $scope.locations.push(location);
         $scope.editingLocation = false;
     };
@@ -34,11 +34,14 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
     $scope.editLocation = function (location) {
         $scope.location = location;
         $scope.editingLocation = true;
+        if (typeof location === 'undefined') {
+            $scope.location = new Object;
+        }
 
     };
 
-    $scope.deleteLocation = function () {
-
+    $scope.deleteLocation = function (location) {
+        $scope.locations.splice(location);
 
     };
 
