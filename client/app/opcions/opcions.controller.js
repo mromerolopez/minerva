@@ -8,7 +8,14 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
     $scope.locations = [];
     $scope.books = [];
     $scope.borrowers = [];
+    $scope.book = new Object;
+    $scope.borrower = new Object;
     $scope.configuration = new Object;
+    $scope.creatingLocation = false;
+    $scope.editingLocation = false;
+    $scope.type = "days";
+    $scope.minDate = new Date();
+
     var userId = auth.get_user()._id;
 
 
@@ -25,30 +32,136 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
             });
 
 
-    $scope.saveLocation = function (location) {
-        $scope.location = location;
-        $scope.locations.push(location);
+//  ----- Start of location functions ------
+
+    $scope.saveLocation = function (index) {
+
+        $scope.location = $scope.locations[index];
+        $scope.locations[index] = $scope.location;
+        //$scope.locations.push(location);
         $scope.editingLocation = false;
     };
 
-    $scope.editLocation = function (location) {
-        $scope.location = location;
+
+    $scope.newLocation = function () {
+        $scope.location = new Object;
+        $scope.editingLocation = false;
+        $scope.creatingLocation = true;
+    };
+
+    $scope.saveNewLocation = function (location) {
+        $scope.locations.push(location);
+        $scope.location = new Object;
+        $scope.creatingLocation = false;
+    };
+
+    $scope.editLocation = function (index) {
+        $scope.location = $scope.locations[index];
         $scope.editingLocation = true;
-        if (typeof location === 'undefined') {
-            $scope.location = new Object;
-        }
 
     };
 
-    $scope.deleteLocation = function (location) {
-        $scope.locations.splice(location);
-
+    $scope.deleteLocation = function (index) {
+        $scope.locations.splice(index, 1);
     };
 
     $scope.cancelLocation = function () {
         $scope.location = new Object;
         $scope.editingLocation = false;
+        $scope.creatingLocation = false;
+
     };
+
+// ----- End of locations functions ------
+
+
+//  ----- Start of borrower functions ------
+
+    $scope.saveBorrower = function (index) {
+
+        $scope.borrower = $scope.borrowers[index];
+        $scope.borrowers[index] = $scope.borrower;
+        //$scope.locations.push(location);
+        $scope.editingBorrower = false;
+    };
+
+
+    $scope.newBorrower = function () {
+        $scope.borrower = new Object;
+        $scope.editingBorrower = false;
+        $scope.creatingBorrower = true;
+    };
+
+    $scope.saveNewBorrower = function (borrower) {
+        $scope.borrowers.push(borrower);
+        $scope.borrower = new Object;
+        $scope.creatingBorrower = false;
+        console.log(borrower);
+    };
+
+    $scope.editBorrower = function (index) {
+        $scope.borrower = $scope.borrowers[index];
+        $scope.editingBorrower = true;
+
+    };
+
+    $scope.deleteBorrower = function (index) {
+        $scope.borrowers.splice(index, 1);
+    };
+
+    $scope.cancelBorrower = function () {
+        $scope.borrower = new Object;
+        $scope.editingBorrower = false;
+        $scope.creatingBorrower = false;
+
+    };
+
+// ----- End of borrower functions ------
+
+
+
+
+//  ----- Start of books functions ------
+
+    $scope.saveBook = function (index) {
+
+        $scope.book = $scope.books[index];
+        $scope.books[index] = $scope.book;
+        //$scope.locations.push(location);
+        $scope.editingBook = false;
+    };
+
+
+    $scope.newBook = function () {
+        $scope.book = new Object;
+        $scope.editingBook = false;
+        $scope.creatingBook = true;
+    };
+
+    $scope.saveNewBook = function (borrower) {
+        $scope.books.push(borrower);
+        $scope.book = new Object;
+        $scope.creatingBook = false;
+    };
+
+    $scope.editBook = function (index) {
+        $scope.book = $scope.books[index];
+        $scope.editingBook = true;
+
+    };
+
+    $scope.deleteBook = function (index) {
+        $scope.books.splice(index, 1);
+    };
+
+    $scope.cancelBook = function () {
+        $scope.book = new Object;
+        $scope.editingBook = false;
+        $scope.creatingBook = false;
+
+    };
+
+// ----- End of books functions ------
 
 
 
@@ -81,6 +194,16 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         isFirstDisabled: false
     };
 
+    $scope.checkTypes = function (tipo) {
+
+        if (tipo === "days") {
+            $scope.showDatepicker = false;
+        } else {
+            $scope.showDatepicker = true;
+
+        }
+    };
+
     (function () {
         var opcionesTablaLocations = new Object;
         opcionesTablaLocations.dtOptions = DTOptionsBuilder
@@ -93,6 +216,35 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
             DTColumnDefBuilder.newColumnDef(2).notSortable()
         ];
         $scope.opcionesTablaLocations = opcionesTablaLocations;
+    })();
+
+    (function () {
+        var opcionesTablaLibros = new Object;
+        opcionesTablaLibros.dtOptions = DTOptionsBuilder
+                .newOptions().withPaginationType('full_numbers')
+                .withDisplayLength(10)
+                .withLanguageSource('//cdn.datatables.net/plug-ins/1.10.11/i18n/Galician.json');
+        opcionesTablaLibros.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef(0),
+            DTColumnDefBuilder.newColumnDef(1).notSortable(),
+            DTColumnDefBuilder.newColumnDef(2).notSortable()
+        ];
+        $scope.opcionesTablaLibros = opcionesTablaLibros;
+    })();
+
+    (function () {
+        var opcionesTablaUsers = new Object;
+        opcionesTablaUsers.dtOptions = DTOptionsBuilder
+                .newOptions().withPaginationType('full_numbers')
+                .withDisplayLength(10)
+                .withLanguageSource('//cdn.datatables.net/plug-ins/1.10.11/i18n/Galician.json');
+        opcionesTablaUsers.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef(0),
+            DTColumnDefBuilder.newColumnDef(1),
+            DTColumnDefBuilder.newColumnDef(2).notSortable(),
+            DTColumnDefBuilder.newColumnDef(3).notSortable()
+        ];
+        $scope.opcionesTablaUsers = opcionesTablaUsers;
     })();
 }
 

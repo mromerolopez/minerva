@@ -20,7 +20,7 @@
                             <uib-accordion close-others="oneAtATime">
                                 <div class="col-lg-6">
                                     <uib-accordion-group heading="Localizacións" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled" panel-class="panel-success">
-                                        <div ng-hide="editingLocation">
+                                        <div ng-hide="editingLocation || creatingLocation">
                                             <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLocations.dtOptions" dt-column-defs="opcionesTablaLocations.dtColumnDefs">
                                                 <thead>
                                                     <tr>
@@ -30,30 +30,40 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr ng-repeat="location in locations">
+                                                    <tr ng-repeat="location in locations track by $index">
                                                         <td>{{location.name}}</td> 
-                                                        <td><button class="btn btn-warning" ng-click="editLocation(location)"><i class="fa fa-edit"></i></button></td>
-                                                        <td><button class="btn btn-danger" ng-click="deleteLocation(location)"><i class="fa fa-trash-o"></i></button></td>
+                                                        <td><button class="btn btn-warning" ng-click="editLocation($index)"><i class="fa fa-edit"></i></button></td>
+                                                        <td><button class="btn btn-danger" ng-click="deleteLocation($index)"><i class="fa fa-trash-o"></i></button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <div class="box-footer pull-right">
-                                                <button class="btn btn-success" ng-click="editLocation()">Nova Localización</button>
+                                                <button class="btn btn-success" ng-click="newLocation()">Nova Localización</button>
                                             </div>
                                         </div>
+
                                         <div ng-show="editingLocation">
-                                            
                                             <div class="form-group">
                                                 <label for="location">Nome localización</label>
-                                                <input type="text" class="form-control" id="location" ng-model="configuration.locations">
+                                                <input type="text" class="form-control" id="location" ng-model="location.name">
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveLocation(location)">Gardar</button>
-                                                    
+                                                    <button class="btn btn-success" ng-click="saveLocation($index)">Gardar</button>
                                                     <button class="btn btn-danger" ng-click="cancelLocation()">Cancelar</button>
                                                 </div>
                                             </div>
-
                                         </div>
+
+                                        <div ng-show="creatingLocation">
+                                            <div class="form-group">
+                                                <label for="location">Nome localización</label>
+                                                <input type="text" class="form-control" id="location" ng-model="location.name">
+                                                <div class="box-footer pull-right">
+                                                    <button class="btn btn-success" ng-click="saveNewLocation(location)">Gardar</button>
+                                                    <button class="btn btn-danger" ng-click="cancelLocation()">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </uib-accordion-group>
                                 </div>
 
@@ -61,77 +71,124 @@
                             <uib-accordion close-others="oneAtATime">
 
                                 <div class="col-lg-6">
-                                    <uib-accordion-group heading="Tipos de libros"  panel-class="panel-success">
-                                      <div ng-hide="editingBook">
-                                            <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLocations.dtOptions" dt-column-defs="opcionesTablaLocations.dtColumnDefs">
+                                    <uib-accordion-group heading="Tipos de libros"   panel-class="panel-success">
+                                        <div ng-hide="editingBook || creatingBook">
+                                            <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLibros.dtOptions" dt-column-defs="opcionesTablaLibros.dtColumnDefs">
                                                 <thead>
                                                     <tr>
-                                                        <th>Tipo de Libro</th>
+                                                        <th>Tipo de libro</th>
                                                         <th>Editar</th>
                                                         <th>Eliminar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr ng-repeat="book in books">
+                                                    <tr ng-repeat="book in books track by $index">
                                                         <td>{{book.name}}</td> 
-                                                        <td><button class="btn btn-warning" ng-click="editBook(book)"><i class="fa fa-edit"></i></button></td>
-                                                        <td><button class="btn btn-danger" ng-click="deleteBook(book)"><i class="fa fa-trash-o"></i></button></td>
+                                                        <td><button class="btn btn-warning" ng-click="editBook($index)"><i class="fa fa-edit"></i></button></td>
+                                                        <td><button class="btn btn-danger" ng-click="deleteBook($index)"><i class="fa fa-trash-o"></i></button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <div class="box-footer pull-right">
-                                                <button class="btn btn-success" ng-click="editBook()">Novo Tipo de Libro</button>
+                                                <button class="btn btn-success" ng-click="newBook()">Novo Libro</button>
                                             </div>
                                         </div>
+
                                         <div ng-show="editingBook">
-                                            
                                             <div class="form-group">
-                                                <label for="location">Nome do tipo de libro</label>
-                                                <input type="text" class="form-control" id="location">
+                                                <label for="book">Nome do tipo de libro</label>
+                                                <input type="text" class="form-control" id="location" ng-model="book.name">
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveBook()">Gardar</button>
-                                                    
+                                                    <button class="btn btn-success" ng-click="saveBook($index)">Gardar</button>
                                                     <button class="btn btn-danger" ng-click="cancelBook()">Cancelar</button>
                                                 </div>
                                             </div>
-
                                         </div>
+
+                                        <div ng-show="creatingBook">
+                                            <div class="form-group">
+                                                <label for="book">Nome do tipo de libro</label>
+                                                <input type="text" class="form-control" id="location" ng-model="book.name">
+                                                <div class="box-footer pull-right">
+                                                    <button class="btn btn-success" ng-click="saveNewBook(book)">Gardar</button>
+                                                    <button class="btn btn-danger" ng-click="cancelBook()">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </uib-accordion-group>
                                     <uib-accordion-group heading="Tipos de usuarios"  panel-class="panel-success">
-                                      <div ng-hide="editingBorrower">
-                                            <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLocations.dtOptions" dt-column-defs="opcionesTablaLocations.dtColumnDefs">
+                                        <div ng-hide="editingBorrower || creatingBorrower">
+                                            <table class="table table-hover" datatable="ng" dt-options="opcionesTablaUsers.dtOptions" dt-column-defs="opcionesTablaUsers.dtColumnDefs">
                                                 <thead>
                                                     <tr>
-                                                        <th>Tipo de Usuario</th>
+                                                        <th>Tipo de usuario</th>
+                                                        <th>Tempo Préstamos</th>
                                                         <th>Editar</th>
                                                         <th>Eliminar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr ng-repeat="borrower in borrowers">
-                                                        <td>{{borrower.name}}</td> 
-                                                        <td><button class="btn btn-warning" ng-click="editBorrower(borrower)"><i class="fa fa-edit"></i></button></td>
-                                                        <td><button class="btn btn-danger" ng-click="deleteBorrower(borrower)"><i class="fa fa-trash-o"></i></button></td>
+                                                    <tr ng-repeat="borrower in borrowers track by $index">
+                                                        <td>{{borrower.name}}</td>
+                                                        <td>{{borrower.time || ( borrower.date | date:"dd 'de' MMMM 'do' yyyy") }}</td>
+                                                        <td><button class="btn btn-warning" ng-click="editBorrower($index)"><i class="fa fa-edit"></i></button></td>
+                                                        <td><button class="btn btn-danger" ng-click="deleteBorrower($index)"><i class="fa fa-trash-o"></i></button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <div class="box-footer pull-right">
-                                                <button class="btn btn-success" ng-click="editBorrower()">Novo Tipo de Usuario</button>
+                                                <button class="btn btn-success" ng-click="newBorrower()">Novo Usuario</button>
                                             </div>
                                         </div>
+
                                         <div ng-show="editingBorrower">
-                                            
                                             <div class="form-group">
-                                                <label for="location">Nome do tipo de usuario</label>
-                                                <input type="text" class="form-control" id="location">
+                                                <label for="borrower">Nome do tipo de usuario</label>
+                                                <input type="text" class="form-control" id="location" ng-model="borrower.name">
+                                                <label class="radio"><input name="radiobutton" type="radio" class="minimal" ng-model="type" value="days" ng-change="checkTypes(type)">Número de días</label>
+                                                <label class="radio"><input name="radiobutton" type="radio" class="minimal" ng-model="type" value="date" ng-change="checkTypes(type)">Data fin de préstamo</label>
+
+                                                <div ng-show="showDatepicker">
+                                                    <center>
+                                                        <input uib-datepicker ng-model="borower.date" min-date="minDate">
+                                                    </center>
+                                                </div>
+                                                <input type="number" class="form-control" ng-model="borrower.time" ng-show="!showDatepicker">
+                                                
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveBorrower()">Gardar</button>
-                                                    
+                                                    <button class="btn btn-success" ng-click="saveBorrower($index)">Gardar</button>
                                                     <button class="btn btn-danger" ng-click="cancelBorrower()">Cancelar</button>
                                                 </div>
                                             </div>
-
                                         </div>
+
+                                        <div ng-show="creatingBorrower">
+                                            <div class="form-group">
+
+
+                                                <label for="borrower">Nome do tipo de usuario</label>
+                                                <input type="text" class="form-control" id="location" ng-model="borrower.name">
+                                                <label class="radio"><input name="radiobutton" type="radio" class="minimal" ng-model="type" value="days" ng-change="checkTypes(type)">Número de días</label>
+                                                <label class="radio"><input name="radiobutton" type="radio" class="minimal" ng-model="type" value="date" ng-change="checkTypes(type)">Data fin de préstamo</label>
+
+                                                <div ng-show="showDatepicker">
+                                                    <center>
+                                                        <input uib-datepicker ng-model="borrower.date" min-date="minDate">
+                                                    </center>
+                                                </div>
+                                                <input type="number" class="form-control" ng-model="borrower.time" ng-show="!showDatepicker">
+
+
+
+
+                                                <div class="box-footer pull-right">
+                                                    <button class="btn btn-success" ng-click="saveNewBorrower(borrower)">Gardar</button>
+                                                    <button class="btn btn-danger" ng-click="cancelBorrower()">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </uib-accordion-group>
 
                                 </div>
