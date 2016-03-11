@@ -14,8 +14,8 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Cosas</h3>
-                        </div><!-- /.box-header -->
+                            <h3 class="box-title"></h3>
+                        </div> 
                         <div class="box-body">                          
                             <uib-accordion close-others="oneAtATime">
                                 <div class="col-lg-6">
@@ -146,8 +146,8 @@
                                             <div class="form-group">
                                                 <label for="borrower">Nome do tipo de usuario</label>
                                                 <input type="text" class="form-control" id="location" ng-model="borrower.name">
-                                                <label class="radio"><input name="radiobutton" type="radio" class="minimal" ng-model="type" value="days" ng-change="checkTypes(type)">Número de días</label>
-                                                <label class="radio"><input name="radiobutton" type="radio" class="minimal" ng-model="type" value="date" ng-change="checkTypes(type)">Data fin de préstamo</label>
+                                                <label class="radio"><input name="rb1" type="radio" class="minimal" ng-model="type" value="days" ng-change="checkTypes(type)">Número de días</label>
+                                                <label class="radio"><input name="rb2" type="radio" class="minimal" ng-model="type" value="date" ng-change="checkTypes(type)">Data fin de préstamo</label>
 
                                                 <div ng-show="showDatepicker">
                                                     <center>

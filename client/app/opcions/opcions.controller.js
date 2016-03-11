@@ -80,13 +80,17 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
     $scope.saveBorrower = function (borrower) {
 
 
+//        if(typeof borrower.time !== 'undefined'  ){
+//            borrower.time=undefined;   
+//        }
+//        else if(typeof borrower.date !== 'undefined' ){     
+//            borrower.date=undefined;
+//        }
+
         console.log(borrower);
-//        $scope.borrower = $scope.borrowers[index];
-//        $scope.borrowers[index] = $scope.borrower;
-//        //$scope.locations.push(location);
-//        $scope.editingBorrower = false;
-//        console.log(index);
-//        console.log($scope.borrowers[index]);
+        $scope.borrower = borrower;
+        $scope.editingBorrower = false;
+
     };
 
 
@@ -106,6 +110,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
     $scope.editBorrower = function (index) {
         $scope.borrower = $scope.borrowers[index];
         $scope.editingBorrower = true;
+
 
     };
 
