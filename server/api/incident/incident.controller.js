@@ -103,7 +103,7 @@ export function create(req, res) {
              );
      
             Borrower.findByIdAndUpdate(
-                 data.borrower,
+                data.borrower,
                 { $push: { incidents: data._id } },
                 {safe: true, upsert: true},
                 function(err, model) {
