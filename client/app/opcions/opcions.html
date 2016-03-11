@@ -151,13 +151,13 @@
 
                                                 <div ng-show="showDatepicker">
                                                     <center>
-                                                        <input uib-datepicker ng-model="borower.date" min-date="minDate">
+                                                        <input uib-datepicker ng-model="borrower.date" min-date="minDate">
                                                     </center>
                                                 </div>
                                                 <input type="number" class="form-control" ng-model="borrower.time" ng-show="!showDatepicker">
                                                 
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveBorrower($index)">Gardar</button>
+                                                    <button class="btn btn-success" ng-click="saveBorrower(borrower)">Gardar</button>
                                                     <button class="btn btn-danger" ng-click="cancelBorrower()">Cancelar</button>
                                                 </div>
                                             </div>

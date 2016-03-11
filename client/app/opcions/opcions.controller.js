@@ -77,12 +77,16 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
 
 //  ----- Start of borrower functions ------
 
-    $scope.saveBorrower = function (index) {
+    $scope.saveBorrower = function (borrower) {
 
-        $scope.borrower = $scope.borrowers[index];
-        $scope.borrowers[index] = $scope.borrower;
-        //$scope.locations.push(location);
-        $scope.editingBorrower = false;
+
+        console.log(borrower);
+//        $scope.borrower = $scope.borrowers[index];
+//        $scope.borrowers[index] = $scope.borrower;
+//        //$scope.locations.push(location);
+//        $scope.editingBorrower = false;
+//        console.log(index);
+//        console.log($scope.borrowers[index]);
     };
 
 
@@ -96,7 +100,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         $scope.borrowers.push(borrower);
         $scope.borrower = new Object;
         $scope.creatingBorrower = false;
-        console.log(borrower);
+
     };
 
     $scope.editBorrower = function (index) {
@@ -114,6 +118,16 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         $scope.editingBorrower = false;
         $scope.creatingBorrower = false;
 
+    };
+
+    $scope.checkTypes = function (tipo) {
+
+        if (tipo === "days") {
+            $scope.showDatepicker = false;
+        } else {
+            $scope.showDatepicker = true;
+
+        }
     };
 
 // ----- End of borrower functions ------
@@ -194,15 +208,6 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         isFirstDisabled: false
     };
 
-    $scope.checkTypes = function (tipo) {
-
-        if (tipo === "days") {
-            $scope.showDatepicker = false;
-        } else {
-            $scope.showDatepicker = true;
-
-        }
-    };
 
     (function () {
         var opcionesTablaLocations = new Object;
