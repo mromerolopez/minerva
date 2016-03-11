@@ -38,17 +38,14 @@
                                         <td>{{loan.loan_date| date}}</td>
                                         <td>{{loan.limit_date| date}}</td>
                                         <td> 
-                                            <i ng-if="loan.devolto" class="fa fa-check text-green fa-2x"></i>
-                                            <i ng-if="!loan.devolto" class="fa fa-close text-red fa-2x"></i>
+                                            <i ng-if="loan.returned" class="fa fa-check text-green fa-2x"></i>
+                                            <i ng-if="!loan.returned" class="fa fa-close text-red fa-2x"></i>
                                         </td>
                                         <td>{{loan.created_at| date}}</td>
                                         <td><button class="btn btn-warning fa fa-edit" ng-click="editLoan(loan)"></button></td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <!--                                <div class="box-footer pull-right">
-                                                                <a href="/prestamo-novo" class="btn btn-success">Novo préstamo</a>
-                                                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -95,8 +92,12 @@
 
                                             <div class="form-group">
                                                 <center>
-                                                    <button class="btn btn-success">
+                                                    <button ng-if="!loan.returned" class="btn btn-success" ng-click="returnLoan()">
                                                         Recoller
+                                                    </button>
+                                                    
+                                                    <button ng-if="loan.returned" disabled class="btn btn-success">
+                                                        Recollido
                                                     </button>
                                                 </center>
                                             </div>
@@ -152,13 +153,7 @@
                                                 <span>{{borrower.address}}</span>
                                             </div>
 
-                                            <div class="form-group">
-                                                <center>
-                                                    <button class="btn btn-warning" data-toggle="modal" data-target="#extendDate">
-                                                        Ampliar préstamo
-                                                    </button>
-                                                </center>
-                                            </div>
+                                           
 
                                         </div>
                                     </div>
@@ -181,7 +176,19 @@
 
                                             <div class="form-group col-lg-6">
                                                 <label for="limit_date">Data límite:</label><br>
-                                                <input uib-datepicker ng-model="loan.limit_date" id="limit_date" min-date="loan.loan_date" ng-disabled="true">
+                                                <input uib-datepicker ng-model="loan.limit_date" id="limit_date" min-date="loan.loan_date" ng-disabled="!extendingLoan">
+                                            </div>
+                                            
+                                             <div class="form-group">
+                                                <center>
+                                                    <button class="btn btn-warning" ng-click="extendLoan()" ng-if="!extendingLoan" ng-disabled="loan.returned">
+                                                        Ampliar préstamo
+                                                    </button>
+                                                    
+                                                     <button class="btn btn-success" ng-click="saveExtendingLoan()" ng-if="extendingLoan">
+                                                        Gardar data
+                                                    </button>
+                                                </center>
                                             </div>
 
                                         </div>
@@ -238,10 +245,10 @@
 </div><!-- /.content-wrapper -->
 
 
-<div id="extendDate" class="modal fade" role="dialog">
+<!--<div id="extendDate" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
-        <!-- Modal content-->
+         Modal content
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -256,7 +263,7 @@
         </div>
 
     </div>
-</div>
+</div>-->
 
 <div id="newIncident" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -270,7 +277,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Tipo:</label>
-                    <select ng-model="incidence.type">
+                    <select ng-model="incidence.type" class="form-control">
                         <option>Prueba 1</option>
                         <option>Prueba 2</option>
                         <option>Prueba 3</option>

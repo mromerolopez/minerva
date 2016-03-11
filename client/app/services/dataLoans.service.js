@@ -68,7 +68,7 @@ function dataLoans($q, $http) {
         var promise = defered.promise;
 
         $http({
-            method: 'POST',
+            method: 'PUT',
             url: '/api/loans/' + loan._id,
             data: loan
         }).success(function (datos) {

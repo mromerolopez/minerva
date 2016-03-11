@@ -8,6 +8,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
     $scope.editingLoan = false;
     $scope.incidences = [];
     $scope.incidence = new Object;
+    $scope.extendingLoan = false;
 
     $scope.newLoan = function () {
         $scope.loan = new Object;
@@ -26,7 +27,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         $scope.loan = loan;
         $scope.book = loan.book;
         $scope.borrower = loan.borrower;
-        $scope.incidences=loan.incidents;
+        $scope.incidences = loan.incidents;
     };
 
     $scope.cancelEditLoan = function () {
@@ -49,6 +50,49 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
                 .catch(function (err) {
                     console.log(err);
                 });
+    };
+
+    $scope.returnLoan = function () {
+        SweetAlert.swal({
+            title: "¿Está seguro de que quere recoller este préstamo?",
+            text: "Unha vez recollido non se poderá revertir o seu estado.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#00A65A",
+            confirmButtonText: "Si, devólveo",
+            cancelButtonText: "Non, cancela está acción por favor",
+            closeOnConfirm: false,
+            closeOnCancel: false},
+                function (isConfirm) {
+                    if (isConfirm) {
+
+                        $scope.loan.returned = !$scope.loan.returned;
+                        dataLoans.saveLoan($scope.loan).then(function (loan) {
+                            SweetAlert.swal("¡Recollido!", "Este préstamo foi recollido.", "success");
+                        }).catch(function (err) {
+                            SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
+
+                            console.log(err);
+                        });
+                    } else {
+                        SweetAlert.swal("¡Cancelado!", "Este préstamo segue vixente :)", "error");
+                    }
+                });
+    };
+
+    $scope.extendLoan = function () {
+        $scope.extendingLoan = true;
+
+    };
+
+    $scope.saveExtendingLoan = function () {
+        dataLoans.saveLoan($scope.loan).then(function (loan) {
+            SweetAlert.swal("¡Préstamo ampliado!", "Este préstamo foi gardado correctamente.", "success");
+        }).catch(function (err) {
+            SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
+            console.log(err);
+        });
+        $scope.extendingLoan = false;
     };
 
     (function () {
