@@ -3,7 +3,7 @@
 angular.module('minervaApp')
         .controller('XestionUsuariosCtrl', XestionUsuariosCtrl);
 
-function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers, dataLoans, dataBooks, dataMaps, SweetAlert) {
+function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers, dataLoans, dataBooks, dataMaps, SweetAlert, dataConfiguration) {
     $scope.borrowers = [];
     $scope.borrower = new Object;
     $scope.loan = new Object;
@@ -13,7 +13,13 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
 
     console.log(user);
 
-
+    dataConfiguration.getConfiguration(user._id)
+            .then(function (config) {
+                $scope.types = config.borrower_types;
+            }).catch(function (err) {
+        console.log(err);
+    });
+    
     dataBorrowers.getBorrowers()
             //get a list of all borrowers
             .then(function (borrowers) {

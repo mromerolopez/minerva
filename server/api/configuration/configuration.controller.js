@@ -86,11 +86,20 @@ export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  Configuration.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+  
+  
+  console.log(req.body);
+  
+  Configuration.findByIdAndUpdate(req.params.id, req.body, null, function(element){
+      res.json(element);
+  });
+            
+  
+//  Configuration.findByIdAsync(req.params.id)
+//    .then(handleEntityNotFound(res))
+//    .then(saveUpdates(req.body))
+//    .then(respondWithResult(res))
+//    .catch(handleError(res));
 }
 
 // Deletes a Configuration from the DB
@@ -102,7 +111,6 @@ export function destroy(req, res) {
 }
 
 export function getConfiguration(req,res){
-    console.log(req.params.idUser);
     
     Configuration.findOne({'user': req.params.idUser})
     .then(respondWithResult(res))

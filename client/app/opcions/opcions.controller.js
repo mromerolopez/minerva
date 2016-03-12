@@ -2,7 +2,7 @@
 
 app.controller('OpcionsCtrl', OpcionsCtrl);
 
-function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataConfiguration) {
+function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataConfiguration, SweetAlert) {
 
     $scope.location = new Object;
     $scope.locations = [];
@@ -40,6 +40,14 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         $scope.locations[index] = $scope.location;
         //$scope.locations.push(location);
         $scope.editingLocation = false;
+
+        dataConfiguration.updateConfiguration($scope.configuration)
+                .then(function (config) {
+                    SweetAlert.swal("Configuración gardada", null, "success");
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
     };
 
 
@@ -53,6 +61,15 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         $scope.locations.push(location);
         $scope.location = new Object;
         $scope.creatingLocation = false;
+
+        dataConfiguration.updateConfiguration($scope.configuration)
+                .then(function (config) {
+                    SweetAlert.swal("Configuración gardada", null, "success");
+                })
+                .catch(function (err) {
+                    SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
+                    console.log(err);
+                });
     };
 
     $scope.editLocation = function (index) {
@@ -79,18 +96,24 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
 
     $scope.saveBorrower = function (borrower) {
 
+        if ($scope.showDatepicker) {
+            delete $scope.borrower.time;
+        } else {
+            delete $scope.borrower.date;
+        }
 
-//        if(typeof borrower.time !== 'undefined'  ){
-//            borrower.time=undefined;   
-//        }
-//        else if(typeof borrower.date !== 'undefined' ){     
-//            borrower.date=undefined;
-//        }
-
-        console.log(borrower);
         $scope.borrower = borrower;
         $scope.editingBorrower = false;
 
+        dataConfiguration.updateConfiguration($scope.configuration)
+                .then(function (config) {
+                    SweetAlert.swal("Configuración gardada", null, "success");
+                })
+                .catch(function (err) {
+                    SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
+
+                    console.log(err);
+                });
     };
 
 
@@ -104,7 +127,15 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         $scope.borrowers.push(borrower);
         $scope.borrower = new Object;
         $scope.creatingBorrower = false;
+        dataConfiguration.updateConfiguration($scope.configuration)
+                .then(function (config) {
+                    SweetAlert.swal("Configuración gardada", null, "success");
+                })
+                .catch(function (err) {
+                    SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
 
+                    console.log(err);
+                });
     };
 
     $scope.editBorrower = function (index) {
@@ -148,6 +179,16 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         $scope.books[index] = $scope.book;
         //$scope.locations.push(location);
         $scope.editingBook = false;
+
+        dataConfiguration.updateConfiguration($scope.configuration)
+                .then(function (config) {
+                    SweetAlert.swal("Configuración gardada", null, "success");
+                })
+                .catch(function (err) {
+                    SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
+
+                    console.log(err);
+                });
     };
 
 
@@ -161,6 +202,16 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         $scope.books.push(borrower);
         $scope.book = new Object;
         $scope.creatingBook = false;
+
+        dataConfiguration.updateConfiguration($scope.configuration)
+                .then(function (config) {
+                    SweetAlert.swal("Configuración gardada", null, "success");
+                })
+                .catch(function (err) {
+                    SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
+
+                    console.log(err);
+                });
     };
 
     $scope.editBook = function (index) {

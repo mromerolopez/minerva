@@ -17,6 +17,8 @@ var BookSchema = new mongoose.Schema({
     pages: Number,
     is_important: {type: Boolean, default:false},
     rating: Number,
+    type: String,
+    location: String,
     copies: [{type: mongoose.Schema.Types.ObjectId, ref: 'Copy'}],
     center: {type: mongoose.Schema.Types.ObjectId, ref: 'Center'},
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},

@@ -5,7 +5,8 @@ app.service('dataConfiguration', dataConfiguration);
 function dataConfiguration($q, $http) {
     
     return {
-        getConfiguration: getConfiguration
+        getConfiguration: getConfiguration,
+        updateConfiguration: updateConfiguration
     };
 
     function getConfiguration(userId) {
@@ -22,8 +23,21 @@ function dataConfiguration($q, $http) {
         });
         return promise;
     }
+    
+    function updateConfiguration(config){
+        var defered = $q.defer();
+        var promise = defered.promise;
 
-
-
+        $http({
+            method: 'PUT',
+            url: '/api/configurations/' + config._id,
+            data: config
+        }).success(function (data) {
+            defered.resolve(data);
+        }).error(function (err) {
+            defered.reject(err);
+        });
+        return promise;
+    }
 }
 

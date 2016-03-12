@@ -50,6 +50,7 @@ User.find().removeAsync().then(()=>{
         surname2: "Vázquez",
         username: "usuario1",
         password: "pass",
+        configuration: "56d00af1deb492e4006e612f",
         last_login: Date.now()
     })
 });
@@ -70,6 +71,7 @@ Borrower.find().removeAsync().then(()=>{
 
 Configuration.find().removeAsync().then(()=>{
     Configuration.create({
+        _id: "56d00af1deb492e4006e612f",
         user: "56d00af1deb492e4006e612f",
         incindent_types: [{name: "Esnaquizado"}, {name: "Retraso"}],
         borrower_types: [{name:"Profesor"}, {name:"Alumno"}, {name:"FP básica"}],

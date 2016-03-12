@@ -3,7 +3,7 @@
 angular.module('minervaApp')
         .controller('XestionBibliotecaCtrl', XestionBibliotecaCtrl);
 
-function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks, $rootScope, auth, dataBorrowers, dataLoans, SweetAlert) {
+function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks, $rootScope, auth, dataBorrowers, dataLoans, SweetAlert, dataConfiguration) {
     var user = auth.get_user();
 
     $scope.book = new Object;
@@ -12,6 +12,15 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     $scope.editingBook = false;
     $scope.creatingLoan = false;
 
+
+
+    dataConfiguration.getConfiguration(user._id)
+            .then(function (config) {
+                $scope.types = config.book_type;
+                $scope.locations = config.locations;
+            }).catch(function (err) {
+        console.log(err);
+    });
     // nuevo libro
 
     $scope.newBook = function () {

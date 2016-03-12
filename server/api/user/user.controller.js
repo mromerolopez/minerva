@@ -105,22 +105,26 @@ export function destroy(req, res) {
 
 export function login(req, res){
     var datos = req.body;
-    User.findOne({username:datos.user, password:datos.pass}).then(function(user){
-        user.last_login = Date.now();
-        //console.log(user);
-        user.save();
-        //user.password = null;
-        
-        res.json(user);
-    });
+    User.findOne({username:datos.user, password:datos.pass})
+            .populate('configuration')
+            .then(function(user){
+                user.last_login = Date.now();
+                //console.log(user);
+                user.save();
+                //user.password = null;
+                res.json(user);
+            });
 }
     
     
 export function lastLogins(req, res){
     
-    User.find({active:true}).sort({'last_login':-1}).limit(10).then(function(users){
-        res.json(users);
-    });
+    User.find({active:true})
+            .sort({'last_login':-1})
+            .limit(10)
+            .then(function(users){
+                res.json(users);
+            });
      
             
 }

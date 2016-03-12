@@ -119,6 +119,25 @@
                                             <label for="rating">Puntuación</label>
                                             <input type="text" class="form-control" id="rating" placeholder="Introduza a puntuación" ng-model="book.rating">
                                         </div>
+                                        <label>Clasificación</label>
+                                        <br>
+                                        <div class="form-group">
+                                            <select class="form-control" ng-model="book.type">
+                                                <option value="N/A">N/A</option>
+                                                <option ng-repeat="type in types" value="{{type.name}}">{{type.name}}</option>
+                                            </select>
+
+                                        </div>
+                                        
+                                        
+                                        <label>Localización</label>
+                                        <br>
+                                        <div class="form-group">
+                                            <select class="form-control" ng-model="book.location">
+                                                <option value="N/A">N/A</option>
+                                                <option ng-repeat="location in locations" value="{{location.name}}">{{location.name}}</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -10,6 +10,8 @@ function MainController($scope, $rootScope, auth) {
         $rootScope.salir = function () {
             auth.logout();
         };
+        
+        console.log($rootScope.user);
     })();
 
     $scope.labelsd = ["Fondos Comprados", "Fondos Donados", "Outros Fondos"];
@@ -30,6 +32,5 @@ function MainController($scope, $rootScope, auth) {
     ];
 
 
-    //console.log(auth.get_user());
 
 }

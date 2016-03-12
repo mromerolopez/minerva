@@ -14,7 +14,7 @@ var ConfigurationSchema = new mongoose.Schema({
         }
     ],
     //default_borrow_time: {type: Number, default: 15},
-    borrower_types: [{name:String, default_loan_time: Number, default_loan_end: Date, active: { type: Boolean, default:true }}],
+    borrower_types: [{name:String, time: Number, date: Date, active: { type: Boolean, default:true }}],
     book_type: [{name:String, active: { type: Boolean, default:true }}],
     locations: [{name:String, active: { type: Boolean, default:true }}]
 });
