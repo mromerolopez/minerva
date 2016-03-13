@@ -6,23 +6,27 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
 
     $scope.location = new Object;
     $scope.locations = [];
+    $scope.incidents = [];
+    $scope.incident = new Object;
     $scope.books = [];
-    $scope.borrowers = [];
     $scope.book = new Object;
+    $scope.borrowers = [];
     $scope.borrower = new Object;
     $scope.configuration = new Object;
     $scope.creatingLocation = false;
     $scope.editingLocation = false;
     $scope.type = "days";
     $scope.minDate = new Date();
+    $scope.oneAtATime = true;
+    $scope.isFirstOpen = true;
 
-    var userId = auth.get_user()._id;
+    var user = auth.get_user();
 
-
-    dataConfiguration.getConfiguration(userId)
+    dataConfiguration.getConfiguration(user._id)
             //get the configuration of a specific user
             .then(function (configuration) {
                 $scope.configuration = configuration;
+                $scope.incidents = configuration.incident_types;
                 $scope.locations = configuration.locations;
                 $scope.books = configuration.book_type;
                 $scope.borrowers = configuration.borrower_types;
@@ -41,13 +45,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         //$scope.locations.push(location);
         $scope.editingLocation = false;
 
-        dataConfiguration.updateConfiguration($scope.configuration)
-                .then(function (config) {
-                    SweetAlert.swal("Configuración gardada", null, "success");
-                })
-                .catch(function (err) {
-                    console.log(err);
-                });
+        saveConfig();
     };
 
 
@@ -62,14 +60,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         $scope.location = new Object;
         $scope.creatingLocation = false;
 
-        dataConfiguration.updateConfiguration($scope.configuration)
-                .then(function (config) {
-                    SweetAlert.swal("Configuración gardada", null, "success");
-                })
-                .catch(function (err) {
-                    SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
-                    console.log(err);
-                });
+        saveConfig();
     };
 
     $scope.editLocation = function (index) {
@@ -80,6 +71,8 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
 
     $scope.deleteLocation = function (index) {
         $scope.locations.splice(index, 1);
+        saveConfig();
+
     };
 
     $scope.cancelLocation = function () {
@@ -90,6 +83,55 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
     };
 
 // ----- End of locations functions ------
+
+
+//  ----- Start of incidents functions ------
+
+
+    $scope.saveIncident = function (index) {
+
+        $scope.incident = $scope.incidents[index];
+        $scope.incidents[index] = $scope.incident;
+        $scope.editingIncident = false;
+
+        saveConfig();
+    };
+
+
+    $scope.newIncident = function () {
+        $scope.incident = new Object;
+        $scope.editingIncident = false;
+        $scope.creatingIncident = true;
+    };
+
+    $scope.saveNewIncident = function (borrower) {
+        $scope.incidents.push(borrower);
+        $scope.incident = new Object;
+        $scope.creatingIncident = false;
+
+        saveConfig();
+    };
+
+    $scope.editIncident = function (index) {
+        $scope.incident = $scope.incidents[index];
+        $scope.editingIncident = true;
+
+    };
+
+    $scope.deleteIncident = function (index) {
+        $scope.incidents.splice(index, 1);
+        saveConfig();
+
+    };
+
+    $scope.cancelIncident = function () {
+        $scope.incident = new Object;
+        $scope.editingIncident = false;
+        $scope.creatingIncident = false;
+
+    };
+
+// ----- End of incidents functions ------
 
 
 //  ----- Start of borrower functions ------
@@ -105,15 +147,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         $scope.borrower = borrower;
         $scope.editingBorrower = false;
 
-        dataConfiguration.updateConfiguration($scope.configuration)
-                .then(function (config) {
-                    SweetAlert.swal("Configuración gardada", null, "success");
-                })
-                .catch(function (err) {
-                    SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
-
-                    console.log(err);
-                });
+        saveConfig();
     };
 
 
@@ -127,15 +161,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         $scope.borrowers.push(borrower);
         $scope.borrower = new Object;
         $scope.creatingBorrower = false;
-        dataConfiguration.updateConfiguration($scope.configuration)
-                .then(function (config) {
-                    SweetAlert.swal("Configuración gardada", null, "success");
-                })
-                .catch(function (err) {
-                    SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
-
-                    console.log(err);
-                });
+        saveConfig();
     };
 
     $scope.editBorrower = function (index) {
@@ -147,6 +173,8 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
 
     $scope.deleteBorrower = function (index) {
         $scope.borrowers.splice(index, 1);
+        saveConfig();
+
     };
 
     $scope.cancelBorrower = function () {
@@ -180,15 +208,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         //$scope.locations.push(location);
         $scope.editingBook = false;
 
-        dataConfiguration.updateConfiguration($scope.configuration)
-                .then(function (config) {
-                    SweetAlert.swal("Configuración gardada", null, "success");
-                })
-                .catch(function (err) {
-                    SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
-
-                    console.log(err);
-                });
+        saveConfig();
     };
 
 
@@ -203,15 +223,8 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         $scope.book = new Object;
         $scope.creatingBook = false;
 
-        dataConfiguration.updateConfiguration($scope.configuration)
-                .then(function (config) {
-                    SweetAlert.swal("Configuración gardada", null, "success");
-                })
-                .catch(function (err) {
-                    SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
+        saveConfig();
 
-                    console.log(err);
-                });
     };
 
     $scope.editBook = function (index) {
@@ -222,6 +235,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
 
     $scope.deleteBook = function (index) {
         $scope.books.splice(index, 1);
+        saveConfig();
     };
 
     $scope.cancelBook = function () {
@@ -234,6 +248,18 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
 // ----- End of books functions ------
 
 
+    function saveConfig() {
+        dataConfiguration.updateConfiguration($scope.configuration)
+                .then(function (config) {
+                    SweetAlert.swal("Configuración gardada", null, "success");
+                })
+                .catch(function (err) {
+                    SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
+
+                    console.log(err);
+                });
+    }
+
 
     (function () {
         $rootScope.user = auth.get_user();
@@ -242,28 +268,6 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
             auth.logout();
         };
     })();
-
-    $scope.oneAtATime = true;
-    $scope.groups = [
-        {
-            title: 'Dynamic Group Header - 1',
-            content: 'Dynamic Group Body - 1'
-        },
-        {
-            title: 'Dynamic Group Header - 2',
-            content: 'Dynamic Group Body - 2'
-        }
-    ];
-    $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-    $scope.addItem = function () {
-        var newItemNo = $scope.items.length + 1;
-        $scope.items.push('Item ' + newItemNo);
-    };
-    $scope.status = {
-        isFirstOpen: true,
-        isFirstDisabled: false
-    };
-
 
     (function () {
         var opcionesTablaLocations = new Object;
@@ -277,6 +281,21 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
             DTColumnDefBuilder.newColumnDef(2).notSortable()
         ];
         $scope.opcionesTablaLocations = opcionesTablaLocations;
+    })();
+
+    (function () {
+        var opcionesTablaIncidents = new Object;
+        opcionesTablaIncidents.dtOptions = DTOptionsBuilder
+                .newOptions().withPaginationType('full_numbers')
+                .withDisplayLength(10)
+                .withLanguageSource('//cdn.datatables.net/plug-ins/1.10.11/i18n/Galician.json');
+        opcionesTablaIncidents.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef(0),
+            DTColumnDefBuilder.newColumnDef(1).notSortable(),
+            DTColumnDefBuilder.newColumnDef(2).notSortable()
+
+        ];
+        $scope.opcionesTablaIncidents = opcionesTablaIncidents;
     })();
 
     (function () {

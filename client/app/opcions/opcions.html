@@ -4,8 +4,6 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header" >
-
-
         <section class="content">
             <h1>
                 Opcións de configuración
@@ -19,7 +17,7 @@
                         <div class="box-body">                          
                             <uib-accordion close-others="oneAtATime">
                                 <div class="col-lg-6">
-                                    <uib-accordion-group heading="Localizacións" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled" panel-class="panel-success">
+                                    <uib-accordion-group heading="Localizacións" is-open="isFirstOpen" panel-class="panel-info">
                                         <div ng-hide="editingLocation || creatingLocation">
                                             <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLocations.dtOptions" dt-column-defs="opcionesTablaLocations.dtColumnDefs">
                                                 <thead>
@@ -63,13 +61,63 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </uib-accordion-group>
+                                    
+                                    <uib-accordion-group heading="Tipos de incidencias" panel-class="panel-warning">
+                                        <div ng-hide="editingIncident || creatingIncident">
+                                            <table class="table table-hover" datatable="ng" dt-options="opcionesTablaIncidents.dtOptions" dt-column-defs="opcionesTablaIncidents.dtColumnDefs">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nome</th>
+                                                        <th>Editar</th>
+                                                        <th>Eliminar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="incident in incidents track by $index">
+                                                        <td>{{incident.name}}</td> 
+                                                        <td><button class="btn btn-warning" ng-click="editIncident($index)"><i class="fa fa-edit"></i></button></td>
+                                                        <td><button class="btn btn-danger" ng-click="deleteIncident($index)"><i class="fa fa-trash-o"></i></button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="box-footer pull-right">
+                                                <button class="btn btn-success" ng-click="newIncident()">Novo tipo de incidencia</button>
+                                            </div>
+                                        </div>
 
+                                        <div ng-show="editingIncident">
+                                            <div class="form-group">
+                                                <label for="location">Nome incidencia</label>
+                                                <input type="text" class="form-control" id="location" ng-model="incident.name">
+<!--                                                <label for="location">Descrición da incidencia</label>
+                                                <input type="text" class="form-control" id="location" ng-model="incident.description">-->
+                                                <div class="box-footer pull-right">
+                                                    <button class="btn btn-success" ng-click="saveIncident($index)">Gardar</button>
+                                                    <button class="btn btn-danger" ng-click="cancelIncident()">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-show="creatingIncident">
+                                            <div class="form-group">
+                                                <label for="location">Nome incidencia</label>
+                                                <input type="text" class="form-control" id="location" ng-model="incident.name">
+<!--                                                <label for="location">Descrición da incidencia</label>
+                                                <input type="text" class="form-control" id="location" ng-model="incident.description">-->
+                                                <div class="box-footer pull-right">
+                                                    <button class="btn btn-success" ng-click="saveNewIncident(incident)">Gardar</button>
+                                                    <button class="btn btn-danger" ng-click="cancelIncident()">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                     </uib-accordion-group>
                                 </div>
 
                             </uib-accordion>
+                            
                             <uib-accordion close-others="oneAtATime">
-
                                 <div class="col-lg-6">
                                     <uib-accordion-group heading="Tipos de libros"   panel-class="panel-success">
                                         <div ng-hide="editingBook || creatingBook">
@@ -117,7 +165,7 @@
                                         </div>
 
                                     </uib-accordion-group>
-                                    <uib-accordion-group heading="Tipos de usuarios"  panel-class="panel-success">
+                                    <uib-accordion-group heading="Tipos de usuarios"  panel-class="panel-danger">
                                         <div ng-hide="editingBorrower || creatingBorrower">
                                             <table class="table table-hover" datatable="ng" dt-options="opcionesTablaUsers.dtOptions" dt-column-defs="opcionesTablaUsers.dtColumnDefs">
                                                 <thead>
@@ -131,7 +179,7 @@
                                                 <tbody>
                                                     <tr ng-repeat="borrower in borrowers track by $index">
                                                         <td>{{borrower.name}}</td>
-                                                        <td>{{borrower.time || ( borrower.date | date:"dd 'de' MMMM 'do' yyyy") }}</td>
+                                                        <td>{{borrower.time|| ( borrower.date | date:"dd 'de' MMMM 'do' yyyy") }}</td>
                                                         <td><button class="btn btn-warning" ng-click="editBorrower($index)"><i class="fa fa-edit"></i></button></td>
                                                         <td><button class="btn btn-danger" ng-click="deleteBorrower($index)"><i class="fa fa-trash-o"></i></button></td>
                                                     </tr>
@@ -155,7 +203,7 @@
                                                     </center>
                                                 </div>
                                                 <input type="number" class="form-control" ng-model="borrower.time" ng-show="!showDatepicker">
-                                                
+
                                                 <div class="box-footer pull-right">
                                                     <button class="btn btn-success" ng-click="saveBorrower(borrower)">Gardar</button>
                                                     <button class="btn btn-danger" ng-click="cancelBorrower()">Cancelar</button>
@@ -165,7 +213,6 @@
 
                                         <div ng-show="creatingBorrower">
                                             <div class="form-group">
-
 
                                                 <label for="borrower">Nome do tipo de usuario</label>
                                                 <input type="text" class="form-control" id="location" ng-model="borrower.name">
@@ -178,9 +225,6 @@
                                                     </center>
                                                 </div>
                                                 <input type="number" class="form-control" ng-model="borrower.time" ng-show="!showDatepicker">
-
-
-
 
                                                 <div class="box-footer pull-right">
                                                     <button class="btn btn-success" ng-click="saveNewBorrower(borrower)">Gardar</button>
