@@ -11,7 +11,8 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     $scope.books = [];
     $scope.editingBook = false;
     $scope.creatingLoan = false;
-
+    $scope.locations = [];
+    $scope.types = [];
 
 
     dataConfiguration.getConfiguration(user._id)

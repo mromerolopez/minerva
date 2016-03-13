@@ -9,6 +9,8 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
     $scope.incidences = [];
     $scope.incidence = new Object;
     $scope.extendingLoan = false;
+    
+    
 
     $scope.newLoan = function () {
         $scope.loan = new Object;

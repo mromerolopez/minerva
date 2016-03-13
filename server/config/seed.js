@@ -71,7 +71,7 @@ Borrower.find().removeAsync().then(()=>{
 
 Configuration.find().removeAsync().then(()=>{
     Configuration.create({
-        _id: "56d00af1deb492e4006e612f",
+        _id: "56e53c74a2085f9013286537",
         user: "56d00af1deb492e4006e612f",
         incindent_types: [{name: "Esnaquizado"}, {name: "Retraso"}],
         borrower_types: [{name:"Profesor"}, {name:"Alumno"}, {name:"FP básica"}],
