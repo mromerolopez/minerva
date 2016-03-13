@@ -63,7 +63,9 @@ Borrower.find().removeAsync().then(()=>{
         surname2: "Soria",
         classroom: "FP Basica 2",
         nif: "Y-56985-HJ",
-        email: "falso@yosoy.com"
+        email: "falso@yosoy.com",
+        type: "Alumno"
+
     })
 });
 

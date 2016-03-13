@@ -2,7 +2,45 @@
 
 app.controller('MainController', MainController);
 
-function MainController($scope, $rootScope, auth) {
+function MainController($scope, $rootScope, auth, dataLoans) {
+
+    $scope.labelsd = ["Fondos Comprados", "Fondos Donados", "Outros Fondos"];
+    $scope.datad = [300, 500, 100];
+    $scope.colorsd = ['#4dff88', '#80ff80', '#00994d'];
+
+    $scope.labelsp = ["Fondos Comprados", "Fondos Donados", "Outros Fondos"];
+    $scope.datap = [200, 400, 350];
+    $scope.colorsp = ['#4dff88', '#80ff80', '#00994d'];
+
+    $scope.labelsLoans = ["Septembro", "Outubro", "Novembro", "Decembro", "Xaneiro", "Febreiro", "Marzo", "Abril", "Maio", "Xuño"];
+    $scope.seriesLoans = ['Profesores', 'Alumnos'];
+    $scope.colorsLoans = ['#2ED131', '#DF013A'];
+    $scope.dataLoans = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    ];
+
+    dataLoans.getLoans()
+            .then(function (loans) {
+                console.log(loans);
+                for (var i = 0; i < loans.length; i++) {
+
+                    var date = new Date(loans[i].created_at);
+                    var month = date.getMonth();
+
+                    if (loans[i].borrower.type === "Profesor") {
+                        $scope.dataLoans[0][month + 4]++;
+                    } else {
+                        $scope.dataLoans[1][month + 4]++;
+
+                    }
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+
 
     (function () {
         $rootScope.user = auth.get_user();
@@ -10,27 +48,6 @@ function MainController($scope, $rootScope, auth) {
         $rootScope.salir = function () {
             auth.logout();
         };
-        
-        console.log($rootScope.user);
+
     })();
-
-    $scope.labelsd = ["Fondos Comprados", "Fondos Donados", "Outros Fondos"];
-    $scope.datad = [300, 500, 100];
-    $scope.colorsd = ['#4dff88', '#80ff80','#00994d'];
-
-    $scope.labelsp = ["Fondos Comprados", "Fondos Donados", "Outros Fondos"];
-    $scope.datap = [200, 400, 350];
-    $scope.colorsp = ['#4dff88', '#80ff80','#00994d'];
-
-    $scope.labelsb = ["January", "February", "March", "April", "May", "June", "July"];
-    $scope.series = ['Profesores', 'Alumnos'];
-    $scope.colorsb = ['#003300', '#990000'];
-    $scope.datab = [
-        [65, 59, 80, 81, 56, 55, 40],
-        [88, 18, 60, 39, 16, 77, 50]
-
-    ];
-
-
-
 }
