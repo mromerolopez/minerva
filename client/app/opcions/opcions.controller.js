@@ -255,7 +255,6 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
                 })
                 .catch(function (err) {
                     SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
-
                     console.log(err);
                 });
     }

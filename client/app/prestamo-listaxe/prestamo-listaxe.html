@@ -202,6 +202,7 @@
                                                     <th>Observación</th>
                                                     <th>Data</th>
                                                     <th>Editar</th>
+                                                    <th>Eliminar</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -209,7 +210,8 @@
                                                     <td>{{incidence.type}}</td>
                                                     <td>{{incidence.observations}}</td>
                                                     <td>{{incidence.created_at | date:"dd 'de' MMMM 'do' yyyy"}}</td>
-                                                    <td><button class="btn btn-warning fa fa-edit" ng-click="editIncidence(incidence)"></button></td>
+                                                    <td><button class="btn btn-warning fa fa-edit" data-toggle="modal" data-target="#newIncident" ng-click="editIncidence(incidence)"></button></td>
+                                                    <td><button class="btn btn-danger fa fa-trash" ng-click="deleteIncidence($index)"></button></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -227,7 +229,7 @@
                     <div class="row">
                         <center>
                             <!--<button class="btn btn-success" ng-click="saveLoan(loan)">Gardar préstamo</button>-->
-                            <button class="btn btn-primary" ng-click="cancelEditLoan()">Volver</button>
+                            <button class="btn btn-primary" ng-click="cancelEditLoan()">Voltar</button>
                         </center>
                     </div>
                 </div>
@@ -271,9 +273,7 @@
                 <div class="form-group">
                     <label>Tipo:</label>
                     <select ng-model="incidence.type" class="form-control">
-                        <option>Prueba 1</option>
-                        <option>Prueba 2</option>
-                        <option>Prueba 3</option>
+                        <option ng-repeat="incident in incidents track by $index" value="{{incident.name}}">{{incident.name}}</option>
                     </select>
                 </div>
 

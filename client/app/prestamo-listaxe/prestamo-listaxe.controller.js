@@ -2,15 +2,24 @@
 
 app.controller('PrestamoListaxeCtrl', PrestamoListaxeCtrl);
 
-function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataLoans, dataIncidents, SweetAlert) {
+function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataLoans, dataIncidents, SweetAlert, dataConfiguration) {
     $scope.loans = [];
     $scope.loan = new Object;
     $scope.editingLoan = false;
     $scope.incidences = [];
     $scope.incidence = new Object;
     $scope.extendingLoan = false;
-    
-    
+    $scope.incidents = [];
+
+    var user = auth.get_user();
+
+    dataConfiguration.getConfiguration(user._id)
+            .then(function (config) {
+                $scope.incidents = config.incident_types;
+            }).catch(function (err) {
+        console.log(err);
+    });
+
 
     $scope.newLoan = function () {
         $scope.loan = new Object;
@@ -29,7 +38,11 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         $scope.loan = loan;
         $scope.book = loan.book;
         $scope.borrower = loan.borrower;
-        $scope.incidences = loan.incidents;
+        for (var i = 0; i < loan.incidents.length; i++) {
+            if (loan.incidents[i].active) {
+                $scope.incidences.push(loan.incidents[i]);
+            }
+        }
     };
 
     $scope.cancelEditLoan = function () {
@@ -44,14 +57,34 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
     };
 
     $scope.saveIncidence = function (incidence) {
-        dataIncidents.addIncident(incidence)
-                .then(function (incidence) {
-                    $scope.incidences.push(incidence);
-                    SweetAlert.swal("Incidencia gardada", null, "success");
-                })
-                .catch(function (err) {
-                    console.log(err);
-                });
+
+        if (typeof incidence._id === 'undefined') {
+            console.log("insert");
+            // insert
+            dataIncidents.addIncident(incidence)
+                    .then(function (incidence) {
+                        $scope.incidences.push(incidence);
+                        SweetAlert.swal("Incidencia gardada", null, "success");
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+        } else {
+            console.log("update");
+            // update
+            dataIncidents.saveIncident(incidence)
+                    .then(function (incidence) {
+                        SweetAlert.swal("Incidencia gardada", null, "success");
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
+        }
+
+    };
+
+    $scope.editIncidence = function (incidence) {
+        $scope.incidence = incidence;
     };
 
     $scope.returnLoan = function () {
@@ -62,9 +95,10 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
             showCancelButton: true,
             confirmButtonColor: "#00A65A",
             confirmButtonText: "Si, devólveo",
-            cancelButtonText: "Non, cancela está acción por favor",
+            cancelButtonText: "Non, cancela esta acción por favor",
             closeOnConfirm: false,
-            closeOnCancel: false},
+            closeOnCancel: false
+        },
                 function (isConfirm) {
                     if (isConfirm) {
 
@@ -95,6 +129,40 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
             console.log(err);
         });
         $scope.extendingLoan = false;
+    };
+
+    $scope.deleteIncidence = function (index) {
+
+        var incidence = $scope.incidences[index];
+        incidence.active = false;
+        incidence.updated_at = new Date();
+        SweetAlert.swal({
+            title: "¿Está seguro de que quere eliminar esta incidencia?",
+            text: "Unha vez eliminada non se poderá revertir o seu estado.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#00A65A",
+            confirmButtonText: "Si, elimínaa",
+            cancelButtonText: "Non, cancela esta acción por favor",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $scope.incidences.splice(index, 1);
+                        SweetAlert.swal("¡Eliminado!", "Esta incidencia foi eliminada.", "success");
+                        dataIncidents.saveIncident(incidence).then(function (incident) {
+                            
+                            SweetAlert.swal("¡Eliminado!", "Esta incidencia foi eliminada.", "success");
+                        }).catch(function (err) {
+                            SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
+
+                            console.log(err);
+                        });
+                    } else {
+                        SweetAlert.swal("¡Cancelado!", "Esta incidencia segue vixente :)", "error");
+                    }
+                });
     };
 
     (function () {
@@ -134,7 +202,9 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
             DTColumnDefBuilder.newColumnDef(0),
             DTColumnDefBuilder.newColumnDef(1),
             DTColumnDefBuilder.newColumnDef(2),
-            DTColumnDefBuilder.newColumnDef(3).notSortable()
+            DTColumnDefBuilder.newColumnDef(3).notSortable(),
+            DTColumnDefBuilder.newColumnDef(4).notSortable()
+
         ];
 
         $scope.optionsTableIncidences = optionsTableIncidences;
