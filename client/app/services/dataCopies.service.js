@@ -1,6 +1,6 @@
 'user strict';
 
-app.service('dataCopies', dataCopies);
+angular.module('minervaApp').factory('dataCopies', dataCopies);
 
 function dataCopies($q, $http){
     return {

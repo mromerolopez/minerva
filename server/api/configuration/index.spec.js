@@ -6,16 +6,16 @@ var configurationCtrlStub = {
   index: 'configurationCtrl.index',
   show: 'configurationCtrl.show',
   create: 'configurationCtrl.create',
-  update: 'configurationCtrl.update',
-  destroy: 'configurationCtrl.destroy'
+  update: 'configurationCtrl.update'
+//  destroy: 'configurationCtrl.destroy'
 };
 
 var routerStub = {
   get: sinon.spy(),
   put: sinon.spy(),
-  patch: sinon.spy(),
-  post: sinon.spy(),
-  delete: sinon.spy()
+//  patch: sinon.spy(),
+  post: sinon.spy()
+//  delete: sinon.spy()
 };
 
 // require the index with our stubbed out modules
@@ -74,24 +74,24 @@ describe('Configuration API Router:', function() {
 
   });
 
-  describe('PATCH /api/configurations/:id', function() {
+//  describe('PATCH /api/configurations/:id', function() {
+//
+//    it('should route to configuration.controller.update', function() {
+//      routerStub.patch
+//        .withArgs('/:id', 'configurationCtrl.update')
+//        .should.have.been.calledOnce;
+//    });
+//
+//  });
 
-    it('should route to configuration.controller.update', function() {
-      routerStub.patch
-        .withArgs('/:id', 'configurationCtrl.update')
-        .should.have.been.calledOnce;
-    });
-
-  });
-
-  describe('DELETE /api/configurations/:id', function() {
-
-    it('should route to configuration.controller.destroy', function() {
-      routerStub.delete
-        .withArgs('/:id', 'configurationCtrl.destroy')
-        .should.have.been.calledOnce;
-    });
-
-  });
+//  describe('DELETE /api/configurations/:id', function() {
+//
+//    it('should route to configuration.controller.destroy', function() {
+//      routerStub.delete
+//        .withArgs('/:id', 'configurationCtrl.destroy')
+//        .should.have.been.calledOnce;
+//    });
+//
+//  });
 
 });

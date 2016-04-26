@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('TestsCtrl', TestsCtrl);
+angular.module('minervaApp').controller('TestsCtrl', TestsCtrl);
 
 function TestsCtrl($scope, $http, dataBorrowers, dataConfiguration, auth) {
 

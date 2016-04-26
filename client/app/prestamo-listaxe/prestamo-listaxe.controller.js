@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('PrestamoListaxeCtrl', PrestamoListaxeCtrl);
+angular.module('minervaApp').controller('PrestamoListaxeCtrl', PrestamoListaxeCtrl);
 
 function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataLoans, dataIncidents, SweetAlert, dataConfiguration) {
     $scope.loans = [];

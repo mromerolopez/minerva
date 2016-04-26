@@ -1,6 +1,6 @@
 'user strict';
 
-app.service('dataLoans', dataLoans);
+angular.module('minervaApp').factory('dataLoans', dataLoans);
 
 function dataLoans($q, $http) {
     return {

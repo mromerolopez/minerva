@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('LoginCtrl', LoginCtrl);
+angular.module('minervaApp').controller('LoginCtrl', LoginCtrl);
 
 function LoginCtrl($scope, $rootScope, dataUsers, $location, auth) {
     $rootScope.login = true;

@@ -3,9 +3,9 @@
 //$cookieStore para actualizar o eliminar
 //$location para cargar otras rutas
 
-app.factory("auth", auth);
+angular.module('minervaApp').factory("auth", auth);
 
-function auth($cookies, $cookieStore, $location, cookieConfig) {
+function auth($cookies, $location, cookieConfig) {
     return {
         login: login,
         logout: logout,
@@ -27,18 +27,13 @@ function auth($cookies, $cookieStore, $location, cookieConfig) {
     }
 
     function checkStatus() {
-        //creamos un array con las rutas que queremos controlar
-//        console.log("check");
-//        console.log($cookies.getObject(cookieConfig.name));
-        var rutasPrivadas = ["/", "/main", "/opcions", "/prestamo-listaxe", "/prestamo-novo", "/xestion-accesos", "xestion-biblioteca", "xestion-usuarios"];
-        //console.log($location.path());
         
-       // console.log($location.path());
+        var rutasPrivadas = ["/", "/main", "/opcions", "/prestamo-listaxe", "/prestamo-novo", "/xestion-accesos", "xestion-biblioteca", "xestion-usuarios"];
+        
         if (this.in_array($location.path(), rutasPrivadas) && typeof ($cookies.getObject(cookieConfig.name)) === "undefined") {
             $location.path("/login");
         }
         
-        //en el caso de que intente acceder al login y ya haya iniciado sesión lo mandamos a la home
         if ("/login" === $location.path() && typeof ($cookies.getObject(cookieConfig.name)) !== "undefined") {
             $location.path("/");
         }

@@ -1,6 +1,6 @@
 'user strict';
 
-app.service('dataIncidents', dataIncidents);
+angular.module('minervaApp').factory('dataIncidents', dataIncidents);
 
 function dataIncidents($q, $http) {
     return {

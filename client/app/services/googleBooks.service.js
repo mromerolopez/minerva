@@ -1,6 +1,6 @@
 'user strict';
 
-app.service('googleBooks', googleBooks);
+angular.module('minervaApp').factory('googleBooks', googleBooks);
 
 function googleBooks($q, $http){
     return {

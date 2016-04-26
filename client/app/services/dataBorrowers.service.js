@@ -1,6 +1,6 @@
 'user strict';
 
-app.service('dataBorrowers', dataBorrowers);
+angular.module('minervaApp').factory('dataBorrowers', dataBorrowers);
 
 
 function dataBorrowers($q, $http) {

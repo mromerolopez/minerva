@@ -1,6 +1,6 @@
 'user strict';
 
-app.service('dataMaps', dataMaps);
+angular.module('minervaApp').factory('dataMaps', dataMaps);
 
 function dataMaps($q, $http) {
 

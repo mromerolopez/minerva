@@ -1,6 +1,6 @@
 'user strict';
 
-app.service('dataUsers', dataUsers);
+angular.module('minervaApp').factory('dataUsers', dataUsers);
 
 
 function dataUsers($q, $http) {

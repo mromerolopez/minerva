@@ -1,6 +1,6 @@
 'user strict';
 
-app.service('dataBooks', dataBooks);
+angular.module('minervaApp').factory('dataBooks', dataBooks);
 
 function dataBooks($q, $http){
      

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('XestionAccesosCtrl', XestionAccesosCtrl);
+angular.module('minervaApp').controller('XestionAccesosCtrl', XestionAccesosCtrl);
 
 function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBuilder, dataUsers, auth, dataMaps, SweetAlert) {
     $scope.user = new Object;

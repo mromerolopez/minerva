@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('OpcionsCtrl', OpcionsCtrl);
+angular.module('minervaApp').controller('OpcionsCtrl', OpcionsCtrl);
 
 function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataConfiguration, SweetAlert) {
 
@@ -42,7 +42,6 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
 
         $scope.location = $scope.locations[index];
         $scope.locations[index] = $scope.location;
-        //$scope.locations.push(location);
         $scope.editingLocation = false;
 
         saveConfig();
@@ -104,8 +103,8 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         $scope.creatingIncident = true;
     };
 
-    $scope.saveNewIncident = function (borrower) {
-        $scope.incidents.push(borrower);
+    $scope.saveNewIncident = function (incident) {
+        $scope.incidents.push(incident);
         $scope.incident = new Object;
         $scope.creatingIncident = false;
 

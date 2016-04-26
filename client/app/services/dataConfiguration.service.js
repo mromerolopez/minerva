@@ -1,6 +1,6 @@
 'use strict';
 
-app.service('dataConfiguration', dataConfiguration);
+angular.module('minervaApp').factory('dataConfiguration', dataConfiguration);
 
 function dataConfiguration($q, $http) {
     
