@@ -29,9 +29,12 @@
             <br>
             Xestión de bibliotecas
         </div>
-        <!-- /.login-logo -->
+
         <div class="login-box-body">
-            <p class="login-box-msg">Introduce o teu usuario e a tua contrasinal para iniciar sesión</p>
+            <p class="login-box-msg" ng-hide="errorMessage">Introduce o teu usuario e a tua contrasinal para iniciar sesión</p>
+            <div class="has-error login-box-msg">
+                <span class="help-block">{{errorMessage}}</span>
+            </div>
             <form ng-submit="login()">
                 <div class="form-group inner-addon right-addon">
                     <input type="text" class="form-control" placeholder="Nome de usuario" ng-model="username" required>
@@ -49,17 +52,14 @@
                             </label>
                         </div>
                     </div>
-                    <!-- /.col -->
+
                     <div class="col-xs-4">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
                     </div>
-                    <!-- /.col -->
+
                 </div>
             </form>
-
             <a href="#">Olvidei o meu contrasinal</a><br>
-<!--            <a href="register.html" class="text-center">Register a new membership</a>-->
         </div>
-        <!-- /.login-box-body -->
     </div>
 </div>

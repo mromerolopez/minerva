@@ -49,7 +49,7 @@ User.find().removeAsync().then(()=>{
         surname1: "Fernández",
         surname2: "Vázquez",
         username: "usuario1",
-        password: "pass",
+        password: "$2a$10$dluPGALL3gZCGlTy6aGZmeHxkuOayjDvDoqCyhvWXSZiPaFygkc/W",
         configuration: "56d00af1deb492e4006e612f",
         last_login: Date.now()
     })
