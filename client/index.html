@@ -145,7 +145,7 @@
                 </section>
             </aside>
             <div ui-view=""></div>
-            <footer></footer>
+            <footer ng-hide="login"></footer>
         </div>
 
 
@@ -164,7 +164,7 @@
                 m.parentNode.insertBefore(a, m)
             })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-            ga('create', 'UA-XXXXX-X');
+            ga('create', 'UA-77133814-2');
             ga('send', 'pageview');
         </script>
 
@@ -208,7 +208,7 @@
         <script src="app/app.js"></script>
         <!-- injector:js -->
         <script src="components/util/util.module.js"></script>
-        <script src="app/services/dataCopies.service.js"></script>
+        <script src="app/prestamo-listaxe/prestamo-listaxe.controller.js"></script>
         <script src="app/factories/books.factory.js"></script>
         <script src="app/factories/borrowers.factory.js"></script>
         <script src="app/factories/configuration.factory.js"></script>
@@ -224,17 +224,8 @@
         <script src="app/main/main.js"></script>
         <script src="app/opcions/opcions.controller.js"></script>
         <script src="app/opcions/opcions.js"></script>
-        <script src="app/prestamo-listaxe/prestamo-listaxe.controller.js"></script>
-        <script src="app/prestamo-listaxe/prestamo-listaxe.js"></script>
-        <script src="app/services/dataBooks.service.js"></script>
-        <script src="app/services/dataBorrowers.service.js"></script>
-        <script src="app/services/dataConfiguration.service.js"></script>
         <script src="app/factories/auth.factory.js"></script>
-        <script src="app/services/dataIncidents.service.js"></script>
-        <script src="app/services/dataLoans.service.js"></script>
-        <script src="app/services/dataMaps.service.js"></script>
-        <script src="app/services/dataUsers.service.js"></script>
-        <script src="app/services/googleBooks.service.js"></script>
+        <script src="app/prestamo-listaxe/prestamo-listaxe.js"></script>
         <script src="app/tests/tests.controller.js"></script>
         <script src="app/tests/tests.js"></script>
         <script src="app/xestion-accesos/xestion-accesos.controller.js"></script>

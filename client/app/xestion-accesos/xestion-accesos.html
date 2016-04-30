@@ -1,11 +1,5 @@
-<!-- <sidebar></sidebar>
--->
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header" >
-
-
         <section class="content">
             <h1>
                 Xestión de accesos
@@ -20,37 +14,37 @@
                             <table class="table table-hover" datatable="ng" dt-options="opcionesTablaUsuarios.dtOptions" dt-column-defs="opcionesTablaUsuarios.dtColumnDefs">
                                 <thead>
                                     <tr>
-                                        <th>Usuario</th>
-                                        <th>Fecha creación</th>
-                                        <th>Nombre</th>
-                                        <th>Apellidos</th>
-                                        <th>Dirección</th>
-                                        <th>Última conexión</th>
-                                        <th>Correo</th>
-                                        <th>Administrador</th>
-                                        <th>Editar</th>
+                                        <th class="text-center">Usuario</th>
+                                        <th class="text-center">Fecha creación</th>
+                                        <th class="text-center">Nombre</th>
+                                        <th class="text-center">Apellidos</th>
+                                        <th class="text-center">Dirección</th>
+                                        <th class="text-center">Última conexión</th>
+                                        <th class="text-center">Correo</th>
+                                        <th class="text-center">Administrador</th>
+                                        <th class="text-center">Editar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="user in users">
-                                        <td>{{user.username}}</td>
-                                        <td>{{user.created_at| date:"dd 'de' MMMM 'do' yyyy "}}</td>
-                                        <td>{{user.name}}</td>
-                                        <td>{{user.surname1 + " " + user.surname2}}</td>
-                                        <td>{{user.address}}</td>
-                                        <td>{{user.last_login| date : "dd 'de' MMMM 'do' yyyy 'as' h:mm"}}</td>
-                                        <td>{{user.email}}</td>
-                                        <td>
-                                            <i ng-if="user.is_admin" class="fa fa-check text-green fa-2x"></i>
-                                            <i ng-if="!user.is_admin" class="fa fa-close text-red fa-2x"></i>
+                                        <td class="text-center" style="vertical-align:middle">{{user.username}}</td>
+                                        <td class="text-center" style="vertical-align:middle">{{user.created_at| date:"dd 'de' MMMM 'do' yyyy "}}</td>
+                                        <td class="text-center" style="vertical-align:middle">{{user.name}}</td>
+                                        <td class="text-center" style="vertical-align:middle">{{user.surname1 + " " + user.surname2}}</td>
+                                        <td class="text-center" style="vertical-align:middle">{{user.address}}</td>
+                                        <td class="text-center" style="vertical-align:middle">{{user.last_login| date : "dd 'de' MMMM 'do' yyyy 'as' h:mm"}}</td>
+                                        <td class="text-center" style="vertical-align:middle">{{user.email}}</td>
+                                        <td class="text-center" style="vertical-align:middle">
+                                            <i ng-class="{'fa fa-check text-green fa-2x': user.is_admin, 'fa fa-close text-red fa-2x': !user._is_admin}"></i>
                                         </td>
-                                        <td>
-                                            <button class="btn btn-warning fa fa-edit" ng-click="editUser(user)"></button></td>
-                                    </tr>
+                                        <td class="text-center">
+                                <md-button class="md-raised md-warn" ng-click="editUser(user)"><span class="fa fa-edit" style="font-size:18px"></span></md-button>
+                                </td>
+                                </tr>
                                 </tbody>
                             </table>
                             <div class="box-footer pull-right">
-                                <button class="btn btn-success" ng-click="editUser()">Novo Usuario</button>
+                                <md-button class="md-raised md-primary" ng-click="editUser()">Novo Usuario</md-button>
                             </div>
                         </div>
                     </div>
@@ -78,15 +72,15 @@
                                     <label for="surname2">Segundo Apelido*</label>
                                     <input type="text" class="form-control" id="surname2" placeholder="Segundo Apelido" ng-model="user.surname2">
                                 </div>
-                                 <div class="form-group">
-                                        <label for="dirección">Dirección</label>
-                                        <input type="text" ng-model="borrower.address" placeholder="Dirección" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
-                                        <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-                                        <div ng-show="noResults">
-                                            <i class="glyphicon glyphicon-remove"></i> No se han encontrado resultados
-                                        </div>
-                                        <!--                                            <input type="text" class="form-control" id="dirección" placeholder="Introduza a dirección" ng-model="borrower.address">-->
+                                <div class="form-group">
+                                    <label for="dirección">Dirección</label>
+                                    <input type="text" ng-model="borrower.address" placeholder="Dirección" uib-typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                                    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                                    <div ng-show="noResults">
+                                        <i class="glyphicon glyphicon-remove"></i> No se han encontrado resultados
                                     </div>
+                                    <!--                                            <input type="text" class="form-control" id="dirección" placeholder="Introduza a dirección" ng-model="borrower.address">-->
+                                </div>
                                 <div class="form-group">
                                     <label for="phone">Teléfono</label>
                                     <input type="number" class="form-control" id="phone" placeholder="Teléfono" ng-model="user.phone">
@@ -130,8 +124,8 @@
                         </div>
                         <center>
                             <div class="box-footer" >
-                                <button type="button" class="btn btn-success" ng-click="saveUser(user)">Gardar</button>
-                                <button type="button" class="btn btn-danger" ng-click="cancelEditingUser()">Cancelar</button>
+                                <md-button type="button" class="md-raised md-primary" ng-click="saveUser(user)">Gardar</md-button>
+                                <md-button type="button" class="md-raised md-secondary" ng-click="cancelEditingUser()">Cancelar</md-button>
                             </div></center>
                     </div> 
 
@@ -142,6 +136,6 @@
 
         </section>
     </section>
-</div><!-- /.content-wrapper -->
+</div>
 
 

@@ -14,7 +14,6 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, boo
     $scope.locations = [];
     $scope.types = [];
 
-
     configurationFactory.getConfiguration(user._id)
             .then(function (config) {
                 $scope.types = config.book_type;
@@ -22,6 +21,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, boo
             }).catch(function (err) {
         console.log(err);
     });
+    
     // nuevo libro
 
     $scope.newBook = function () {

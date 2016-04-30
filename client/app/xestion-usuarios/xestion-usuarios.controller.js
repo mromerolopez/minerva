@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('minervaApp')
-        .controller('XestionUsuariosCtrl', XestionUsuariosCtrl);
+app.controller('XestionUsuariosCtrl', XestionUsuariosCtrl);
 
 function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, borrowersFactory, loansFactory, booksFactory, mapsFactory, SweetAlert, configurationFactory) {
     $scope.borrowers = [];
