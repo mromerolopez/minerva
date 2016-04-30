@@ -40,7 +40,7 @@
                                             <i ng-class="{'fa fa-check text-green fa-2x': loan.returned, 'fa fa-close text-red fa-2x': !loan.returned}"></i>
                                         </td>
                                         <td style="vertical-align:middle">{{loan.created_at| date}}</td>
-                                        <td><md-button class="md-raised md-warn fa fa-edit" ng-click="editLoan(loan)"></md-button></td>
+                                        <td><md-button class="md-raised md-warn fa fa-edit" style="background-color: #ffad33" ng-click="editLoan(loan)"></md-button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -90,13 +90,13 @@
 
                                             <div class="form-group">
                                                 <center>
-                                                    <button ng-if="!loan.returned" class="btn btn-success" ng-click="returnLoan()">
+                                                    <md-button ng-if="!loan.returned" class="md-raised md-primary" ng-click="returnLoan()">
                                                         Recoller
-                                                    </button>
+                                                    </md-button>
                                                     
-                                                    <button ng-if="loan.returned" disabled class="btn btn-success">
+                                                    <md-button ng-if="loan.returned" disabled class="md-raised md-primary">
                                                         Recollido
-                                                    </button>
+                                                    </md-button>
                                                 </center>
                                             </div>
                                         </div>
@@ -172,13 +172,13 @@
                                             
                                              <div class="form-group">
                                                 <center>
-                                                    <button class="btn btn-warning" ng-click="extendLoan()" ng-if="!extendingLoan" ng-disabled="loan.returned">
+                                                    <md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="extendLoan()" ng-if="!extendingLoan" ng-disabled="loan.returned">
                                                         Ampliar préstamo
-                                                    </button>
+                                                    </md-button>
                                                     
-                                                     <button class="btn btn-success" ng-click="saveExtendingLoan()" ng-if="extendingLoan">
+                                                     <md-button class="md-raised md-primary" style="background-color: #009900" ng-click="saveExtendingLoan()" ng-if="extendingLoan">
                                                         Gardar data
-                                                    </button>
+                                                    </md-button>
                                                 </center>
                                             </div>
 
@@ -208,15 +208,15 @@
                                                     <td>{{incidence.type}}</td>
                                                     <td>{{incidence.observations}}</td>
                                                     <td>{{incidence.created_at | date:"dd 'de' MMMM 'do' yyyy"}}</td>
-                                                    <td><button class="btn btn-warning fa fa-edit" data-toggle="modal" data-target="#newIncident" ng-click="editIncidence(incidence)"></button></td>
-                                                    <td><button class="btn btn-danger fa fa-trash" ng-click="deleteIncidence($index)"></button></td>
+                                                    <td><md-button class="md-raised md-primary" style="background-color: #ffad33" data-toggle="modal" data-target="#newIncident" ng-click="editIncidence(incidence)"></md-button></td>
+                                                    <td><md-button class="md-raised md-primary" style="background-color: #ff3333" ng-click="deleteIncidence($index)"></md-button></td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="box-footer">
                                         <div class="pull-right">
-                                            <button class="btn btn-success" data-toggle="modal" data-target="#newIncident" ng-click="newIncidence()">Nova incidencia</button>
+                                            <md-button class="md-raised md-primary" style="background-color:#009900" data-toggle="modal" data-target="#newIncident" ng-click="newIncidence()">Nova incidencia</button>
                                         </div>
                                     </div>
                                 </div>
@@ -227,7 +227,7 @@
                     <div class="row">
                         <center>
                             <!--<button class="btn btn-success" ng-click="saveLoan(loan)">Gardar préstamo</button>-->
-                            <button class="btn btn-primary" ng-click="cancelEditLoan()">Voltar</button>
+                            <md-button class="md-raised" ng-click="cancelEditLoan()">Voltar</md-button>
                         </center>
                     </div>
                 </div>
@@ -260,8 +260,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Pechar</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="saveIncidence(incidence)">Gardar a incidencia</button>
+                <md-button class="md-raised" data-dismiss="modal">Pechar</md-button>
+                <md-button class="md-raised md-primary" data-dismiss="modal" ng-click="saveIncidence(incidence)">Gardar a incidencia</md-button>
             </div>
         </div>
 

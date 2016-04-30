@@ -30,13 +30,13 @@
                                                 <tbody>
                                                     <tr ng-repeat="location in locations track by $index">
                                                         <td>{{location.name}}</td> 
-                                                        <td><button class="btn btn-warning" ng-click="editLocation($index)"><i class="fa fa-edit"></i></button></td>
-                                                        <td><button class="btn btn-danger" ng-click="deleteLocation($index)"><i class="fa fa-trash-o"></i></button></td>
+                                                        <td><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editLocation($index)"><i class="fa fa-edit"></i></md-button></td>
+                                                        <td><md-button class="md-raised md-primary"  style="background-color: #ff3333" ng-click="deleteLocation($index)"><i class="fa fa-trash-o"></i></md-button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <div class="box-footer pull-right">
-                                                <button class="btn btn-success" ng-click="newLocation()">Nova Localización</button>
+                                                <md-button class="md-raised md-warn" style="background-color: #009900" ng-click="newLocation()">Nova Localización</md-button>
                                             </div>
                                         </div>
 
@@ -45,8 +45,8 @@
                                                 <label for="location">Nome localización</label>
                                                 <input type="text" class="form-control" id="location" ng-model="location.name">
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveLocation($index)">Gardar</button>
-                                                    <button class="btn btn-danger" ng-click="cancelLocation()">Cancelar</button>
+                                                    <md-button class="md-raised md-primary"  ng-click="saveLocation($index)">Gardar</md-button>
+                                                    <md-button class="md-raised" ng-click="cancelLocation()">Cancelar</md-button>
                                                 </div>
                                             </div>
                                         </div>
@@ -56,8 +56,8 @@
                                                 <label for="location">Nome localización</label>
                                                 <input type="text" class="form-control" id="location" ng-model="location.name">
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveNewLocation(location)">Gardar</button>
-                                                    <button class="btn btn-danger" ng-click="cancelLocation()">Cancelar</button>
+                                                    <md-button class="md-raised md-primary" ng-click="saveNewLocation(location)">Gardar</md-button>
+                                                    <md-button class="md-raised" ng-click="cancelLocation()">Cancelar</md-button>
                                                 </div>
                                             </div>
                                         </div>
@@ -76,13 +76,13 @@
                                                 <tbody>
                                                     <tr ng-repeat="incident in incidents track by $index">
                                                         <td>{{incident.name}}</td> 
-                                                        <td><button class="btn btn-warning" ng-click="editIncident($index)"><i class="fa fa-edit"></i></button></td>
-                                                        <td><button class="btn btn-danger" ng-click="deleteIncident($index)"><i class="fa fa-trash-o"></i></button></td>
+                                                        <td><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editIncident($index)"><i class="fa fa-edit"></i></md-button></td>
+                                                        <td><md-button class="md-raised md-primary" style="background-color: #ff3333" ng-click="deleteIncident($index)"><i class="fa fa-trash-o"></i></md-button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <div class="box-footer pull-right">
-                                                <button class="btn btn-success" ng-click="newIncident()">Novo tipo de incidencia</button>
+                                                <md-button class="md-raised md-warn" style="background-color: #009900" ng-click="newIncident()">Novo tipo de incidencia</md-button>
                                             </div>
                                         </div>
 
@@ -93,8 +93,8 @@
 <!--                                                <label for="location">Descrición da incidencia</label>
                                                 <input type="text" class="form-control" id="location" ng-model="incident.description">-->
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveIncident($index)">Gardar</button>
-                                                    <button class="btn btn-danger" ng-click="cancelIncident()">Cancelar</button>
+                                                    <md-button class="md-raised md-primary" ng-click="saveIncident($index)">Gardar</md-button>
+                                                    <md-button class="md-raised" ng-click="cancelIncident()">Cancelar</md-button>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,8 +106,8 @@
 <!--                                                <label for="location">Descrición da incidencia</label>
                                                 <input type="text" class="form-control" id="location" ng-model="incident.description">-->
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveNewIncident(incident)">Gardar</button>
-                                                    <button class="btn btn-danger" ng-click="cancelIncident()">Cancelar</button>
+                                                    <md-button class="md-raised md-primary" ng-click="saveNewIncident(incident)">Gardar</md-button>
+                                                    <md-button class="md-raised" ng-click="cancelIncident()">Cancelar</md-button>
                                                 </div>
                                             </div>
                                         </div>
@@ -132,13 +132,13 @@
                                                 <tbody>
                                                     <tr ng-repeat="book in books track by $index">
                                                         <td>{{book.name}}</td> 
-                                                        <td><button class="btn btn-warning" ng-click="editBook($index)"><i class="fa fa-edit"></i></button></td>
-                                                        <td><button class="btn btn-danger" ng-click="deleteBook($index)"><i class="fa fa-trash-o"></i></button></td>
+                                                        <td><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editBook($index)"><i class="fa fa-edit"></i></md-button></td>
+                                                        <td><md-button class="md-raised md-primary" style="background-color: #ff3333" ng-click="deleteBook($index)"><i class="fa fa-trash-o"></i></md-button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <div class="box-footer pull-right">
-                                                <button class="btn btn-success" ng-click="newBook()">Novo Libro</button>
+                                                 <md-button class="md-raised md-warn" style="background-color: #009900" ng-click="newBook()">Novo Libro</md-button>
                                             </div>
                                         </div>
 
@@ -147,8 +147,8 @@
                                                 <label for="book">Nome do tipo de libro</label>
                                                 <input type="text" class="form-control" id="location" ng-model="book.name">
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveBook($index)">Gardar</button>
-                                                    <button class="btn btn-danger" ng-click="cancelBook()">Cancelar</button>
+                                                    <md-button class="md-raised md-primary" ng-click="saveBook($index)">Gardar</md-button>
+                                                    <md-button class="md-raised" ng-click="cancelBook()">Cancelar</md-button>
                                                 </div>
                                             </div>
                                         </div>
@@ -158,8 +158,8 @@
                                                 <label for="book">Nome do tipo de libro</label>
                                                 <input type="text" class="form-control" id="location" ng-model="book.name">
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveNewBook(book)">Gardar</button>
-                                                    <button class="btn btn-danger" ng-click="cancelBook()">Cancelar</button>
+                                                    <md-button class="md-raised md-primary" ng-click="saveNewBook(book)">Gardar</md-button>
+                                                    <md-button class="md-raised" ng-click="cancelBook()">Cancelar</md-button>
                                                 </div>
                                             </div>
                                         </div>
@@ -180,13 +180,13 @@
                                                     <tr ng-repeat="borrower in borrowers track by $index">
                                                         <td>{{borrower.name}}</td>
                                                         <td>{{borrower.time|| ( borrower.date | date:"dd 'de' MMMM 'do' yyyy") }}</td>
-                                                        <td><button class="btn btn-warning" ng-click="editBorrower($index)"><i class="fa fa-edit"></i></button></td>
-                                                        <td><button class="btn btn-danger" ng-click="deleteBorrower($index)"><i class="fa fa-trash-o"></i></button></td>
+                                                        <td><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editBorrower($index)"><i class="fa fa-edit"></i></md-button></td>
+                                                        <td><md-button class="md-raised md-primary" style="background-color: #ff3333" ng-click="deleteBorrower($index)"><i class="fa fa-trash-o"></i></md-button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                             <div class="box-footer pull-right">
-                                                <button class="btn btn-success" ng-click="newBorrower()">Novo Usuario</button>
+                                                <md-button class="md-raised md-warn" style="background-color: #009900" ng-click="newBorrower()">Novo Usuario</md-button>
                                             </div>
                                         </div>
 
@@ -205,8 +205,8 @@
                                                 <input type="number" class="form-control" ng-model="borrower.time" ng-show="!showDatepicker">
 
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveBorrower(borrower)">Gardar</button>
-                                                    <button class="btn btn-danger" ng-click="cancelBorrower()">Cancelar</button>
+                                                    <md-button class="md-raised md-primary" ng-click="saveBorrower(borrower)">Gardar</md-button>
+                                                    <md-button class="md-raised" ng-click="cancelBorrower()">Cancelar</md-button>
                                                 </div>
                                             </div>
                                         </div>
@@ -227,8 +227,8 @@
                                                 <input type="number" class="form-control" ng-model="borrower.time" ng-show="!showDatepicker">
 
                                                 <div class="box-footer pull-right">
-                                                    <button class="btn btn-success" ng-click="saveNewBorrower(borrower)">Gardar</button>
-                                                    <button class="btn btn-danger" ng-click="cancelBorrower()">Cancelar</button>
+                                                    <md-button class="md-raised md-primary" ng-click="saveNewBorrower(borrower)">Gardar</md-button>
+                                                    <md-button class="md-raised" ng-click="cancelBorrower()">Cancelar</md-button>
                                                 </div>
                                             </div>
                                         </div>

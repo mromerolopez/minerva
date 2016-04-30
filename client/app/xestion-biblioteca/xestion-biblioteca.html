@@ -32,8 +32,8 @@
                                         <td style="vertical-align:middle">{{book.editorial}}</td>
                                         <td class="text-center" style="vertical-align:middle">{{book.created_at| date:"dd 'de' MMMM 'do' yyyy"}}</td>
                                         <td class="text-center" style="vertical-align:middle">{{book.user.name}} {{book.user.surname1}} {{book.user.surname2}}</td>
-                                        <td class="text-center"><md-button class="md-raised md-primary" ng-click="editBook(book)"><i class="fa fa-edit" style="font-size: 18px"></i></md-button></td>
-                                <td class="text-center"><md-button class="md-raised md-warn" ng-click="newLoan(book)"><i class="fa fa-book" style="font-size: 18px"></i></md-button></td>
+                                        <td class="text-center"><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editBook(book)"><i class="fa fa-edit" style="font-size: 18px"></i></md-button></td>
+                                <td class="text-center"><md-button class="md-raised md-primary"  ng-click="newLoan(book)"><i class="fa fa-book" style="font-size: 18px"></i></md-button></td>
                                 </tr>
                                 </tbody>
                             </table>
