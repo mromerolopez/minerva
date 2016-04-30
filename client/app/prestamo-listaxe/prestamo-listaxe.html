@@ -29,19 +29,18 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="loan in loans">
-                                        <td>{{loan.borrower.name}} {{loan.borrower.surname1}} {{loan.borrower.surname2}}</td>
-                                        <td>{{loan.borrower.nif}}</td>
-                                        <td>{{loan.borrower.phone}}</td>
-                                        <td><a ng-href="mailto:{{loan.borrower.email}}">{{loan.borrower.email}}</a></td>
-                                        <td>{{loan.book.title}}</td>
-                                        <td>{{loan.loan_date| date}}</td>
-                                        <td>{{loan.limit_date| date}}</td>
-                                        <td> 
-                                            <i ng-if="loan.returned" class="fa fa-check text-green fa-2x"></i>
-                                            <i ng-if="!loan.returned" class="fa fa-close text-red fa-2x"></i>
+                                        <td style="vertical-align:middle">{{loan.borrower.name}} {{loan.borrower.surname1}} {{loan.borrower.surname2}}</td>
+                                        <td style="vertical-align:middle">{{loan.borrower.nif}}</td>
+                                        <td style="vertical-align:middle">{{loan.borrower.phone}}</td>
+                                        <td style="vertical-align:middle"><a ng-href="mailto:{{loan.borrower.email}}">{{loan.borrower.email}}</a></td>
+                                        <td style="vertical-align:middle">{{loan.book.title}}</td>
+                                        <td style="vertical-align:middle">{{loan.loan_date| date}}</td>
+                                        <td style="vertical-align:middle">{{loan.limit_date| date}}</td>
+                                        <td style="vertical-align:middle"> 
+                                            <i ng-class="{'fa fa-check text-green fa-2x': loan.returned, 'fa fa-close text-red fa-2x': !loan.returned}"></i>
                                         </td>
-                                        <td>{{loan.created_at| date}}</td>
-                                        <td><button class="btn btn-warning fa fa-edit" ng-click="editLoan(loan)"></button></td>
+                                        <td style="vertical-align:middle">{{loan.created_at| date}}</td>
+                                        <td><md-button class="md-raised md-warn fa fa-edit" ng-click="editLoan(loan)"></md-button></td>
                                     </tr>
                                 </tbody>
                             </table>

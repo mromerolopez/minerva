@@ -20,34 +20,34 @@
                             <table class="table table-hover" datatable="ng" dt-options="opcionesTablaBorrowers.dtOptions" dt-column-defs="opcionesTablaBorrowers.dtColumnDefs">
                                 <thead>
                                     <tr>
-                                        <th>Nome</th>
-                                        <th>Apelidos</th>
-                                        <th>Clase</th>
-                                        <th>NIF</th>
-                                        <th>Correo</th>
-                                        <th>Teléfono</th>
-                                        <th>Dirección</th>
-                                        <th>Editar</th>
-                                        <th>Novo Préstamo</th>
+                                        <th class="text-center">Nome</th>
+                                        <th class="text-center">Apelidos</th>
+                                        <th class="text-center">Clase</th>
+                                        <th class="text-center">NIF</th>
+                                        <th class="text-center">Correo</th>
+                                        <th class="text-center">Teléfono</th>
+                                        <th class="text-center">Dirección</th>
+                                        <th class="text-center">Editar</th>
+                                        <th class="text-center">Novo Préstamo</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="borrower in borrowers">
-                                        <td>{{borrower.name}}</td>
-                                        <td>{{borrower.surname1 + " " + borrower.surname2}}</td>
-                                        <td>{{borrower.classroom}}</td>
-                                        <td>{{borrower.nif}}</td>
-                                        <td>{{borrower.email}}</td>
-                                        <td>{{borrower.phone}}</td>
-                                        <td>{{borrower.address}}</td>
-                                        <td><button class="btn btn-warning" ng-click="editBorrower(borrower)"><i class="fa fa-edit"></i></button></td>
-                                        <td><button class="btn btn-primary" ng-click="newLoan(borrower)"><i class="fa fa-book"></i></button></td>
-                                    </tr>
+                                        <td class="text-center">{{borrower.name}}</td>
+                                        <td class="text-center">{{borrower.surname1 + " " + borrower.surname2}}</td>
+                                        <td class="text-center">{{borrower.classroom}}</td>
+                                        <td class="text-center">{{borrower.nif}}</td>
+                                        <td class="text-center">{{borrower.email}}</td>
+                                        <td class="text-center">{{borrower.phone}}</td>
+                                        <td class="text-center">{{borrower.address}}</td>
+                                        <td class="text-center"><md-button class="md-raised md-primary" ng-click="editBorrower(borrower)"><i class="fa fa-edit"></i></md-button></td>
+                                <td class="text-center"><md-button class="md-raised md-warn" ng-click="newLoan(borrower)"><i class="fa fa-book"></i></md-button></td>
+                                </tr>
                                 </tbody>
                             </table>
                             <div class="box-footer pull-right">
-                                <button class="btn btn-success" ng-click="editBorrower()">Novo Usuario</button>
+                                <md-button class="md-raised md-primary" style="background-color: #009900" ng-click="editBorrower()">Novo Usuario</md-button>
                             </div>
                         </div>
                     </div>
@@ -130,13 +130,11 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                        <center>
-                            <div class="box-footer" >
-                                <button type="button" class="btn btn-success" ng-click="saveBorrower(borrower)">Gardar</button>
-                                <button type="button" class="btn btn-danger" ng-click="cancelEditingBorrower()">Cancelar</button>
-                            </div></center>
+                        <div class="box-footer text-center">
+                            <md-button type="button" class="md-raised md-primary" ng-click="saveBorrower(borrower)">Gardar</md-button>
+                            <md-button type="button" class="md-raised" ng-click="cancelEditingBorrower()">Cancelar</md-button>
+                        </div>
                     </div> 
                 </div>
             </div>
@@ -260,12 +258,11 @@
                         <div class="box box-primary">
                             <div class="box-header">
                                 <h3 class="box-title">Datos do préstamo</h3>
-                            </div><!-- /.box-header -->
+                            </div>
                             <div class="box-body">  
-
                                 <div class="col-lg-12 col-sm-12">
                                     <div class="form-group">
-                                        <label for="borrow_date">Data do préstamo*</label>
+                                        <label for="loan_date">Data do préstamo*</label>
                                         <input uib-datepicker ng-model="loan.loan_date" id="loan_date" max-date="loan.limit_date">
                                     </div>
                                     <div class="form-group">
@@ -277,18 +274,14 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
                     <center>
-                        <button class="btn btn-success" ng-click="saveLoan(loan)">Gardar préstamo</button>
-                        <button class="btn btn-danger" ng-click="cancelNewLoan()">Cancelar</button>
+                        <md-button class="md-raised md-primary" ng-click="saveLoan(loan)">Gardar préstamo</md-button>
+                        <md-button class="md-raised" ng-click="cancelNewLoan()">Cancelar</md-button>
                     </center>
                 </div>
             </div>
-
-
-
         </section>
     </section>
-</div><!-- /.content-wrapper -->
+</div>

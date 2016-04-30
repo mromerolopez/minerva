@@ -19,22 +19,22 @@
                                         <th>Título</th>
                                         <th>Autor</th>
                                         <th>Editorial</th>
-                                        <th>Data</th>
-                                        <th>Usuario</th>
-                                        <th>Editar</th>
-                                        <th>Novo préstamo</th>
+                                        <th class="text-center">Data</th>
+                                        <th class="text-center">Usuario</th>
+                                        <th class="text-center">Editar</th>
+                                        <th class="text-center">Novo préstamo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="book in books">
-                                        <td>{{book.title}}</td>
-                                        <td>{{book.author}}</td>
-                                        <td>{{book.editorial}}</td>
-                                        <td>{{book.created_at| date:"dd 'de' MMMM 'do' yyyy"}}</td>
-                                        <td>{{book.user.name}} {{book.user.surname1}} {{book.user.surname2}}</td>
-                                        <td><md-button class="md-raised md-primary" ng-click="editBook(book)"><i class="fa fa-edit" style="font-size: 18px"></i></md-button></td>
-                                        <td><md-button class="md-raised md-warn" ng-click="newLoan(book)"><i class="fa fa-book" style="font-size: 18px"></i></md-button></td>
-                                    </tr>
+                                        <td style="vertical-align:middle">{{book.title}}</td>
+                                        <td style="vertical-align:middle">{{book.author}}</td>
+                                        <td style="vertical-align:middle">{{book.editorial}}</td>
+                                        <td class="text-center" style="vertical-align:middle">{{book.created_at| date:"dd 'de' MMMM 'do' yyyy"}}</td>
+                                        <td class="text-center" style="vertical-align:middle">{{book.user.name}} {{book.user.surname1}} {{book.user.surname2}}</td>
+                                        <td class="text-center"><md-button class="md-raised md-primary" ng-click="editBook(book)"><i class="fa fa-edit" style="font-size: 18px"></i></md-button></td>
+                                <td class="text-center"><md-button class="md-raised md-warn" ng-click="newLoan(book)"><i class="fa fa-book" style="font-size: 18px"></i></md-button></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -128,8 +128,8 @@
                                             </select>
 
                                         </div>
-                                        
-                                        
+
+
                                         <label>Localización</label>
                                         <br>
                                         <div class="form-group">
@@ -146,8 +146,8 @@
                     </div>
                     <div class="row">
                         <center>
-                            <button class="btn btn-success" ng-click="saveBook(book)">Gardar libro</button>
-                            <button class="btn btn-danger" ng-click="cancelEditingBook()">Cancelar</button>
+                            <md-button class="md-raised md-primary" ng-click="saveBook(book)">Gardar libro</md-button>
+                            <md-button class="md-raised md-secondary" ng-click="cancelEditingBook()">Cancelar</md-button>
                         </center>
                     </div>
                 </div>
@@ -291,25 +291,13 @@
 
                     </div>
                     <div class="row">
-                        <center>
-                            <button class="btn btn-success" ng-click="saveLoan(loan)">Gardar préstamo</button>
-                            <button class="btn btn-danger" ng-click="cancelNewLoan()">Cancelar</button>
-                        </center>
+                        <div class="text-center">
+                            <md-button class="md-raised md-primary" ng-click="saveLoan(loan)">Gardar préstamo</md-button>
+                            <md-button class="md-raised" ng-click="cancelNewLoan()">Cancelar</md-button>
+                        </div>
                     </div>
                 </div>
-
-                <!--                <div class="col-xs-12 col-lg-6" ng-hide="editingBook">
-                                    <div class="box box-success">
-                                        <div class="box-header">
-                                            <h3 class="box-title">Ubicacións da biblioteca</h3>
-                                        </div> /.box-header 
-                                        <div class="box-body">                          
-                
-                
-                                        </div>
-                                    </div>
-                                </div>-->
             </div>
         </section>
     </section>
-</div><!-- /.content-wrapper -->
+</div>
