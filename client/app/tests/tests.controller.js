@@ -2,12 +2,12 @@
 
 angular.module('minervaApp').controller('TestsCtrl', TestsCtrl);
 
-function TestsCtrl($scope, $http, dataBorrowers, dataConfiguration, auth) {
+function TestsCtrl($scope, $http, borrowersFactory, configurationFactory, auth) {
 
     var searched_item = new Object;
     var user = auth.get_user();
 
-    dataConfiguration.getConfiguration(user._id)
+    configurationFactory.getConfiguration(user._id)
             .then(function (config) {
                 console.log(config);
             })
@@ -21,7 +21,7 @@ function TestsCtrl($scope, $http, dataBorrowers, dataConfiguration, auth) {
             $scope.borrower = new Object;
         }
 
-        return dataBorrowers.getBorrowerTypeHead(val).then(function (response) {
+        return borrowersFactory.getBorrowerTypeHead(val).then(function (response) {
             //console.log(response);
             return response.map(function (item) {
                 searched_item = item;

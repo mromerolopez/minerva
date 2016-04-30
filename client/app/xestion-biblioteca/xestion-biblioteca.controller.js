@@ -3,7 +3,7 @@
 angular.module('minervaApp')
         .controller('XestionBibliotecaCtrl', XestionBibliotecaCtrl);
 
-function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dataBooks, googleBooks, $rootScope, auth, dataBorrowers, dataLoans, SweetAlert, dataConfiguration) {
+function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, booksFactory, googleBooksFactory, $rootScope, auth, borrowersFactory, loansFactory, SweetAlert, configurationFactory) {
     var user = auth.get_user();
 
     $scope.book = new Object;
@@ -15,7 +15,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     $scope.types = [];
 
 
-    dataConfiguration.getConfiguration(user._id)
+    configurationFactory.getConfiguration(user._id)
             .then(function (config) {
                 $scope.types = config.book_type;
                 $scope.locations = config.locations;
@@ -44,7 +44,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     $scope.checkIsbn = function (isbn) {
 
         if (isbn !== "") {
-            googleBooks.getBookISBN(isbn)
+            googleBooksFactory.getBookISBN(isbn)
                     .then(function (datos) {
                         if (datos.totalItems > 0) {
                             var searchedBook = datos.items[0].volumeInfo;
@@ -75,7 +75,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
     $scope.saveBook = function (book) {
         if (typeof book._id !== "undefined") {
             // edit
-            dataBooks.saveBook(book)
+            booksFactory.saveBook(book)
                     .then(function (modifiedBook) {
                         $scope.editingBook = false;
                         $scope.book = new Object;
@@ -89,7 +89,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
         } else {
             // insert
             book.user = user._id;
-            dataBooks.addBook(book)
+            booksFactory.addBook(book)
                     .then(function (insertedBook) {
                         //console.log(insertedBook);
                         $scope.books.push(insertedBook);
@@ -108,7 +108,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
 
     // population
     (function () {
-        dataBooks.getBooks()
+        booksFactory.getBooks()
                 .then(function (books) {
                     $scope.books = books;
                 })
@@ -153,7 +153,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
         if (!$scope.noResults) {
             $scope.borrower = new Object;
         }
-        return dataBorrowers.getBorrowerTypeHead(val).then(function (response) {
+        return borrowersFactory.getBorrowerTypeHead(val).then(function (response) {
             //console.log(response);
             return response.map(function (item) {
                 searched_item = item;
@@ -187,7 +187,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, dat
         // console.log(loan);
 
         if (typeof loan.borrower !== 'undefined' && typeof loan.book !== 'undefined' && typeof loan.user !== 'undefined') {
-            dataLoans.addLoan(loan).then(function (insertedLoan) {
+            loansFactory.addLoan(loan).then(function (insertedLoan) {
                 loan = new Object;
                 $scope.creatingLoan = false;
                 SweetAlert.swal("Préstamo engadido correctamente", null, "success");

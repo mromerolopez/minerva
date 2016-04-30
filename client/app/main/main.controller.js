@@ -2,7 +2,7 @@
 
 angular.module('minervaApp').controller('MainController', MainController);
 
-function MainController($scope, $rootScope, auth, dataLoans) {
+function MainController($scope, $rootScope, auth, loansFactory) {
 
     $scope.labelsd = ["Fondos Comprados", "Fondos Donados", "Outros Fondos"];
     $scope.datad = [300, 500, 100];
@@ -21,7 +21,7 @@ function MainController($scope, $rootScope, auth, dataLoans) {
 
     ];
 
-    dataLoans.getLoans()
+    loansFactory.getLoans()
             .then(function (loans) {
                 console.log(loans);
                 for (var i = 0; i < loans.length; i++) {

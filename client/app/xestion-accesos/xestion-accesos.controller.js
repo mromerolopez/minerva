@@ -2,12 +2,12 @@
 
 angular.module('minervaApp').controller('XestionAccesosCtrl', XestionAccesosCtrl);
 
-function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBuilder, dataUsers, auth, dataMaps, SweetAlert) {
+function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBuilder, usersFactory, auth, mapsFactory, SweetAlert) {
     $scope.user = new Object;
     $scope.users = [];
     $scope.last_logins = [];
 
-    dataUsers.getUsers()
+    usersFactory.getUsers()
             //get a list of all users
             .then(function (users) {
                 $scope.users = users;
@@ -17,7 +17,7 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
                 SweetAlert.swal("Ocurriu un erro inesperado", null, "error");
             });
 
-    dataUsers.lastLogins()
+    usersFactory.lastLogins()
             .then(function (users)
             {
                 $scope.last_logins = users;
@@ -34,7 +34,7 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
 
         if (typeof user._id !== 'undefined') {
             //updates the actual user
-            dataUsers.saveUser(user)
+            usersFactory.saveUser(user)
                     .then(function (modifiedUser) {
                         $scope.editingUser = false;
                         SweetAlert.swal("Usuario modificado correctamente", null, "success");
@@ -47,7 +47,7 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
         } else {
             // create user
             user.parent = auth.get_user()._id;
-            dataUsers.addUser(user)
+            usersFactory.addUser(user)
                     .then(function (newUser) {
                         $scope.editingUser = false;
                         $scope.users.push(newUser);
@@ -110,7 +110,7 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
     })();
 
     $scope.getLocation = function (value) {
-        return dataMaps.getLocations(value).then(function (response) {
+        return mapsFactory.getLocations(value).then(function (response) {
             return response.results.map(function (item) {
                 return item.formatted_address;
             });

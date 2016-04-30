@@ -3,7 +3,7 @@
 angular.module('minervaApp')
         .controller('XestionUsuariosCtrl', XestionUsuariosCtrl);
 
-function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataBorrowers, dataLoans, dataBooks, dataMaps, SweetAlert, dataConfiguration) {
+function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, borrowersFactory, loansFactory, booksFactory, mapsFactory, SweetAlert, configurationFactory) {
     $scope.borrowers = [];
     $scope.borrower = new Object;
     $scope.loan = new Object;
@@ -13,14 +13,14 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
 
     console.log(user);
 
-    dataConfiguration.getConfiguration(user._id)
+    configurationFactory.getConfiguration(user._id)
             .then(function (config) {
                 $scope.types = config.borrower_types;
             }).catch(function (err) {
         console.log(err);
     });
     
-    dataBorrowers.getBorrowers()
+    borrowersFactory.getBorrowers()
             //get a list of all borrowers
             .then(function (borrowers) {
                 $scope.borrowers = borrowers;
@@ -34,7 +34,7 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
 
         if (typeof borrower._id !== 'undefined') {
             //updates the actual user
-            dataBorrowers.saveBorrower(borrower)
+            borrowersFactory.saveBorrower(borrower)
                     .then(function (modifiedBorrower) {
                         $scope.editingBorrower = false;
                         SweetAlert.swal("Prestatario modificado correctamente", null, "success");
@@ -46,7 +46,7 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         } else {
             // create user
             borrower.parent = auth.get_user()._id;
-            dataBorrowers.addBorrower(borrower)
+            borrowersFactory.addBorrower(borrower)
                     .then(function (newBorrower) {
                         $scope.editingBorrower = false;
                         $scope.borrowers.push(newBorrower);
@@ -104,7 +104,7 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         // console.log(loan);
 
         if (typeof loan.borrower !== 'undefined' && typeof loan.book !== 'undefined' && typeof loan.user !== 'undefined') {
-            dataLoans.addLoan(loan).then(function (insertedLoan) {
+            loansFactory.addLoan(loan).then(function (insertedLoan) {
                 loan = new Object;
                 $scope.creatingLoan = false;
                 SweetAlert.swal("Préstamo engadido correctamente", null, "success");
@@ -124,7 +124,7 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         if (!$scope.noResults) {
             $scope.book = new Object;
         }
-        return dataBooks.getBookTypeHead(val).then(function (response) {
+        return booksFactory.getBookTypeHead(val).then(function (response) {
             //console.log(response);
             return response.map(function (item) {
                 searched_item = item;
@@ -194,7 +194,7 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
 //    };
 
     $scope.getLocation = function (value) {
-        return dataMaps.getLocations(value).then(function (response) {
+        return mapsFactory.getLocations(value).then(function (response) {
             return response.results.map(function (item) {
                 return item.formatted_address;
             });

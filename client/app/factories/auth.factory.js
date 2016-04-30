@@ -5,7 +5,7 @@
 
 angular.module('minervaApp').factory("auth", auth);
 
-function auth($cookies, $location, cookieConfig) {
+function auth($cookies, $location, COOKIE) {
     return {
         login: login,
         logout: logout,
@@ -17,24 +17,32 @@ function auth($cookies, $location, cookieConfig) {
 
     function login(user) {
         user.password = null;
-        $cookies.putObject(cookieConfig.name, user);
-        //$location.path("/panel");
+        setUserCookie(user);
+    }
+
+    function setUserCookie(user) {
+        var now = new Date();
+        var expiration = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+        var options = {
+            expires: expiration
+        };
+        $cookies.putObject(COOKIE.USER, user, options);
     }
 
     function logout() {
-        $cookies.remove(cookieConfig.name);
+        $cookies.remove(COOKIE.USER);
         $location.path("/login");
     }
 
     function checkStatus() {
-        
+
         var rutasPrivadas = ["/", "/main", "/opcions", "/prestamo-listaxe", "/prestamo-novo", "/xestion-accesos", "xestion-biblioteca", "xestion-usuarios"];
-        
-        if (this.in_array($location.path(), rutasPrivadas) && typeof ($cookies.getObject(cookieConfig.name)) === "undefined") {
+
+        if (this.in_array($location.path(), rutasPrivadas) && typeof ($cookies.getObject(COOKIE.USER)) === "undefined") {
             $location.path("/login");
         }
-        
-        if ("/login" === $location.path() && typeof ($cookies.getObject(cookieConfig.name)) !== "undefined") {
+
+        if ("/login" === $location.path() && typeof ($cookies.getObject(COOKIE.USER)) !== "undefined") {
             $location.path("/");
         }
     }
@@ -48,9 +56,9 @@ function auth($cookies, $location, cookieConfig) {
         }
         return false;
     }
-    
-    function get_user(){
-        return $cookies.getObject(cookieConfig.name);
+
+    function get_user() {
+        return $cookies.getObject(COOKIE.USER);
     }
 }
 

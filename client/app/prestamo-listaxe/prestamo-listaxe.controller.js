@@ -2,7 +2,7 @@
 
 angular.module('minervaApp').controller('PrestamoListaxeCtrl', PrestamoListaxeCtrl);
 
-function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataLoans, dataIncidents, SweetAlert, dataConfiguration) {
+function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, loansFactory, incidentsFactory, SweetAlert, configurationFactory) {
     $scope.loans = [];
     $scope.loan = new Object;
     $scope.editingLoan = false;
@@ -13,7 +13,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
 
     var user = auth.get_user();
 
-    dataConfiguration.getConfiguration(user._id)
+    configurationFactory.getConfiguration(user._id)
             .then(function (config) {
                 $scope.incidents = config.incident_types;
             }).catch(function (err) {
@@ -25,7 +25,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         $scope.loan = new Object;
     };
 
-    dataLoans.getLoans()
+    loansFactory.getLoans()
             .then(function (loans) {
                 $scope.loans = loans;
             })
@@ -61,7 +61,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         if (typeof incidence._id === 'undefined') {
             console.log("insert");
             // insert
-            dataIncidents.addIncident(incidence)
+            incidentsFactory.addIncident(incidence)
                     .then(function (incidence) {
                         $scope.incidences.push(incidence);
                         SweetAlert.swal("Incidencia gardada", null, "success");
@@ -72,7 +72,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         } else {
             console.log("update");
             // update
-            dataIncidents.saveIncident(incidence)
+            incidentsFactory.saveIncident(incidence)
                     .then(function (incidence) {
                         SweetAlert.swal("Incidencia gardada", null, "success");
                     })
@@ -103,7 +103,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
                     if (isConfirm) {
 
                         $scope.loan.returned = !$scope.loan.returned;
-                        dataLoans.saveLoan($scope.loan).then(function (loan) {
+                        loansFactory.saveLoan($scope.loan).then(function (loan) {
                             SweetAlert.swal("¡Recollido!", "Este préstamo foi recollido.", "success");
                         }).catch(function (err) {
                             SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
@@ -122,7 +122,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
     };
 
     $scope.saveExtendingLoan = function () {
-        dataLoans.saveLoan($scope.loan).then(function (loan) {
+        loansFactory.saveLoan($scope.loan).then(function (loan) {
             SweetAlert.swal("¡Préstamo ampliado!", "Este préstamo foi gardado correctamente.", "success");
         }).catch(function (err) {
             SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");
@@ -151,7 +151,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
                     if (isConfirm) {
                         $scope.incidences.splice(index, 1);
                         SweetAlert.swal("¡Eliminado!", "Esta incidencia foi eliminada.", "success");
-                        dataIncidents.saveIncident(incidence).then(function (incident) {
+                        incidentsFactory.saveIncident(incidence).then(function (incident) {
                             
                             SweetAlert.swal("¡Eliminado!", "Esta incidencia foi eliminada.", "success");
                         }).catch(function (err) {

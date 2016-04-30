@@ -2,7 +2,7 @@
 
 angular.module('minervaApp').controller('OpcionsCtrl', OpcionsCtrl);
 
-function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, dataConfiguration, SweetAlert) {
+function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuilder, configurationFactory, SweetAlert) {
 
     $scope.location = new Object;
     $scope.locations = [];
@@ -22,7 +22,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
 
     var user = auth.get_user();
 
-    dataConfiguration.getConfiguration(user._id)
+    configurationFactory.getConfiguration(user._id)
             //get the configuration of a specific user
             .then(function (configuration) {
                 $scope.configuration = configuration;
@@ -248,7 +248,7 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
 
 
     function saveConfig() {
-        dataConfiguration.updateConfiguration($scope.configuration)
+        configurationFactory.updateConfiguration($scope.configuration)
                 .then(function (config) {
                     SweetAlert.swal("Configuración gardada", null, "success");
                 })
