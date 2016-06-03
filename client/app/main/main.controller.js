@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('minervaApp').controller('MainController', MainController);
+app.controller('MainController', MainController);
 
 function MainController($scope, $rootScope, auth, loansFactory) {
 

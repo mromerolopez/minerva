@@ -154,9 +154,11 @@ export function login(req, res){
                 if (!result) {
                     res.json({success: false, message: "Atopouse un erro. O contrasinal non encaixa"});
                 } else {
-                    user.last_login = Date.now();
-                    user.save();
-                    user.password = "";
+                    
+                    User.findByIdAndUpdate(user._id, {last_login: new Date()});
+                   
+                    delete user.password;
+                    
                     res.json({
                         message:'All right',
                         success: true,

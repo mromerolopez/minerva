@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
         <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" />
         <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+        <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css({.tmp,client}) app/app.css -->
@@ -51,48 +52,9 @@
         <![endif]-->
 
         <div class="wrapper">
-            <header class="main-header" ng-hide="login">
-                <a href="../../index2.html" class="logo">
-                    <span class="logo-mini"><img src="assets/images/minerva.png" alt="Minerva"></span>
-                    <span class="logo-custom" ><b>Minerva</b></span>
-                </a>
-                <nav class="navbar navbar-static-top" role="navigation">
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                    </a>
 
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="assets/images/minervaowl.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">{{user.username}}</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="user-header">
-                                        <img src="assets/images/minervaowl.jpg" class="user-image" alt="User Image">
-                                        <p>
-                                            {{user.name}} {{user.surname1}} {{user.surname2}} - <span ng-if="user.is_admin">Administrador</span> <span ng-if="!user.is_admin">Usuario</span> 
-                                            <small>Membro desde {{user.created_at| date}}</small>
-                                        </p>
-                                    </li>
+            <minervaheader user="user" salir="salir" ng-if="!login"></minervaheader>
 
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Perfil</a>
-                                        </div>
-                                        <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat" ng-click="salir()">Saír</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-
-            <!-- =============================================== -->
 
             <aside class="main-sidebar" ng-hide="login">
                 <section class="sidebar">
@@ -147,8 +109,6 @@
             <div ui-view=""></div>
             <footer ng-hide="login"></footer>
         </div>
-
-
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
         <script>
@@ -208,7 +168,7 @@
         <script src="app/app.js"></script>
         <!-- injector:js -->
         <script src="components/util/util.module.js"></script>
-        <script src="app/prestamo-listaxe/prestamo-listaxe.controller.js"></script>
+        <script src="app/prestamo-listaxe/prestamo-listaxe.js"></script>
         <script src="app/factories/books.factory.js"></script>
         <script src="app/factories/borrowers.factory.js"></script>
         <script src="app/factories/configuration.factory.js"></script>
@@ -224,8 +184,8 @@
         <script src="app/main/main.js"></script>
         <script src="app/opcions/opcions.controller.js"></script>
         <script src="app/opcions/opcions.js"></script>
+        <script src="app/prestamo-listaxe/prestamo-listaxe.controller.js"></script>
         <script src="app/factories/auth.factory.js"></script>
-        <script src="app/prestamo-listaxe/prestamo-listaxe.js"></script>
         <script src="app/tests/tests.controller.js"></script>
         <script src="app/tests/tests.js"></script>
         <script src="app/xestion-accesos/xestion-accesos.controller.js"></script>
@@ -235,6 +195,7 @@
         <script src="app/xestion-usuarios/xestion-usuarios.controller.js"></script>
         <script src="app/xestion-usuarios/xestion-usuarios.js"></script>
         <script src="components/footer/footer.directive.js"></script>
+        <script src="components/minerva-header/minerva-header.js"></script>
         <script src="components/modal/modal.service.js"></script>
         <script src="components/navbar/navbar.controller.js"></script>
         <script src="components/navbar/navbar.directive.js"></script>

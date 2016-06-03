@@ -14,11 +14,10 @@ var app = angular.module('minervaApp', [
     'ngMaterial'
 ])
         .config(function ($urlRouterProvider, $locationProvider) {
-            $urlRouterProvider
-                    .otherwise('/');
-
+            $urlRouterProvider.otherwise('/');
             $locationProvider.html5Mode(true);
         })
+        
         .constant('COOKIE', {USER: 'minerva_dev_user'})
         .run(check);
 
