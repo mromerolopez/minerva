@@ -5,13 +5,17 @@
 
 angular.module('minervaApp').factory("auth", auth);
 
-function auth($cookies, $location, COOKIE) {
+function auth($cookies, $http, $location, COOKIE) {
     return {
         login: login,
         logout: logout,
         checkStatus: checkStatus,
         in_array: in_array,
-        get_user: get_user
+        get_user: get_user,
+        setToken: setToken,
+        getToken: getToken,
+        setDefaultAuthHeader:setDefaultAuthHeader
+        
     };
 
 
@@ -31,6 +35,7 @@ function auth($cookies, $location, COOKIE) {
 
     function logout() {
         $cookies.remove(COOKIE.USER);
+        $cookies.remove(COOKIE.TOKEN);
         $location.path("/login");
     }
 
@@ -60,5 +65,25 @@ function auth($cookies, $location, COOKIE) {
     function get_user() {
         return $cookies.getObject(COOKIE.USER);
     }
+    
+    function setToken(token){
+        var now = new Date();
+        var expiration = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+        var options = {
+            expires: expiration
+        };
+        $cookies.putObject(COOKIE.TOKEN, token, options);
+        setDefaultAuthHeader(token); 
+    }
+    
+    function getToken(){
+        return $cookies.getObject(COOKIE.TOKEN);
+    }
+    
+    function setDefaultAuthHeader(token){
+        console.log(token);
+        $http.defaults.headers.common.Authorization='Bearer '+ token;
+    }
+    
 }
 

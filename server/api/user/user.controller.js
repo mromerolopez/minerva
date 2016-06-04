@@ -12,6 +12,9 @@
 import _ from 'lodash';
 import User from './user.model';
 var bcrypt = require('bcryptjs');
+var jwt=require('jsonwebtoken');
+var jwtConfig=require('../jwtConfig');
+var secret=jwtConfig.getSecret();
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -159,10 +162,13 @@ export function login(req, res){
                    
                     delete user.password;
                     
+                    var token=jwt.sign(user,secret,{expiresIn:"1d"}); 
+                    
                     res.json({
                         message:'All right',
                         success: true,
-                        user: user
+                        user: user,
+                        token: token
                     });
                 }
             });

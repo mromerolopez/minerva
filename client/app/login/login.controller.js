@@ -16,6 +16,7 @@ function LoginCtrl($scope, $rootScope, usersFactory, $location, auth, $log) {
 
                     console.log(response);
                     if (response.success) {
+                        setCookieToken(response.token);
                         loginSuccess(response.user);
                     } else {
                         loginFailed(response.message);
@@ -37,4 +38,10 @@ function LoginCtrl($scope, $rootScope, usersFactory, $location, auth, $log) {
     function loginFailed(message) {
         $scope.errorMessage = message;
     }
+    
+    function setCookieToken(token){
+        auth.setToken(token);
+    }
+    
+    
 }

@@ -18,14 +18,21 @@ var app = angular.module('minervaApp', [
             $locationProvider.html5Mode(true);
         })
         
-        .constant('COOKIE', {USER: 'minerva_dev_user'})
+        .constant('COOKIE', {USER: 'minerva_dev_user', TOKEN:'minerva_dev_token'})
         .run(check);
 
 function check($rootScope, auth, $timeout) {
-
+ 
     $timeout($rootScope.$on('$stateChangeStart',
             function (event, toState, toParams, fromState, fromParams) {
                 auth.checkStatus();
+                var token= auth.getToken();
+                if (token){
+                    auth.setDefaultAuthHeader(token);
+                }
             }), 100);
+            
+            
+            
 }
 

@@ -11,7 +11,6 @@ function usersFactory($q, $http) {
         saveUser: saveUser, // updates an existing user
         addUser : addUser, // creates a new user
         lastLogins : lastLogins // gives a user list sorted by login date
-
     };
 
     function login(user, pass) {

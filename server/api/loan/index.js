@@ -3,9 +3,13 @@
 var express = require('express');
 var controller = require('./loan.controller');
 
+var jwt=require('express-jwt');
+var jwtConfig=require('../jwtConfig');
+var secret=jwtConfig.getSecret();
+
 var router = express.Router();
 
-router.get('/', controller.index);
+router.get('/',jwt({secret:secret}), controller.index);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
