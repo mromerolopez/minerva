@@ -171,7 +171,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         optionsTableLoans.dtOptions = DTOptionsBuilder
                 .newOptions().withPaginationType('full_numbers')
                 .withDisplayLength(10)
-                .withLanguageSource('//cdn.datatables.net/plug-ins/1.10.11/i18n/Galician.json');
+                .withLanguageSource('/assets/datatables/translations/galician.json');
 
         optionsTableLoans.dtColumnDefs = [
             DTColumnDefBuilder.newColumnDef(0),
@@ -196,7 +196,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         optionsTableIncidences.dtOptions = DTOptionsBuilder
                 .newOptions().withPaginationType('full_numbers')
                 .withDisplayLength(10)
-                .withLanguageSource('//cdn.datatables.net/plug-ins/1.10.11/i18n/Galician.json');
+                .withLanguageSource('/assets/datatables/translations/galician.json');
 
         optionsTableIncidences.dtColumnDefs = [
             DTColumnDefBuilder.newColumnDef(0),

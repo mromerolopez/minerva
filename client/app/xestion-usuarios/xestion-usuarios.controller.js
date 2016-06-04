@@ -155,7 +155,7 @@ function XestionUsuariosCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
         opcionesTablaBorrowers.dtOptions = DTOptionsBuilder
                 .newOptions().withPaginationType('full_numbers')
                 .withDisplayLength(10)
-                .withLanguageSource('//cdn.datatables.net/plug-ins/1.10.11/i18n/Galician.json');
+                .withLanguageSource('/assets/datatables/translations/galician.json');
 
         opcionesTablaBorrowers.dtColumnDefs = [
             DTColumnDefBuilder.newColumnDef(0),

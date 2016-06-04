@@ -17,8 +17,10 @@ var app = angular.module('minervaApp', [
             $urlRouterProvider.otherwise('/');
             $locationProvider.html5Mode(true);
         })
+
         
         .constant('COOKIE', {USER: 'minerva_dev_user', TOKEN:'minerva_dev_token'})
+
         .run(check);
 
 function check($rootScope, auth, $timeout) {
