@@ -1,6 +1,6 @@
 'use strict';
 
-app.directive('minervaheader', function () {
+app.directive('minervaHeader', function () {
 
     return {
         restrict: 'E',
