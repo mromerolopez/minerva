@@ -84,7 +84,7 @@ function XestionAccesosCtrl($scope, DTOptionsBuilder, $rootScope, DTColumnDefBui
         opcionesTablaUsuarios.dtOptions = DTOptionsBuilder
                 .newOptions().withPaginationType('full_numbers')
                 .withDisplayLength(10)
-                .withLanguageSource('//cdn.datatables.net/plug-ins/1.10.11/i18n/Galician.json');
+                .withLanguageSource('/assets/datatables/translations/galician.json');
 
         opcionesTablaUsuarios.dtColumnDefs = [
             DTColumnDefBuilder.newColumnDef(0),
