@@ -11,7 +11,8 @@ var app = angular.module('minervaApp', [
     'ngAnimate',
     'oitozero.ngSweetAlert',
     'chart.js',
-    'ngMaterial'
+    'ngMaterial',
+    'ja.qr'
 ])
         .config(function ($urlRouterProvider, $locationProvider) {
             $urlRouterProvider.otherwise('/');

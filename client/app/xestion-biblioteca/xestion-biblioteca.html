@@ -23,6 +23,7 @@
                                         <th class="text-center">Usuario</th>
                                         <th class="text-center">Editar</th>
                                         <th class="text-center">Novo préstamo</th>
+                                        <th class="text-center">Detalles</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,15 +33,16 @@
                                         <td style="vertical-align:middle">{{book.editorial}}</td>
                                         <td class="text-center" style="vertical-align:middle">{{book.created_at| date:"dd 'de' MMMM 'do' yyyy"}}</td>
                                         <td class="text-center" style="vertical-align:middle">{{book.user.name}} {{book.user.surname1}} {{book.user.surname2}}</td>
-                                        <td class="text-center"><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editBook(book)"><i class="fa fa-edit" style="font-size: 18px"></i></md-button></td>
-                                <td class="text-center"><md-button class="md-raised md-primary"  ng-click="newLoan(book)"><i class="fa fa-book" style="font-size: 18px"></i></md-button></td>
-                                </tr>
+                                        <td class="text-center"><button class="btn btn-primary" ng-click="editBook(book)"><i class="fa fa-edit"></i></button></td>
+                                        <td class="text-center"><button class="btn btn-warning" ng-click="newLoan(book)"><i class="fa fa-book"></i></button></td>
+                                        <td class="text-center"><a ng-href="/xestion-biblioteca/{{book._id}}"><button class="btn btn-default"><i class="fa fa-eye"></i></button></a></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="box-footer">
                             <div class="pull-right">
-                                <md-button class="md-raised md-primary" ng-click="newBook()" style="background-color: #009900">Novo libro</md-button>
+                                <button class="btn btn-success" ng-click="newBook()">Novo libro</button>
                             </div>
                         </div>
 

@@ -25,6 +25,7 @@
         <!-- build:css({.tmp,client}) app/app.css -->
         <!-- injector:css -->
         <link rel="stylesheet" href="app/app.css">
+        <link rel="stylesheet" href="app/book-detail/book-detail.css">
         <link rel="stylesheet" href="app/login/login.css">
         <link rel="stylesheet" href="app/main/main.css">
         <link rel="stylesheet" href="app/opcions/opcions.css">
@@ -112,13 +113,18 @@
         <script src="bower_components/angular-aria/angular-aria.js"></script>
         <script src="bower_components/angular-messages/angular-messages.js"></script>
         <script src="bower_components/angular-material/angular-material.js"></script>
+        <script src="bower_components/PACE/pace.js"></script>
+        <script src="bower_components/qrcode/lib/qrcode.js"></script>
+        <script src="bower_components/angular-qr/src/angular-qr.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:js(.tmp) app/app.js -->
         <script src="app/app.js"></script>
         <!-- injector:js -->
         <script src="components/util/util.module.js"></script>
-        <script src="app/prestamo-listaxe/prestamo-listaxe.js"></script>
+        <script src="app/prestamo-listaxe/prestamo-listaxe.controller.js"></script>
+        <script src="app/book-detail/book-detail.js"></script>
+        <script src="app/factories/auth.factory.js"></script>
         <script src="app/factories/books.factory.js"></script>
         <script src="app/factories/borrowers.factory.js"></script>
         <script src="app/factories/configuration.factory.js"></script>
@@ -134,8 +140,8 @@
         <script src="app/main/main.js"></script>
         <script src="app/opcions/opcions.controller.js"></script>
         <script src="app/opcions/opcions.js"></script>
-        <script src="app/prestamo-listaxe/prestamo-listaxe.controller.js"></script>
-        <script src="app/factories/auth.factory.js"></script>
+        <script src="app/book-detail/book-detail.controller.js"></script>
+        <script src="app/prestamo-listaxe/prestamo-listaxe.js"></script>
         <script src="app/tests/tests.controller.js"></script>
         <script src="app/tests/tests.js"></script>
         <script src="app/xestion-accesos/xestion-accesos.controller.js"></script>

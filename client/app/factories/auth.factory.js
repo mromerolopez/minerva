@@ -81,7 +81,6 @@ function auth($cookies, $http, $location, COOKIE) {
     }
     
     function setDefaultAuthHeader(token){
-        console.log(token);
         $http.defaults.headers.common.Authorization='Bearer '+ token;
     }
     

@@ -69,7 +69,9 @@ export function index(req, res) {
 
 // Gets a single Book from the DB
 export function show(req, res) {
-  Book.findByIdAsync(req.params.id)
+  Book.findById(req.params.id)
+    .populate('loans')
+    .populate('incidents')
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
