@@ -45,6 +45,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
 
     $scope.editLoan = function (loan) {
         $scope.editingLoan = true;
+        $scope.extendingLoan = false;
         $scope.loan = loan;
         $scope.book = loan.book;
         $scope.borrower = loan.borrower;
