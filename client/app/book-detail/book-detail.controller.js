@@ -2,8 +2,10 @@
 
 app.controller('BookDetailCtrl', BookDetailCtrl);
 
-function BookDetailCtrl($scope, $stateParams, booksFactory, $q, $log, $location) {
+function BookDetailCtrl($scope, $stateParams, booksFactory, $q, $log, $location, DTColumnDefBuilder, DTOptionsBuilder, $rootScope, auth) {
+
     var id = $stateParams.id;
+    $scope.qrString = $location.absUrl();
 
     angular.extend($scope, {
         book: {}
@@ -12,7 +14,6 @@ function BookDetailCtrl($scope, $stateParams, booksFactory, $q, $log, $location)
     getBook(id)
             .then(function (book) {
                 $scope.book = book;
-//                console.log(book);
             })
             .catch(function (err) {
                 if (err) {
@@ -33,5 +34,39 @@ function BookDetailCtrl($scope, $stateParams, booksFactory, $q, $log, $location)
         return defered.promise;
     }
 
-    $scope.qrString = $location.absUrl();
+
+    (function () {
+        var optionsTableLoans = new Object;
+
+        optionsTableLoans.dtOptions = DTOptionsBuilder
+                .newOptions()
+                .withLanguageSource('/assets/datatables/translations/galician.json');
+
+        optionsTableLoans.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef(5).notSortable()
+        ];
+
+        $scope.optionsTableLoans = optionsTableLoans;
+    })();
+
+    (function () {
+        var optionsTableIncidences = new Object;
+
+        optionsTableIncidences.dtOptions = DTOptionsBuilder
+                .newOptions()
+                .withLanguageSource('/assets/datatables/translations/galician.json');
+
+
+
+        $scope.optionsTableIncidences = optionsTableIncidences;
+    })();
+    
+    (function () {
+        $rootScope.user = auth.get_user();
+        $rootScope.login = false;
+        $rootScope.salir = function () {
+            auth.logout();
+        };
+
+    })();
 }

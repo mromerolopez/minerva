@@ -6,22 +6,27 @@
 angular.module('minervaApp').factory("auth", auth);
 
 function auth($cookies, $http, $location, COOKIE) {
+
+    var userSession = {};
+    var tokenSession;
+
     return {
-        login: login,
+        setUser: setUser,
         logout: logout,
         checkStatus: checkStatus,
         in_array: in_array,
         get_user: get_user,
         setToken: setToken,
         getToken: getToken,
-        setDefaultAuthHeader:setDefaultAuthHeader
-        
+        setDefaultAuthHeader: setDefaultAuthHeader
+
     };
 
-
-    function login(user) {
-        user.password = null;
-        setUserCookie(user);
+    function setUser(user, rememberMe) {
+        if (rememberMe) {
+            setUserCookie(user);
+        }
+        userSession = user;
     }
 
     function setUserCookie(user) {
@@ -36,7 +41,7 @@ function auth($cookies, $http, $location, COOKIE) {
     function logout() {
         $cookies.remove(COOKIE.USER);
         $cookies.remove(COOKIE.TOKEN);
-        $location.path("/login");
+        $location.path('/login');
     }
 
     function checkStatus() {
@@ -63,26 +68,37 @@ function auth($cookies, $http, $location, COOKIE) {
     }
 
     function get_user() {
-        return $cookies.getObject(COOKIE.USER);
+        if (userSession._id) {
+            return userSession;
+        } else {
+            return $cookies.getObject(COOKIE.USER);
+        }
     }
-    
-    function setToken(token){
-        var now = new Date();
-        var expiration = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-        var options = {
-            expires: expiration
-        };
-        $cookies.putObject(COOKIE.TOKEN, token, options);
-        setDefaultAuthHeader(token); 
+
+    function setToken(token, rememberMe) {
+        if (rememberMe) {
+            var now = new Date();
+            var expiration = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+            var options = {
+                expires: expiration
+            };
+            $cookies.putObject(COOKIE.TOKEN, token, options);
+        }
+        tokenSession = token;
+        setDefaultAuthHeader(token);
     }
-    
-    function getToken(){
-        return $cookies.getObject(COOKIE.TOKEN);
+
+    function getToken() {
+        if (tokenSession) {
+            return tokenSession;
+        } else {
+            return $cookies.getObject(COOKIE.TOKEN);
+        }
     }
-    
-    function setDefaultAuthHeader(token){
-        $http.defaults.headers.common.Authorization='Bearer '+ token;
+
+    function setDefaultAuthHeader(token) {
+        $http.defaults.headers.common.Authorization = 'Bearer ' + token;
     }
-    
+
 }
 

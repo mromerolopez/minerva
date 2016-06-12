@@ -2,10 +2,11 @@
 
 angular.module('minervaApp').controller('LoginCtrl', LoginCtrl);
 
-function LoginCtrl($scope, $rootScope, usersFactory, $location, auth, $log) {
+function LoginCtrl($scope, $rootScope, usersFactory, $location, auth, $log, Notification) {
     $rootScope.login = true;
     $scope.errorMessage = '';
-    
+    $scope.rememberMe = true;
+
     $scope.login = function () {
 
         var username = $scope.username;
@@ -14,7 +15,6 @@ function LoginCtrl($scope, $rootScope, usersFactory, $location, auth, $log) {
         usersFactory.login(username, password)
                 .then(function (response) {
 
-                    console.log(response);
                     if (response.success) {
                         setCookieToken(response.token);
                         loginSuccess(response.user);
@@ -30,18 +30,20 @@ function LoginCtrl($scope, $rootScope, usersFactory, $location, auth, $log) {
     };
 
     function loginSuccess(user) {
-        auth.login(user);
+        auth.setUser(user, $scope.rememberMe);
         $rootScope.login = false;
         $location.path('/');
     }
-    
+
     function loginFailed(message) {
+        Notification.error({message: message});
+
         $scope.errorMessage = message;
     }
-    
-    function setCookieToken(token){
-        auth.setToken(token);
+
+    function setCookieToken(token) {
+        auth.setToken(token, $scope.rememberMe);
     }
-    
-    
+
+
 }

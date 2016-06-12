@@ -189,3 +189,34 @@ export function lastLogins(req, res){
      
             
 }
+
+export function checkEmail(req, res){
+    var email =  req.body.email;
+    
+    User.findOne({email: email}, "email")
+            .then(function(user){
+                res.json(user);
+            })
+            .catch(handleError(res));
+}
+
+export function rememberPassword(req, res){
+
+    
+    var randomstring = require("randomstring");
+    
+    var options = {
+            length: 12,
+            charset: 'alphabetic'
+        };
+    var newPassword = randomstring.generate(options);
+    
+    hashPassword(newPassword, function(hashedPassword){
+        User.findByIdAndUpdate(req.params.id, {'password': hashedPassword})
+                .then(function(user){
+                    sendMail(user.email, 'Your password has been reseted. Your new password is '+newPassword);
+                    res.status(200).send(user);
+                })
+                .catch(handleError(res));
+    });
+}

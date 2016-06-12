@@ -1,65 +1,33 @@
-<style>
 
-    /* enable absolute positioning */
-    .inner-addon { 
-        position: relative; 
-    }
+<div class="login-box">
+    <div class="login-logo">
+        <b>Minerva</b>
+        <br>
+        Xestión de bibliotecas
+    </div>
 
-    /* style icon */
-    .inner-addon .glyphicon {
-        position: absolute;
-        padding: 10px;
-        pointer-events: none;
-    }
+    <div class="login-box-body">
+        <p class="login-box-msg">Introduce o teu usuario e a tua contrasinal para iniciar sesión</p>
 
-    /* align icon */
-    .left-addon .glyphicon  { left:  0px;}
-    .right-addon .glyphicon { right: 0px;}
-
-    /* add padding  */
-    .left-addon input  { padding-left:  30px; }
-    .right-addon input { padding-right: 30px; }
-</style>
-
-<div class="hold-transition login-page">
-
-    <div class="login-box">
-        <div class="login-logo">
-            <b>Minerva</b>
-            <br>
-            Xestión de bibliotecas
-        </div>
-
-        <div class="login-box-body">
-            <p class="login-box-msg" ng-hide="errorMessage">Introduce o teu usuario e a tua contrasinal para iniciar sesión</p>
-            <div class="has-error login-box-msg">
-                <span class="help-block">{{errorMessage}}</span>
+        <form name="formLogin">
+            <div class="form-group inner-addon right-addon">
+                <input type="text" class="form-control" placeholder="Nome de usuario" ng-model="username" required>
+                <span class="glyphicon glyphicon-user"></span>
             </div>
-            <form ng-submit="login()">
-                <div class="form-group inner-addon right-addon">
-                    <input type="text" class="form-control" placeholder="Nome de usuario" ng-model="username" required>
-                    <span class="glyphicon glyphicon-user"></span>
+            <div class="form-group inner-addon right-addon">
+                <input type="password" class="form-control" placeholder="Contrasinal" ng-model="password" required right-addon>
+                <span class="glyphicon glyphicon-lock"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <checkbox ng-model="rememberMe"></checkbox> Recórdame
                 </div>
-                <div class="form-group inner-addon right-addon">
-                    <input type="password" class="form-control" placeholder="Contrasinal" ng-model="password" right-addon>
-                    <span class="glyphicon glyphicon-lock"></span>
-                </div>
-                <div class="row">
-                    <div class="col-xs-8">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Recórdame
-                            </label>
-                        </div>
-                    </div>
 
-                    <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
-                    </div>
-
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" ng-disabled="formLogin.$invalid" ng-click="login()">Entrar</button>
                 </div>
-            </form>
-            <a href="#">Olvidei o meu contrasinal</a><br>
-        </div>
+            </div>
+        </form>
+        <a href="/lembrar-contrasinal">Olvidéi o meu contrasinal</a><br>
     </div>
 </div>

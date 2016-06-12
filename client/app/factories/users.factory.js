@@ -9,8 +9,9 @@ function usersFactory($q, $http) {
         login: login,
         getUsers: getUsers, //lists all the users
         saveUser: saveUser, // updates an existing user
-        addUser : addUser, // creates a new user
-        lastLogins : lastLogins // gives a user list sorted by login date
+        addUser: addUser, // creates a new user
+        lastLogins: lastLogins, // gives a user list sorted by login date
+        checkEmail: checkEmail
     };
 
     function login(user, pass) {
@@ -35,12 +36,12 @@ function usersFactory($q, $http) {
         return promise;
 
     }
-    
-    function getUsers(){
-         var defered = $q.defer();
+
+    function getUsers() {
+        var defered = $q.defer();
         var promise = defered.promise;
 
-       
+
 
         $http({
             method: 'GET',
@@ -54,14 +55,14 @@ function usersFactory($q, $http) {
         return promise;
     }
 
-   function saveUser(user){
+    function saveUser(user) {
         var defered = $q.defer();
         var promise = defered.promise;
 
 
         $http({
             method: 'PUT',
-            url: '/api/users/'+user._id,
+            url: '/api/users/' + user._id,
             data: user
         }).success(function (datos) {
             defered.resolve(datos);
@@ -89,8 +90,8 @@ function usersFactory($q, $http) {
 
         return promise;
     }
-    
-       function lastLogins() {
+
+    function lastLogins() {
         var defered = $q.defer();
         var promise = defered.promise;
 
@@ -98,7 +99,7 @@ function usersFactory($q, $http) {
         $http({
             method: 'GET',
             url: '/api/users/last/logins'
-            
+
         }).success(function (datos) {
             defered.resolve(datos);
         }).error(function (err) {
@@ -107,7 +108,21 @@ function usersFactory($q, $http) {
 
         return promise;
     }
-    
+
+    function checkEmail(email) {
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http({
+            method: 'POST',
+            url: 'api/users/check_email/',
+            data: {email: email}
+        }).success(function (result) {
+            defered.resolve(result);
+        }).error(function (err) {
+            defered.reject(err);
+        });
+
+        return promise;
+    }
 }
-
-

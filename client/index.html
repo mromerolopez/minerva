@@ -20,12 +20,14 @@
         <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" />
         <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
         <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+        <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css({.tmp,client}) app/app.css -->
         <!-- injector:css -->
         <link rel="stylesheet" href="app/app.css">
         <link rel="stylesheet" href="app/book-detail/book-detail.css">
+        <link rel="stylesheet" href="app/lembrar-contrasinal/lembrar-contrasinal.css">
         <link rel="stylesheet" href="app/login/login.css">
         <link rel="stylesheet" href="app/main/main.css">
         <link rel="stylesheet" href="app/opcions/opcions.css">
@@ -46,7 +48,7 @@
         <link rel="stylesheet" href="assets/css/_all-skins.css">
 
     </head>
-    <body class="hold-transition skin-black sidebar-mini">
+    <body ng-class=" {'hold-transition login-page':login, 'hold-transition skin-black sidebar-mini': !login}">
 
         <!--[if lt IE 7]>
           <p class="browserupgrade">Estás usando navegador <strong>obsoleto</strong>. Por favor <a href="http://browsehappy.com/">actualiza tu navegador</a> para mejorar tu experiencia.</p>
@@ -116,13 +118,15 @@
         <script src="bower_components/PACE/pace.js"></script>
         <script src="bower_components/qrcode/lib/qrcode.js"></script>
         <script src="bower_components/angular-qr/src/angular-qr.js"></script>
+        <script src="bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox.js"></script>
+        <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:js(.tmp) app/app.js -->
         <script src="app/app.js"></script>
         <!-- injector:js -->
         <script src="components/util/util.module.js"></script>
-        <script src="app/prestamo-listaxe/prestamo-listaxe.controller.js"></script>
+        <script src="app/opcions/opcions.js"></script>
         <script src="app/book-detail/book-detail.js"></script>
         <script src="app/factories/auth.factory.js"></script>
         <script src="app/factories/books.factory.js"></script>
@@ -134,13 +138,15 @@
         <script src="app/factories/loans.factory.js"></script>
         <script src="app/factories/maps.factory.js"></script>
         <script src="app/factories/users.factory.js"></script>
+        <script src="app/lembrar-contrasinal/lembrar-contrasinal.controller.js"></script>
+        <script src="app/lembrar-contrasinal/lembrar-contrasinal.js"></script>
         <script src="app/login/login.controller.js"></script>
         <script src="app/login/login.js"></script>
         <script src="app/main/main.controller.js"></script>
         <script src="app/main/main.js"></script>
         <script src="app/opcions/opcions.controller.js"></script>
-        <script src="app/opcions/opcions.js"></script>
         <script src="app/book-detail/book-detail.controller.js"></script>
+        <script src="app/prestamo-listaxe/prestamo-listaxe.controller.js"></script>
         <script src="app/prestamo-listaxe/prestamo-listaxe.js"></script>
         <script src="app/tests/tests.controller.js"></script>
         <script src="app/tests/tests.js"></script>

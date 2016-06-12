@@ -70,8 +70,14 @@ export function index(req, res) {
 // Gets a single Book from the DB
 export function show(req, res) {
   Book.findById(req.params.id)
-    .populate('loans')
-    .populate('incidents')
+    .populate({
+        path: 'loans',
+        populate: { path: 'borrower' }
+    })
+    .populate({
+        path: 'incidents',
+        populate: { path: 'borrower' }
+    })
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));

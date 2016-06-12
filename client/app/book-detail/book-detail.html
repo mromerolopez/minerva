@@ -87,8 +87,6 @@
 
                             </div>
                         </div>
-
-
                     </div>
 
                     <div class="col-xs-12">
@@ -97,15 +95,31 @@
                                 <h3 class="box-title">Incidencias</h3>
                             </div>
                             <div class="box-body">
-
+                                <div class="table-responsive">
+                                    <table width="100%" class="table table-hover" datatable="ng" dt-options="optionsTableIncidences.dtOptions">
+                                        <thead>
+                                            <tr>
+                                                <th>Tipo</th>
+                                                <th>Observación</th>
+                                                <th>Data</th>
+                                                <th>Prestatario</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="incidence in book.incidents">
+                                                <td>{{incidence.type}}</td>
+                                                <td>{{incidence.observations}}</td>
+                                                <td>{{incidence.created_at| date:"dd 'de' MMMM 'do' yyyy"}}</td>
+                                                <td>{{incidence.borrower.name + ' ' + incidence.borrower.surname1 + ' ' + incidence.borrower.surname2}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
 
 
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
 
 
@@ -137,17 +151,38 @@
                         </div>
                     </div>
 
-
-
                     <div class="col-xs-12">
                         <div class="box box-info">
                             <div class="box-header">
                                 <h3 class="box-title">Préstamos</h3>
                             </div>
                             <div class="box-body">
-
-
-
+                                <div class="table-responsive">
+                                    <table class="table table-hover" datatable="ng" dt-options="optionsTableLoans.dtOptions" dt-column-defs="optionsTableLoans.dtColumnDefs">
+                                        <thead>
+                                            <tr>
+                                                <th>Nome do prestatario</th>
+                                                <th>Nº de teléfono</th>
+                                                <th>Correo electrónico</th>
+                                                <th>Data de préstamo</th>
+                                                <th>Data límite</th>
+                                                <th>Devolto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="loan in book.loans">
+                                                <td style="vertical-align:middle">{{loan.borrower.name}} {{loan.borrower.surname1}} {{loan.borrower.surname2}}</td>
+                                                <td style="vertical-align:middle">{{loan.borrower.phone}}</td>
+                                                <td style="vertical-align:middle"><a ng-href="mailto:{{loan.borrower.email}}">{{loan.borrower.email}}</a></td>
+                                                <td style="vertical-align:middle">{{loan.loan_date| date}}</td>
+                                                <td style="vertical-align:middle">{{loan.limit_date| date}}</td>
+                                                <td style="vertical-align:middle"> 
+                                                    <i ng-class="{'fa fa-check text-green fa-2x': loan.returned, 'fa fa-close text-red fa-2x': !loan.returned}"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

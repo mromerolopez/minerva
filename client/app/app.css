@@ -62,3 +62,19 @@
 .custom-material-button-success {
     background-color: #009900
 }
+
+.inner-addon { 
+    position: relative; 
+}
+
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }

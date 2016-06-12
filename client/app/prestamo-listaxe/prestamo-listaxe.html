@@ -11,43 +11,44 @@
                         <div class="box-header">
                             <h3 class="box-title">Préstamos</h3>
                         </div><!-- /.box-header -->
-                        <div class="box-body">                          
-                            <table class="table table-hover table-responsive" datatable="ng" dt-options="optionsTableLoans.dtOptions" dt-column-defs="optionsTableLoans.dtColumnDefs">
-                                <thead>
-                                    <tr>
-                                        <th>Nome do prestatario</th>
-                                        <th>NIF do prestatario</th>
-                                        <th>Número de teléfono</th>
-                                        <th>Correo electrónico</th>
-                                        <th>Libro emprestado</th>
-                                        <th>Data de préstamo</th>
-                                        <th>Data límite</th>
-                                        <th>Devolto</th>
-                                        <th>Data de creación</th>
-                                        <th>Editar</th>
+                        <div class="box-body">          
+                            <div class="table-responsive">
+                                <table class="table table-hover" datatable="ng" dt-options="optionsTableLoans.dtOptions" dt-column-defs="optionsTableLoans.dtColumnDefs">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome do prestatario</th>
+                                            <th>NIF do prestatario</th>
+                                            <th>Número de teléfono</th>
+                                            <th>Correo electrónico</th>
+                                            <th>Libro emprestado</th>
+                                            <th>Data de préstamo</th>
+                                            <th>Data límite</th>
+                                            <th>Devolto</th>
+                                            <th>Data de creación</th>
+                                            <th>Editar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="loan in loans">
+                                            <td style="vertical-align:middle">{{loan.borrower.name}} {{loan.borrower.surname1}} {{loan.borrower.surname2}}</td>
+                                            <td style="vertical-align:middle">{{loan.borrower.nif}}</td>
+                                            <td style="vertical-align:middle">{{loan.borrower.phone}}</td>
+                                            <td style="vertical-align:middle"><a ng-href="mailto:{{loan.borrower.email}}">{{loan.borrower.email}}</a></td>
+                                            <td style="vertical-align:middle">{{loan.book.title}}</td>
+                                            <td style="vertical-align:middle">{{loan.loan_date| date}}</td>
+                                            <td style="vertical-align:middle">{{loan.limit_date| date}}</td>
+                                            <td style="vertical-align:middle"> 
+                                                <i ng-class="{'fa fa-check text-green fa-2x': loan.returned, 'fa fa-close text-red fa-2x': !loan.returned}"></i>
+                                            </td>
+                                            <td style="vertical-align:middle">{{loan.created_at| date}}</td>
+                                            <td><md-button class="md-raised md-warn fa fa-edit" style="background-color: #ffad33" ng-click="editLoan(loan)"></md-button></td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="loan in loans">
-                                        <td style="vertical-align:middle">{{loan.borrower.name}} {{loan.borrower.surname1}} {{loan.borrower.surname2}}</td>
-                                        <td style="vertical-align:middle">{{loan.borrower.nif}}</td>
-                                        <td style="vertical-align:middle">{{loan.borrower.phone}}</td>
-                                        <td style="vertical-align:middle"><a ng-href="mailto:{{loan.borrower.email}}">{{loan.borrower.email}}</a></td>
-                                        <td style="vertical-align:middle">{{loan.book.title}}</td>
-                                        <td style="vertical-align:middle">{{loan.loan_date| date}}</td>
-                                        <td style="vertical-align:middle">{{loan.limit_date| date}}</td>
-                                        <td style="vertical-align:middle"> 
-                                            <i ng-class="{'fa fa-check text-green fa-2x': loan.returned, 'fa fa-close text-red fa-2x': !loan.returned}"></i>
-                                        </td>
-                                        <td style="vertical-align:middle">{{loan.created_at| date}}</td>
-                                        <td><md-button class="md-raised md-warn fa fa-edit" style="background-color: #ffad33" ng-click="editLoan(loan)"></md-button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-
 
                 <div ng-show="editingLoan">
                     <div class="row">   
@@ -93,7 +94,7 @@
                                                     <md-button ng-if="!loan.returned" class="md-raised md-primary" ng-click="returnLoan()">
                                                         Recoller
                                                     </md-button>
-                                                    
+
                                                     <md-button ng-if="loan.returned" disabled class="md-raised md-primary">
                                                         Recollido
                                                     </md-button>
@@ -127,8 +128,6 @@
                                                 <label>Segundo apelido:</label>
                                                 <span>{{borrower.surname2}}</span>
                                             </div>
-
-
                                             <div class="form-group">
                                                 <label>Teléfono:</label>
                                                 <span>{{borrower.phone}}</span>
@@ -144,7 +143,7 @@
                                                 <span>{{borrower.address}}</span>
                                             </div>
 
-                                           
+
 
                                         </div>
                                     </div>
@@ -169,14 +168,14 @@
                                                 <label for="limit_date">Data límite:</label><br>
                                                 <input uib-datepicker ng-model="loan.limit_date" id="limit_date" min-date="loan.loan_date" ng-disabled="!extendingLoan">
                                             </div>
-                                            
-                                             <div class="form-group">
+
+                                            <div class="form-group">
                                                 <center>
                                                     <md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="extendLoan()" ng-if="!extendingLoan" ng-disabled="loan.returned">
                                                         Ampliar préstamo
                                                     </md-button>
-                                                    
-                                                     <md-button class="md-raised md-primary" style="background-color: #009900" ng-click="saveExtendingLoan()" ng-if="extendingLoan">
+
+                                                    <md-button class="md-raised md-primary" style="background-color: #009900" ng-click="saveExtendingLoan()" ng-if="extendingLoan">
                                                         Gardar data
                                                     </md-button>
                                                 </center>
@@ -193,26 +192,28 @@
                                         <h3 class="box-title">Incidencias</h3>
                                     </div><!-- /.box-header -->
                                     <div class="box-body">  
-                                        <table width="100%" class="table table-hover table-responsive" datatable="ng" dt-options="optionsTableIncidences.dtOptions" dt-column-defs="optionsTableIncidences.dtColumnDefs">
-                                            <thead>
-                                                <tr>
-                                                    <th>Tipo</th>
-                                                    <th>Observación</th>
-                                                    <th>Data</th>
-                                                    <th>Editar</th>
-                                                    <th>Eliminar</th>
+                                        <div class="table-responsive">
+                                            <table width="100%" class="table table-hover" datatable="ng" dt-options="optionsTableIncidences.dtOptions" dt-column-defs="optionsTableIncidences.dtColumnDefs">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tipo</th>
+                                                        <th>Observación</th>
+                                                        <th>Data</th>
+                                                        <th>Editar</th>
+                                                        <th>Eliminar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="incidence in incidences">
+                                                        <td>{{incidence.type}}</td>
+                                                        <td>{{incidence.observations}}</td>
+                                                        <td>{{incidence.created_at| date:"dd 'de' MMMM 'do' yyyy"}}</td>
+                                                        <td><md-button class="md-raised md-primary" style="background-color: #ffad33" data-toggle="modal" data-target="#newIncident" ng-click="editIncidence(incidence)"></md-button></td>
+                                                <td><md-button class="md-raised md-primary" style="background-color: #ff3333" ng-click="deleteIncidence($index)"></md-button></td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="incidence in incidences">
-                                                    <td>{{incidence.type}}</td>
-                                                    <td>{{incidence.observations}}</td>
-                                                    <td>{{incidence.created_at | date:"dd 'de' MMMM 'do' yyyy"}}</td>
-                                                    <td><md-button class="md-raised md-primary" style="background-color: #ffad33" data-toggle="modal" data-target="#newIncident" ng-click="editIncidence(incidence)"></md-button></td>
-                                                    <td><md-button class="md-raised md-primary" style="background-color: #ff3333" ng-click="deleteIncidence($index)"></md-button></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                     <div class="box-footer">
                                         <div class="pull-right">

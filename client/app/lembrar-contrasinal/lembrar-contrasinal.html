@@ -1,0 +1,27 @@
+<div class="login-box">
+    <div class="login-logo">
+        <b>Minerva</b>
+        <br>
+        Xestión de bibliotecas
+    </div>
+
+    <div class="login-box-body">
+        <p class="login-box-msg">Introduce o teu usuario e a tua contrasinal para iniciar sesión</p>
+
+        <form name="formLogin">
+            <div class="form-group inner-addon right-addon">
+                <input type="text" class="form-control" placeholder="Nome de usuario" ng-model="username" required>
+                <span class="glyphicon glyphicon-envelope"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <a href="/login">Xa a lembro</a>
+
+                    <button type="submit" class="btn btn-primary btn-flat pull-right" ng-disabled="formLogin.$invalid" ng-click="login()">Lembrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

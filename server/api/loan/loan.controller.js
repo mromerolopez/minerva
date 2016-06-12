@@ -11,7 +11,7 @@
 
 import _ from 'lodash';
 import Loan from './loan.model';
-
+import Book from '../book/book.model.js';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -81,8 +81,20 @@ export function show(req, res) {
 
 // Creates a new Loan in the DB
 export function create(req, res) {
-  Loan.createAsync(req.body)
-    .then(respondWithResult(res, 201))
+  Loan.create(req.body)
+    .then(function(loan){
+        Book.findByIdAndUpdate(
+                loan.book,
+                { $push: { loans: loan._id } },
+                { safe: true, upsert: true },
+                function(err, model) {
+                    console.log(err);
+                }
+             );
+     
+        res.status(201).send(loan);
+        
+        })
     .catch(handleError(res));
 }
 
