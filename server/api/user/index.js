@@ -17,5 +17,7 @@ router.put('/:id',jwt({secret:secret}), controller.update);
 router.patch('/:id',jwt({secret:secret}), controller.update);
 router.delete('/:id',jwt({secret:secret}), controller.destroy);
 router.get('/last/logins',jwt({secret:secret}), controller.lastLogins);
+router.post('/check-email', controller.checkEmail);
+router.get('/remember-password/:id', controller.rememberPassword);
 
 module.exports = router;

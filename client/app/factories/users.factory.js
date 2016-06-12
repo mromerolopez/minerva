@@ -11,7 +11,8 @@ function usersFactory($q, $http) {
         saveUser: saveUser, // updates an existing user
         addUser: addUser, // creates a new user
         lastLogins: lastLogins, // gives a user list sorted by login date
-        checkEmail: checkEmail
+        checkEmail: checkEmail,
+        rememberPassword: rememberPassword
     };
 
     function login(user, pass) {
@@ -115,8 +116,24 @@ function usersFactory($q, $http) {
 
         $http({
             method: 'POST',
-            url: 'api/users/check_email/',
+            url: 'api/users/check-email/',
             data: {email: email}
+        }).success(function (result) {
+            defered.resolve(result);
+        }).error(function (err) {
+            defered.reject(err);
+        });
+
+        return promise;
+    }
+
+    function rememberPassword(id) {
+        var defered = $q.defer();
+        var promise = defered.promise;
+
+        $http({
+            method: 'GET',
+            url: 'api/users/remember-password/' + id
         }).success(function (result) {
             defered.resolve(result);
         }).error(function (err) {

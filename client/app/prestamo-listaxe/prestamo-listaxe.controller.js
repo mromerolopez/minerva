@@ -11,14 +11,23 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
     $scope.extendingLoan = false;
     $scope.incidents = [];
 
+
+    $scope.options = {
+        customClass: null,
+        minDate: new Date(),
+        showWeeks: true
+    };
+
+
     var user = auth.get_user();
 
     configurationFactory.getConfiguration(user._id)
             .then(function (config) {
                 $scope.incidents = config.incident_types;
-            }).catch(function (err) {
-        console.log(err);
-    });
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
 
 
     $scope.newLoan = function () {
@@ -33,11 +42,19 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
                 console.log(err);
             });
 
+
     $scope.editLoan = function (loan) {
         $scope.editingLoan = true;
         $scope.loan = loan;
         $scope.book = loan.book;
         $scope.borrower = loan.borrower;
+
+        $scope.options = {
+            customClass: null,
+            minDate: new Date(loan.loan_date),
+            showWeeks: true
+        };
+
         for (var i = 0; i < loan.incidents.length; i++) {
             if (loan.incidents[i].active) {
                 $scope.incidences.push(loan.incidents[i]);
@@ -117,6 +134,9 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
     };
 
     $scope.extendLoan = function () {
+        $scope.loanLimitDateOpions = {
+            maxDate: $scope.loan.loan_date
+        };
         $scope.extendingLoan = true;
 
     };
@@ -152,7 +172,7 @@ function PrestamoListaxeCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColum
                         $scope.incidences.splice(index, 1);
                         SweetAlert.swal("¡Eliminado!", "Esta incidencia foi eliminada.", "success");
                         incidentsFactory.saveIncident(incidence).then(function (incident) {
-                            
+
                             SweetAlert.swal("¡Eliminado!", "Esta incidencia foi eliminada.", "success");
                         }).catch(function (err) {
                             SweetAlert.swal("Ocurriu un erro inesperado :(", null, "error");

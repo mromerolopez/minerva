@@ -10,7 +10,7 @@
 
         <form name="formLogin">
             <div class="form-group inner-addon right-addon">
-                <input type="text" class="form-control" placeholder="Nome de usuario" ng-model="username" required>
+                <input type="email" class="form-control" placeholder="Nome de usuario" ng-model="email" required>
                 <span class="glyphicon glyphicon-envelope"></span>
             </div>
 
@@ -19,7 +19,7 @@
 
                     <a href="/login">Xa a lembro</a>
 
-                    <button type="submit" class="btn btn-primary btn-flat pull-right" ng-disabled="formLogin.$invalid" ng-click="login()">Lembrar</button>
+                    <button type="submit" class="btn btn-primary btn-flat pull-right" ng-disabled="formLogin.$invalid" ng-click="sendNewPassword(email)">Lembrar</button>
                 </div>
             </div>
         </form>

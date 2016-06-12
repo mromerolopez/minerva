@@ -220,3 +220,46 @@ export function rememberPassword(req, res){
                 .catch(handleError(res));
     });
 }
+
+function hashPassword(password, cb){
+    
+    var SALT = 10;
+  
+    bcrypt.genSalt(SALT, function(err, salt){
+          if (err) {
+              return console.log(err);
+          }
+
+          bcrypt.hash(password, salt, function(err, hash) {
+
+              if (err) {
+                  return console.log(err);
+              }
+
+              cb(hash);                
+        }); 
+    });
+}
+
+function sendMail(email, message) {
+    
+    var nodemailer = require('nodemailer');
+    var transporter = nodemailer.createTransport('smtps://');
+    
+    if (email) {
+        var mailOptions = {
+            from: '"Minerva Team" <no-reply@minerva.org>',
+            to: email,
+            subject: 'New Password from Minerva', 
+            text: message,
+            html: message
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Message sent: ' + info.response);
+        });
+    }
+}

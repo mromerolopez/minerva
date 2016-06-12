@@ -148,8 +148,8 @@
                     </div>
                     <div class="row">
                         <center>
-                            <md-button class="md-raised md-primary" ng-click="saveBook(book)">Gardar libro</md-button>
-                            <md-button class="md-raised md-secondary" ng-click="cancelEditingBook()">Cancelar</md-button>
+                            <button class="btn btn-success" ng-click="saveBook(book)">Gardar libro</button>
+                            <button class="btn btn-default" ng-click="cancelEditingBook()">Cancelar</button>
                         </center>
                     </div>
                 </div>
@@ -191,13 +191,13 @@
                                             <label for="editorial">Editorial</label>
                                             <input type="text" class="form-control" id="editorial" placeholder="Introduza a editorial" ng-model="book.editorial" ng-disabled="true">
                                         </div>
-                                        <div class="form-group">
+<!--                                        <div class="form-group">
                                             <label for="exemplar">Exemplar*</label>
                                             <select id="exemplar" class="form-control">
                                                 <option>Copia 1</option>
                                                 <option>Copia 2</option>
                                             </select>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -294,8 +294,8 @@
                     </div>
                     <div class="row">
                         <div class="text-center">
-                            <md-button class="md-raised md-primary" ng-click="saveLoan(loan)">Gardar préstamo</md-button>
-                            <md-button class="md-raised" ng-click="cancelNewLoan()">Cancelar</md-button>
+                            <button class="btn btn-primary" ng-click="saveLoan(loan)">Gardar préstamo</button>
+                            <button class="btn btn-default" ng-click="cancelNewLoan()">Cancelar</button>
                         </div>
                     </div>
                 </div>
