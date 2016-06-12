@@ -38,13 +38,13 @@
                                             <i ng-class="{'fa fa-check text-green fa-2x': user.is_admin, 'fa fa-close text-red fa-2x': !user._is_admin}"></i>
                                         </td>
                                         <td class="text-center">
-                                <md-button class="md-raised md-warn" style="background-color: #ffad33" ng-click="editUser(user)"><span class="fa fa-edit" style="font-size:18px"></span></md-button>
+                                <button class="btn btn-warning" ng-click="editUser(user)"><span class="fa fa-edit" style="font-size:18px"></span></button>
                                 </td>
                                 </tr>
                                 </tbody>
                             </table>
                             <div class="box-footer pull-right">
-                                <md-button class="md-raised md-primary" style="background-color: #009900" ng-click="editUser()">Novo Usuario</md-button>
+                                <button class="md-raised md-primary" style="background-color: #009900" ng-click="editUser()">Novo Usuario</md-button>
                             </div>
                         </div>
                     </div>

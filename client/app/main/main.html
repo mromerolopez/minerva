@@ -18,8 +18,8 @@
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="#" class="small-box-footer">
-                            More info <i class="fa fa-arrow-circle-right"></i>
+                        <a href="/xestion-usuarios" class="small-box-footer">
+                            Ver todos os usuarios <i class="fa fa-arrow-circle-right"></i>
                         </a>
                     </div>
                 </div>
@@ -54,72 +54,41 @@
                 </div> 
             </div>
             <div class="row">
-                <div class="col-md-12 col-lg-12 col-xs-12">
-                    <div class="box box-warning box-solid collapsed-box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Ultimos libros engadidos</h3>
-
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="box-body">
-                            La isla del tesoro
-                        </div>
-                        <div class="box-body">
-                            Steve Jobs 
-                        </div>
-                        <div class="box-body">
-                            Como programar para dummies
-                        </div>
-                    </div>
-                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="box box-info box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Ultimos prestamos</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
             </div>
-            <!--
-                <div class="col-xs-12">
-                    <div class="box box-info  col-lg-4">
-                        <div class="box-header">
-                            <h3 class="box-title">Libros prestados por mes</h3>
-                        </div>
-                        <div class="box-body">
-                            <div class="col-lg-12">
-                                <canvas id="bar" chart-legend="true" class="chart chart-bar" chart-data="dataLoans" chart-labels="labelsLoans" chart-series="seriesLoans" chart-colours="colorsLoans"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="box-body">
+              <div class="table-responsive">
+                <table class="table no-margin">
+                  <thead>
+                  <tr>
+                    <th>Libro</th>
+                    <th>Prestatario</th>
+                    <th>Entregado</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      <tr ng-repeat="loan in loans">
+                    <td>{{loan.book.title}}</td>
+                    <td>{{loan.borrower.name}}</td>
+                    <td><i ng-class="{'fa fa-check text-green fa-2x': loan.returned, 'fa fa-close text-red fa-2x': !loan.returned}"></i></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-                      <div class="row">
-                            <div class="col-xs-12">
-                                <div class="box box-info  col-lg-4">
-                                    <div class="box-header">
-                                        <h3 class="box-title">Fondos biblioteca</h3>
-                                    </div> /.box-header 
-                                    <div class="box-body">
-                                        <div class="col-lg-6">
-                                            <canvas id="pie" class="chart chart-pie" chart-legend="true" chart-data="datap" chart-labels="labelsp" chart-colours="colorsp">
-                                            </canvas> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            <div class="row">
-                            <div class="col-xs-12">
-                                <div class="box box-info  col-lg-4">
-                                    <div class="box-header">
-                                        <h3 class="box-title">Outros datos</h3>
-                                    </div> /.box-header 
-                                    <div class="box-body">
-                                        <div class="col-lg-6">
-                                            <canvas id="doughnut" class="chart chart-doughnut" chart-legend="true" chart-data="datad" chart-labels="labelsd" chart-colours="colorsd">
-                                            </canvas> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
+            <div class="box-footer clearfix">
+              <a href="/prestamo-listaxe" class="btn btn-sm btn-default btn-flat pull-right">Ver todos os prestamos</a>
+            </div>
+          </div>
+        </div>
+                </div>
         </section>
     </section>
 </div>

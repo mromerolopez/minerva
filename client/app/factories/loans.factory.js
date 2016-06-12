@@ -80,7 +80,21 @@ function loansFactory($q, $http) {
         return promise;
     }
 
-    function deleteLoan() {
+    function deleteLoan(loan) {
+        var defered = $q.defer();
+        var promise = defered.promise;
+        loan.active=false;
 
+        $http({
+            method: 'PUT',
+            url: '/api/loans/' + loan._id,
+            data: loan
+        }).success(function (datos) {
+            defered.resolve(datos);
+        }).error(function (err) {
+            defered.reject(err);
+        });
+
+        return promise;
     }
 }
