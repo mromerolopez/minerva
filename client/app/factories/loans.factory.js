@@ -83,11 +83,8 @@ function loansFactory($q, $http) {
     function deleteLoan(loan) {
         var defered = $q.defer();
         var promise = defered.promise;
-<<<<<<< HEAD
+
         loan.active=false;
-=======
-        loan.active = false;
->>>>>>> 2edd7aba76be7286305d8f9fbdbe4b90a19bbfc4
 
         $http({
             method: 'PUT',
