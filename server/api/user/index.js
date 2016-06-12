@@ -10,12 +10,12 @@ var secret=jwtConfig.getSecret();
 var router = express.Router();
 
 router.get('/',jwt({secret:secret}), controller.index);
-router.get('/:id', controller.show);
-router.post('/', controller.create);
+router.get('/:id',jwt({secret:secret}), controller.show);
+router.post('/',jwt({secret:secret}), controller.create);
 router.post('/login', controller.login);
-router.put('/:id', controller.update);
-router.patch('/:id', controller.update);
-router.delete('/:id', controller.destroy);
-router.get('/last/logins', controller.lastLogins);
+router.put('/:id',jwt({secret:secret}), controller.update);
+router.patch('/:id',jwt({secret:secret}), controller.update);
+router.delete('/:id',jwt({secret:secret}), controller.destroy);
+router.get('/last/logins',jwt({secret:secret}), controller.lastLogins);
 
 module.exports = router;
