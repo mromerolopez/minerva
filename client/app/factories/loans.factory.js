@@ -4,11 +4,11 @@ angular.module('minervaApp').factory('loansFactory', loansFactory);
 
 function loansFactory($q, $http) {
     return {
-        getLoans: getLoans, // obtiene todos los préstamos
-        getLoan: getLoan, // (id) obtiene un préstamo concreto
-        addLoan: addLoan, // (loan) añade un préstamo a la base de datos
-        saveLoan: saveLoan, // (loan) actualiza un préstamo de la base de datos
-        deleteLoan: deleteLoan // (loan) desactiva una loan de la base de datos
+        getLoans: getLoans,
+        getLoan: getLoan,
+        addLoan: addLoan,
+        saveLoan: saveLoan,
+        deleteLoan: deleteLoan
     };
 
     function getLoans() {
@@ -83,7 +83,11 @@ function loansFactory($q, $http) {
     function deleteLoan(loan) {
         var defered = $q.defer();
         var promise = defered.promise;
+<<<<<<< HEAD
         loan.active=false;
+=======
+        loan.active = false;
+>>>>>>> 2edd7aba76be7286305d8f9fbdbe4b90a19bbfc4
 
         $http({
             method: 'PUT',

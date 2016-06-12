@@ -1,11 +1,5 @@
-<!-- <sidebar></sidebar>
--->
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header" >
-
-
         <section class="content">
             <h1>
                 Xestión de usuarios
@@ -41,13 +35,13 @@
                                         <td class="text-center">{{borrower.email}}</td>
                                         <td class="text-center">{{borrower.phone}}</td>
                                         <td class="text-center">{{borrower.address}}</td>
-                                        <td class="text-center"><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editBorrower(borrower)"><i class="fa fa-edit"></i></md-button></td>
-                                <td class="text-center"><md-button class="md-raised md-primary" ng-click="newLoan(borrower)"><i class="fa fa-book"></i></md-button></td>
-                                </tr>
+                                        <td class="text-center"><button class="btn btn-warning" ng-click="editBorrower(borrower)"><i class="fa fa-edit"></i></button></td>
+                                        <td class="text-center"><button class="btn btn-primary" ng-click="newLoan(borrower)"><i class="fa fa-book"></i></button></td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <div class="box-footer pull-right">
-                                <md-button class="md-raised md-primary" style="background-color: #009900" ng-click="editBorrower()">Novo Usuario</md-button>
+                                <button class="btn btn-success" ng-click="editBorrower()">Novo Usuario</button>
                             </div>
                         </div>
                     </div>
@@ -106,12 +100,8 @@
                                         <option value="N/A">N/A</option>
                                         <option ng-repeat="type in types" value="{{type.name}}">{{type.name}}</option>
                                     </select>
-
                                 </div>
-                                <!--                                <div class="form-group">
-                                                                    <label for="studentId">ID Estudiante</label>
-                                                                    <input type="text" class="form-control" id="studentId" placeholder="ID Estudiante" ng-model="borrower.studentId">
-                                                                </div>-->
+
                                 <div class="form-group">
                                     <label for="email">Conta de correo</label>
                                     <input type="email" class="form-control" id="email" placeholder="Conta de correo" ng-model="borrower.email">
@@ -124,16 +114,15 @@
 
                                 <div class="form-group">
                                     <div class="form-group">
+                                        <checkbox ng-model="borrower.active" id="active"></checkbox>
                                         <label for="active">Activo</label>
-                                        <br>
-                                        <input type="checkbox" id="active" ng-model="borrower.active">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="box-footer text-center">
-                            <md-button type="button" class="md-raised md-primary" ng-click="saveBorrower(borrower)">Gardar</md-button>
-                            <md-button type="button" class="md-raised" ng-click="cancelEditingBorrower()">Cancelar</md-button>
+                            <button type="button" class="btn btn-primary" ng-click="saveBorrower(borrower)">Gardar</button>
+                            <button type="button" class="btn btn-default" ng-click="cancelEditingBorrower()">Cancelar</button>
                         </div>
                     </div> 
                 </div>
@@ -277,8 +266,8 @@
                 </div>
                 <div class="row">
                     <center>
-                        <md-button class="md-raised md-primary" ng-click="saveLoan(loan)">Gardar préstamo</md-button>
-                        <md-button class="md-raised" ng-click="cancelNewLoan()">Cancelar</md-button>
+                        <button class="btn btn-success" ng-click="saveLoan(loan)">Gardar préstamo</button>
+                        <button class="btn btn-default" ng-click="cancelNewLoan()">Cancelar</button>
                     </center>
                 </div>
             </div>
