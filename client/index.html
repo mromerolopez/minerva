@@ -15,7 +15,6 @@
         <!-- build:css(client) app/vendor.css -->
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
-        <link rel="stylesheet" href="bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.css" />
         <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
         <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" />
         <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
@@ -60,7 +59,7 @@
             <minerva-sidebar salir="salir" ng-if="!login"></minerva-sidebar>
             
             <div ui-view=""></div>
-            <footer ng-hide="login"></footer>
+            <footer ng-if="!login"></footer>
         </div>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

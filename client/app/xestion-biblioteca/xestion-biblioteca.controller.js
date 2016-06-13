@@ -21,7 +21,7 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, boo
             }).catch(function (err) {
         console.log(err);
     });
-    
+
     // nuevo libro
 
     $scope.newBook = function () {
@@ -50,8 +50,14 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, boo
                             var searchedBook = datos.items[0].volumeInfo;
                             $scope.book.title = searchedBook.title;
                             $scope.book.author = searchedBook.authors[0];
-                            $scope.book.isbn10 = searchedBook.industryIdentifiers[0].identifier;
-                            $scope.book.isbn13 = searchedBook.industryIdentifiers[1].identifier;
+                            if (searchedBook.industryIdentifiers[0].identifier.length <= 10) {
+                                $scope.book.isbn10 = searchedBook.industryIdentifiers[0].identifier;
+                                $scope.book.isbn13 = searchedBook.industryIdentifiers[1].identifier;
+                            } else {
+                                $scope.book.isbn10 = searchedBook.industryIdentifiers[1].identifier;
+                                $scope.book.isbn13 = searchedBook.industryIdentifiers[0].identifier;
+                            }
+
                             $scope.book.image = searchedBook.imageLinks.thumbnail;
                             $scope.book.synopsis = searchedBook.description;
                             $scope.book.language = searchedBook.language;
@@ -91,7 +97,15 @@ function XestionBibliotecaCtrl($scope, DTOptionsBuilder, DTColumnDefBuilder, boo
             book.user = user._id;
             booksFactory.addBook(book)
                     .then(function (insertedBook) {
-                        //console.log(insertedBook);
+                       
+                        delete insertedBook.user;
+                        
+                        insertedBook.user = {
+                            name: user.name,
+                            surname1: user.surname1,
+                            surname2: user.surname2
+                        };
+                        
                         $scope.books.push(insertedBook);
                         $scope.editingBook = false;
                         $scope.book = new Object;
