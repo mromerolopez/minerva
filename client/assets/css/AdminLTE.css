@@ -3183,7 +3183,7 @@ table.text-center th {
 }
 .login-page,
 .register-page {
-    background: #d2d6de;
+    background: #4e7ea6;
 }
 .login-box,
 .register-box {
@@ -3199,10 +3199,10 @@ table.text-center th {
 }
 .login-box-body,
 .register-box-body {
-    background: #fff;
+    background: #cccccc;
     padding: 20px;
     border-top: 0;
-    color: #666;
+    color: #666666;
 }
 .login-box-body .form-control-feedback,
 .register-box-body .form-control-feedback {

@@ -297,17 +297,17 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
     })();
 
     (function () {
-        var opcionesTablaLibros = new Object;
-        opcionesTablaLibros.dtOptions = DTOptionsBuilder
+        var opcionesTablaBooks = new Object;
+        opcionesTablaBooks.dtOptions = DTOptionsBuilder
                 .newOptions().withPaginationType('full_numbers')
                 .withDisplayLength(10)
                 .withLanguageSource('/assets/datatables/translations/galician.json');
-        opcionesTablaLibros.dtColumnDefs = [
+        opcionesTablaBooks.dtColumnDefs = [
             DTColumnDefBuilder.newColumnDef(0),
             DTColumnDefBuilder.newColumnDef(1).notSortable(),
             DTColumnDefBuilder.newColumnDef(2).notSortable()
         ];
-        $scope.opcionesTablaLibros = opcionesTablaLibros;
+        $scope.opcionesTablaBooks = opcionesTablaBooks;
     })();
 
     (function () {

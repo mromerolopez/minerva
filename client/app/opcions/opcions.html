@@ -9,240 +9,372 @@
                 Opcións de configuración
             </h1>
             <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title"></h3>
-                        </div> 
-                        <div class="box-body">                          
-                            <uib-accordion close-others="oneAtATime">
-                                <div class="col-lg-6">
-                                    <uib-accordion-group heading="Localizacións" is-open="isFirstOpen" panel-class="panel-info">
-                                        <div ng-hide="editingLocation || creatingLocation">
-                                            <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLocations.dtOptions" dt-column-defs="opcionesTablaLocations.dtColumnDefs">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Localización</th>
-                                                        <th>Editar</th>
-                                                        <th>Eliminar</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr ng-repeat="location in locations track by $index">
-                                                        <td>{{location.name}}</td> 
-                                                        <td><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editLocation($index)"><i class="fa fa-edit"></i></md-button></td>
-                                                        <td><md-button class="md-raised md-primary"  style="background-color: #ff3333" ng-click="deleteLocation($index)"><i class="fa fa-trash-o"></i></md-button></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="box-footer pull-right">
-                                                <md-button class="md-raised md-warn" style="background-color: #009900" ng-click="newLocation()">Nova Localización</md-button>
-                                            </div>
-                                        </div>
-
-                                        <div ng-show="editingLocation">
-                                            <div class="form-group">
-                                                <label for="location">Nome localización</label>
-                                                <input type="text" class="form-control" id="location" ng-model="location.name">
-                                                <div class="box-footer pull-right">
-                                                    <md-button class="md-raised md-primary"  ng-click="saveLocation($index)">Gardar</md-button>
-                                                    <md-button class="md-raised" ng-click="cancelLocation()">Cancelar</md-button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div ng-show="creatingLocation">
-                                            <div class="form-group">
-                                                <label for="location">Nome localización</label>
-                                                <input type="text" class="form-control" id="location" ng-model="location.name">
-                                                <div class="box-footer pull-right">
-                                                    <md-button class="md-raised md-primary" ng-click="saveNewLocation(location)">Gardar</md-button>
-                                                    <md-button class="md-raised" ng-click="cancelLocation()">Cancelar</md-button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </uib-accordion-group>
-                                    
-                                    <uib-accordion-group heading="Tipos de incidencias" panel-class="panel-warning">
-                                        <div ng-hide="editingIncident || creatingIncident">
-                                            <table class="table table-hover" datatable="ng" dt-options="opcionesTablaIncidents.dtOptions" dt-column-defs="opcionesTablaIncidents.dtColumnDefs">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Nome</th>
-                                                        <th>Editar</th>
-                                                        <th>Eliminar</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr ng-repeat="incident in incidents track by $index">
-                                                        <td>{{incident.name}}</td> 
-                                                        <td><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editIncident($index)"><i class="fa fa-edit"></i></md-button></td>
-                                                        <td><md-button class="md-raised md-primary" style="background-color: #ff3333" ng-click="deleteIncident($index)"><i class="fa fa-trash-o"></i></md-button></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="box-footer pull-right">
-                                                <md-button class="md-raised md-warn" style="background-color: #009900" ng-click="newIncident()">Novo tipo de incidencia</md-button>
-                                            </div>
-                                        </div>
-
-                                        <div ng-show="editingIncident">
-                                            <div class="form-group">
-                                                <label for="location">Nome incidencia</label>
-                                                <input type="text" class="form-control" id="location" ng-model="incident.name">
-<!--                                                <label for="location">Descrición da incidencia</label>
-                                                <input type="text" class="form-control" id="location" ng-model="incident.description">-->
-                                                <div class="box-footer pull-right">
-                                                    <md-button class="md-raised md-primary" ng-click="saveIncident($index)">Gardar</md-button>
-                                                    <md-button class="md-raised" ng-click="cancelIncident()">Cancelar</md-button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div ng-show="creatingIncident">
-                                            <div class="form-group">
-                                                <label for="location">Nome incidencia</label>
-                                                <input type="text" class="form-control" id="location" ng-model="incident.name">
-<!--                                                <label for="location">Descrición da incidencia</label>
-                                                <input type="text" class="form-control" id="location" ng-model="incident.description">-->
-                                                <div class="box-footer pull-right">
-                                                    <md-button class="md-raised md-primary" ng-click="saveNewIncident(incident)">Gardar</md-button>
-                                                    <md-button class="md-raised" ng-click="cancelIncident()">Cancelar</md-button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </uib-accordion-group>
-                                </div>
-
-                            </uib-accordion>
-                            
-                            <uib-accordion close-others="oneAtATime">
-                                <div class="col-lg-6">
-                                    <uib-accordion-group heading="Tipos de libros"   panel-class="panel-success">
-                                        <div ng-hide="editingBook || creatingBook">
-                                            <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLibros.dtOptions" dt-column-defs="opcionesTablaLibros.dtColumnDefs">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Tipo de libro</th>
-                                                        <th>Editar</th>
-                                                        <th>Eliminar</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr ng-repeat="book in books track by $index">
-                                                        <td>{{book.name}}</td> 
-                                                        <td><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editBook($index)"><i class="fa fa-edit"></i></md-button></td>
-                                                        <td><md-button class="md-raised md-primary" style="background-color: #ff3333" ng-click="deleteBook($index)"><i class="fa fa-trash-o"></i></md-button></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="box-footer pull-right">
-                                                 <md-button class="md-raised md-warn" style="background-color: #009900" ng-click="newBook()">Novo Libro</md-button>
-                                            </div>
-                                        </div>
-
-                                        <div ng-show="editingBook">
-                                            <div class="form-group">
-                                                <label for="book">Nome do tipo de libro</label>
-                                                <input type="text" class="form-control" id="location" ng-model="book.name">
-                                                <div class="box-footer pull-right">
-                                                    <md-button class="md-raised md-primary" ng-click="saveBook($index)">Gardar</md-button>
-                                                    <md-button class="md-raised" ng-click="cancelBook()">Cancelar</md-button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div ng-show="creatingBook">
-                                            <div class="form-group">
-                                                <label for="book">Nome do tipo de libro</label>
-                                                <input type="text" class="form-control" id="location" ng-model="book.name">
-                                                <div class="box-footer pull-right">
-                                                    <md-button class="md-raised md-primary" ng-click="saveNewBook(book)">Gardar</md-button>
-                                                    <md-button class="md-raised" ng-click="cancelBook()">Cancelar</md-button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </uib-accordion-group>
-                                    <uib-accordion-group heading="Tipos de usuarios"  panel-class="panel-danger">
-                                        <div ng-hide="editingBorrower || creatingBorrower">
-                                            <table class="table table-hover" datatable="ng" dt-options="opcionesTablaUsers.dtOptions" dt-column-defs="opcionesTablaUsers.dtColumnDefs">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Tipo de usuario</th>
-                                                        <th>Tempo Préstamos</th>
-                                                        <th>Editar</th>
-                                                        <th>Eliminar</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr ng-repeat="borrower in borrowers track by $index">
-                                                        <td>{{borrower.name}}</td>
-                                                        <td>{{borrower.time|| ( borrower.date | date:"dd 'de' MMMM 'do' yyyy") }}</td>
-                                                        <td><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editBorrower($index)"><i class="fa fa-edit"></i></md-button></td>
-                                                        <td><md-button class="md-raised md-primary" style="background-color: #ff3333" ng-click="deleteBorrower($index)"><i class="fa fa-trash-o"></i></md-button></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div class="box-footer pull-right">
-                                                <md-button class="md-raised md-warn" style="background-color: #009900" ng-click="newBorrower()">Novo Usuario</md-button>
-                                            </div>
-                                        </div>
-
-                                        <div ng-show="editingBorrower">
-                                            <div class="form-group">
-                                                <label for="borrower">Nome do tipo de usuario</label>
-                                                <input type="text" class="form-control" id="location" ng-model="borrower.name">
-                                                <label class="radio"><input name="rb1" type="radio" class="minimal" ng-model="type" value="days" ng-change="checkTypes(type)">Número de días</label>
-                                                <label class="radio"><input name="rb2" type="radio" class="minimal" ng-model="type" value="date" ng-change="checkTypes(type)">Data fin de préstamo</label>
-
-                                                <div ng-show="showDatepicker">
-                                                    <center>
-                                                        <input uib-datepicker ng-model="borrower.date" min-date="minDate">
-                                                    </center>
-                                                </div>
-                                                <input type="number" class="form-control" ng-model="borrower.time" ng-show="!showDatepicker">
-
-                                                <div class="box-footer pull-right">
-                                                    <md-button class="md-raised md-primary" ng-click="saveBorrower(borrower)">Gardar</md-button>
-                                                    <md-button class="md-raised" ng-click="cancelBorrower()">Cancelar</md-button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div ng-show="creatingBorrower">
-                                            <div class="form-group">
-
-                                                <label for="borrower">Nome do tipo de usuario</label>
-                                                <input type="text" class="form-control" id="location" ng-model="borrower.name">
-                                                <label class="radio"><input name="radiobutton" type="radio" class="minimal" ng-model="type" value="days" ng-change="checkTypes(type)">Número de días</label>
-                                                <label class="radio"><input name="radiobutton" type="radio" class="minimal" ng-model="type" value="date" ng-change="checkTypes(type)">Data fin de préstamo</label>
-
-                                                <div ng-show="showDatepicker">
-                                                    <center>
-                                                        <input uib-datepicker ng-model="borrower.date" min-date="minDate">
-                                                    </center>
-                                                </div>
-                                                <input type="number" class="form-control" ng-model="borrower.time" ng-show="!showDatepicker">
-
-                                                <div class="box-footer pull-right">
-                                                    <md-button class="md-raised md-primary" ng-click="saveNewBorrower(borrower)">Gardar</md-button>
-                                                    <md-button class="md-raised" ng-click="cancelBorrower()">Cancelar</md-button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </uib-accordion-group>
-
-                                </div>
-
-                            </uib-accordion>
+                <div class="col-md-6 col-lg-6 col-xs-12" >
+                    <div class="box box-warning box-solid">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Localizacions</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                </button>
+                            </div>
                         </div>
-                        <!-- /.box-body -->
+                        <div class="box-body">
+                            <div ng-hide="editingLocation || creatingLocation">
+                                <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLocations.dtOptions" dt-column-defs="opcionesTablaLocations.dtColumnDefs">
+                                    <thead>
+                                        <tr>
+                                            <th>Localización</th>
+                                            <th>Editar</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="location in locations track by $index">
+                                            <td>{{location.name}}</td> 
+                                            <td><button class="btn btn-warning" ng-click="editLocation($index)"><i class="fa fa-edit"></i></button></td>
+                                            <td><button class="btn btn-danger" ng-click="deleteLocation($index)"><i class="fa fa-trash-o"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="box-footer pull-right">
+                                    <button class="btn btn-success" ng-click="newLocation()">Nova Localización</button>
+                                </div>
+                            </div>
+                            <div ng-show="editingLocation">
+                                <div class="form-group">
+                                    <label for="location">Nome localización</label>
+                                    <input type="text" class="form-control" id="location" ng-model="location.name">
+                                    <div class="box-footer pull-right">
+                                        <button class="btn btn-success"  ng-click="saveLocation($index)">Gardar</button>
+                                        <button class="btn btn-primary" ng-click="cancelLocation()">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="creatingLocation">
+                                <div class="form-group">
+                                    <label for="location">Nome localización</label>
+                                    <input type="text" class="form-control" id="location" ng-model="location.name">
+                                    <div class="box-footer pull-right">
+                                        <button class="btn btn-success" ng-click="saveNewLocation(location)">Gardar</button>
+                                        <button class="btn btn-primary" ng-click="cancelLocation()">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xs-12" >
+                    <div class="box box-danger box-solid">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Incidencias</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div ng-hide="editingIncident || creatingIncident">
+                                <table class="table table-hover" datatable="ng" dt-options="opcionesTablaIncidents.dtOptions" dt-column-defs="opcionesTablaIncidents.dtColumnDefs">
+                                    <thead>
+                                        <tr>
+                                            <th>Incidencia</th>
+                                            <th>Editar</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="incident in incidents track by $index">
+                                            <td>{{incident.name}}</td> 
+                                            <td><button class="btn btn-warning" ng-click="editIncident($index)"><i class="fa fa-edit"></i></button></td>
+                                            <td><button class="btn btn-danger" ng-click="deleteIncident($index)"><i class="fa fa-trash-o"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="box-footer pull-right">
+                                    <button class="btn btn-success" ng-click="newIncident()">Novo tipo de incidencia</button>
+                                </div>
+                            </div>
+
+                            <div ng-show="editingIncident">
+                                <div class="form-group">
+                                    <label for="location">Nome incidencia</label>
+                                    <input type="text" class="form-control" id="incident" ng-model="incident.name">
+                                    <div class="box-footer pull-right">
+                                        <button class="btn btn-success"  ng-click="saveIncident($index)">Gardar</button>
+                                        <button class="btn btn-primary" ng-click="cancelIncident()">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-show="creatingIncident">
+                                <div class="form-group">
+                                    <label for="location">Nome incidencia</label>
+                                    <input type="text" class="form-control" id="location" ng-model="location.name">
+                                    <div class="box-footer pull-right">
+                                        <button class="btn btn-success" ng-click="saveNewIncident(incident)">Gardar</button>
+                                        <button class="btn btn-primary" ng-click="cancelIncident()">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-6 col-xs-12" >
+                    <div class="box box-success box-solid">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Tipos de libro</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div ng-hide="editingBook || creatingBook">
+                                <table class="table table-hover" datatable="ng" dt-options="opcionesTablaBooks.dtOptions" dt-column-defs="opcionesTablaBooks.dtColumnDefs">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo de libro</th>
+                                            <th>Editar</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="book in books track by $index">
+                                            <td>{{book.name}}</td> 
+                                            <td><button class="btn btn-warning" ng-click="editBook($index)"><i class="fa fa-edit"></i></button></td>
+                                            <td><button class="btn btn-danger" ng-click="deleteBook($index)"><i class="fa fa-trash-o"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="box-footer pull-right">
+                                    <button class="btn btn-success" ng-click="newBook()">Novo Libro</button>
+                                </div>
+                            </div>
+
+                            <div ng-show="editingBook">
+                                <div class="form-group">
+                                    <label for="location">Nome do tipo de libro</label>
+                                    <input type="text" class="form-control" id="book" ng-model="book.name">
+                                    <div class="box-footer pull-right">
+                                        <button class="btn btn-success"  ng-click="saveBook($index)">Gardar</button>
+                                        <button class="btn btn-primary" ng-click="cancelBook()">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-show="creatingBook">
+                                <div class="form-group">
+                                    <label for="location">Nome do tipo de libro</label>
+                                    <input type="text" class="form-control" id="location" ng-model="location.name">
+                                    <div class="box-footer pull-right">
+                                        <button class="btn btn-success" ng-click="saveNewBook(book)">Gardar</button>
+                                        <button class="btn btn-primary" ng-click="cancelBook()">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xs-12" >
+                    <div class="box box-primary box-solid">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Tipos de usuario</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div ng-hide="editingBorrower || creatingBorrower">
+                                <table class="table table-hover" datatable="ng" dt-options="opcionesTablaUsers.dtOptions" dt-column-defs="opcionesTablaUsers.dtColumnDefs">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo de usuario</th>
+                                            <th>Tempo Prestamos</th>
+                                            <th>Editar</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="borrower in borrowers track by $index">
+                                            <td>{{borrower.name}}</td> 
+                                            <td>{{borrower.time|| ( borrower.date | date:"dd 'de' MMMM 'do' yyyy") }}</td> 
+                                            <td><button class="btn btn-warning" ng-click="editBorrower($index)"><i class="fa fa-edit"></i></button></td>
+                                            <td><button class="btn btn-danger" ng-click="deleteBorrower($index)"><i class="fa fa-trash-o"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="box-footer pull-right">
+                                    <button class="btn btn-success" ng-click="newBorrower()">Novo Usuario</button>
+                                </div>
+                            </div>
+
+                            <div ng-show="editingBorrower">
+                                <div class="form-group">
+                                    <label for="location">Nome do tipo de usuario</label>
+                                    <input type="text" class="form-control" id="borrower" ng-model="borrower.name">
+                                    <div class="box-footer pull-right">
+                                        <button class="btn btn-success"  ng-click="saveLocation($index)">Gardar</button>
+                                        <button class="btn btn-primary" ng-click="cancelLocation()">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-show="editingBorrower">
+                                <div class="form-group">
+                                    <label for="borrower">Nome do tipo de usuario</label>
+                                    <input type="text" class="form-control" id="borrower" ng-model="borrower.name">
+                                    <label class="radio"><input name="rb1" type="radio" class="minimal" ng-model="type" value="days" ng-change="checkTypes(type)">Número de días</label>
+                                    <label class="radio"><input name="rb2" type="radio" class="minimal" ng-model="type" value="date" ng-change="checkTypes(type)">Data fin de préstamo</label>
+
+                                    <div ng-show="showDatepicker">
+                                        <center>
+                                            <input uib-datepicker ng-model="borrower.date" min-date="minDate">
+                                        </center>
+                                    </div>
+                                    <input type="number" class="form-control" ng-model="borrower.time" ng-show="!showDatepicker">
+
+                                    <div class="box-footer pull-right">
+                                        <md-button class="md-raised md-primary" ng-click="saveBorrower(borrower)">Gardar</md-button>
+                                        <md-button class="md-raised" ng-click="cancelBorrower()">Cancelar</md-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--             
+                                        <uib-accordion close-others="oneAtATime">
+                                            <div class="col-lg-6">
+                                                <uib-accordion-group heading="Tipos de libros"   panel-class="panel-success">
+                                                    <div ng-hide="editingBook || creatingBook">
+                                                        <table class="table table-hover" datatable="ng" dt-options="opcionesTablaLibros.dtOptions" dt-column-defs="opcionesTablaLibros.dtColumnDefs">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Tipo de libro</th>
+                                                                    <th>Editar</th>
+                                                                    <th>Eliminar</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="book in books track by $index">
+                                                                    <td>{{book.name}}</td> 
+                                                                    <td><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editBook($index)"><i class="fa fa-edit"></i></md-button></td>
+                                                                    <td><md-button class="md-raised md-primary" style="background-color: #ff3333" ng-click="deleteBook($index)"><i class="fa fa-trash-o"></i></md-button></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div class="box-footer pull-right">
+                                                             <md-button class="md-raised md-warn" style="background-color: #009900" ng-click="newBook()">Novo Libro</md-button>
+                                                        </div>
+                                                    </div>
+            
+                                                    <div ng-show="editingBook">
+                                                        <div class="form-group">
+                                                            <label for="book">Nome do tipo de libro</label>
+                                                            <input type="text" class="form-control" id="location" ng-model="book.name">
+                                                            <div class="box-footer pull-right">
+                                                                <md-button class="md-raised md-primary" ng-click="saveBook($index)">Gardar</md-button>
+                                                                <md-button class="md-raised" ng-click="cancelBook()">Cancelar</md-button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+            
+                                                    <div ng-show="creatingBook">
+                                                        <div class="form-group">
+                                                            <label for="book">Nome do tipo de libro</label>
+                                                            <input type="text" class="form-control" id="location" ng-model="book.name">
+                                                            <div class="box-footer pull-right">
+                                                                <md-button class="md-raised md-primary" ng-click="saveNewBook(book)">Gardar</md-button>
+                                                                <md-button class="md-raised" ng-click="cancelBook()">Cancelar</md-button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+            
+                                                </uib-accordion-group>
+                                                <uib-accordion-group heading="Tipos de usuarios"  panel-class="panel-danger">
+                                                    <div ng-hide="editingBorrower || creatingBorrower">
+                                                        <table class="table table-hover" datatable="ng" dt-options="opcionesTablaUsers.dtOptions" dt-column-defs="opcionesTablaUsers.dtColumnDefs">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Tipo de usuario</th>
+                                                                    <th>Tempo Préstamos</th>
+                                                                    <th>Editar</th>
+                                                                    <th>Eliminar</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="borrower in borrowers track by $index">
+                                                                    <td>{{borrower.name}}</td>
+                                                                    <td>{{borrower.time|| ( borrower.date | date:"dd 'de' MMMM 'do' yyyy") }}</td>
+                                                                    <td><md-button class="md-raised md-primary" style="background-color: #ffad33" ng-click="editBorrower($index)"><i class="fa fa-edit"></i></md-button></td>
+                                                                    <td><md-button class="md-raised md-primary" style="background-color: #ff3333" ng-click="deleteBorrower($index)"><i class="fa fa-trash-o"></i></md-button></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div class="box-footer pull-right">
+                                                            <md-button class="md-raised md-warn" style="background-color: #009900" ng-click="newBorrower()">Novo Usuario</md-button>
+                                                        </div>
+                                                    </div>
+            
+                                                    <div ng-show="editingBorrower">
+                                                        <div class="form-group">
+                                                            <label for="borrower">Nome do tipo de usuario</label>
+                                                            <input type="text" class="form-control" id="location" ng-model="borrower.name">
+                                                            <label class="radio"><input name="rb1" type="radio" class="minimal" ng-model="type" value="days" ng-change="checkTypes(type)">Número de días</label>
+                                                            <label class="radio"><input name="rb2" type="radio" class="minimal" ng-model="type" value="date" ng-change="checkTypes(type)">Data fin de préstamo</label>
+            
+                                                            <div ng-show="showDatepicker">
+                                                                <center>
+                                                                    <input uib-datepicker ng-model="borrower.date" min-date="minDate">
+                                                                </center>
+                                                            </div>
+                                                            <input type="number" class="form-control" ng-model="borrower.time" ng-show="!showDatepicker">
+            
+                                                            <div class="box-footer pull-right">
+                                                                <md-button class="md-raised md-primary" ng-click="saveBorrower(borrower)">Gardar</md-button>
+                                                                <md-button class="md-raised" ng-click="cancelBorrower()">Cancelar</md-button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+            
+                                                    <div ng-show="creatingBorrower">
+                                                        <div class="form-group">
+            
+                                                            <label for="borrower">Nome do tipo de usuario</label>
+                                                            <input type="text" class="form-control" id="location" ng-model="borrower.name">
+                                                            <label class="radio"><input name="radiobutton" type="radio" class="minimal" ng-model="type" value="days" ng-change="checkTypes(type)">Número de días</label>
+                                                            <label class="radio"><input name="radiobutton" type="radio" class="minimal" ng-model="type" value="date" ng-change="checkTypes(type)">Data fin de préstamo</label>
+            
+                                                            <div ng-show="showDatepicker">
+                                                                <center>
+                                                                    <input uib-datepicker ng-model="borrower.date" min-date="minDate">
+                                                                </center>
+                                                            </div>
+                                                            <input type="number" class="form-control" ng-model="borrower.time" ng-show="!showDatepicker">
+            
+                                                            <div class="box-footer pull-right">
+                                                                <md-button class="md-raised md-primary" ng-click="saveNewBorrower(borrower)">Gardar</md-button>
+                                                                <md-button class="md-raised" ng-click="cancelBorrower()">Cancelar</md-button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+            
+                                                </uib-accordion-group>
+            
+                                            </div>
+            
+                                        </uib-accordion>
+                                    </div>
+                                     /.box-body 
+                                </div>
+                            </div>
+                        </div>-->
 
         </section>
     </section>
