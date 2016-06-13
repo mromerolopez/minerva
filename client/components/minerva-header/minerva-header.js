@@ -1,6 +1,6 @@
 'use strict';
 
-app.directive('minervaHeader', function () {
+app.directive('minervaHeader', function ($timeout) {
 
     return {
         restrict: 'E',
@@ -10,8 +10,8 @@ app.directive('minervaHeader', function () {
             salir: '='
         },
         link: function (scope, elem, attrs) {
-
-            $(document).ready(function () {
+            
+            $timeout(function () {
                 $.AdminLTE.options = {
                     navbarMenuSlimscroll: true,
                     navbarMenuSlimscrollWidth: "3px",
@@ -56,12 +56,13 @@ app.directive('minervaHeader', function () {
                         lg: 1200
                     }
                 };
-                
+
                 var o = $.AdminLTE.options;
                 if (o.sidebarPushMenu) {
                     $.AdminLTE.pushMenu.activate(o.sidebarToggleSelector);
                 }
             });
+            
         }
     };
 });
