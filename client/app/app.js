@@ -14,13 +14,13 @@ var app = angular.module('minervaApp', [
     'ngMaterial',
     'ja.qr',
     'ui.checkbox',
-    'ui-notification'
+    'ui-notification',
+    'ngCsv'
 ])
         .config(function ($urlRouterProvider, $locationProvider) {
             $urlRouterProvider.otherwise('/');
             $locationProvider.html5Mode(true);
         })
-
 
         .constant('COOKIE', {USER: 'minerva_dev_user', TOKEN: 'minerva_dev_token'})
 

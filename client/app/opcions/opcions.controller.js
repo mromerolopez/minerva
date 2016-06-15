@@ -324,5 +324,11 @@ function OpcionsCtrl($scope, $rootScope, auth, DTOptionsBuilder, DTColumnDefBuil
         ];
         $scope.opcionesTablaUsers = opcionesTablaUsers;
     })();
+    
+    // csv
+    
+    $scope.getBorrowersHeader = function(){
+      return ['Hola', 'Adios'];  
+    };
 }
 
