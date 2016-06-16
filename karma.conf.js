@@ -47,6 +47,7 @@ module.exports = function(config) {
       'client/bower_components/angular-qr/src/angular-qr.js',
       'client/bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox.js',
       'client/bower_components/angular-ui-notification/dist/angular-ui-notification.js',
+      'client/bower_components/ng-csv/build/ng-csv.min.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',

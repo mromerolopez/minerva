@@ -29,8 +29,8 @@
                     <div class="info-box">
                         <span class="info-box-icon bg-maroon-gradient"><i class="fa fa-flag-o"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Alertas</span>
-                            <span class="info-box-number">3</span>
+                            <span class="info-box-text">Incidentes</span>
+                            <span class="info-box-number">{{incidents.length}}</span>
                         </div>
                     </div>
                 </div> 
@@ -38,8 +38,8 @@
                     <div class="info-box">
                         <span class="info-box-icon bg-light-blue-gradient"><i class="fa fa-star-o"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Cousiñas</span>
-                            <span class="info-box-number">19</span>
+                            <span class="info-box-text">Libros rexistrados</span>
+                            <span class="info-box-number">{{books.length}}</span>
                         </div>
                     </div>
                 </div> 
@@ -48,47 +48,51 @@
                         <span class="info-box-icon bg-purple-gradient"><i class="fa fa-bookmark-o"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Prestamos</span>
-                            <span class="info-box-number">23</span>
+                            <span class="info-box-number">{{loans.length}}</span>
                         </div>
                     </div>
                 </div> 
             </div>
-            <div class="row">
+            <div class="row" ng-if="loans.length > 0">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="box box-danger box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Ultimos prestamos</h3>
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="box-body">
-              <div class="table-responsive">
-                <table class="table no-margin">
-                  <thead>
-                  <tr>
-                    <th>Libro</th>
-                    <th>Prestatario</th>
-                    <th>Entregado</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                      <tr ng-repeat="loan in loans">
-                    <td>{{loan.book.title}}</td>
-                    <td>{{loan.borrower.name}}</td>
-                    <td><i ng-class="{'fa fa-check text-green fa-2x': loan.returned, 'fa fa-close text-red fa-2x': !loan.returned}"></i></td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="box-footer clearfix">
-              <a href="/prestamo-listaxe" class="btn btn-sm btn-default btn-flat pull-right">Ver todos os prestamos</a>
-            </div>
-          </div>
-        </div>
+                    <div class="box box-danger box-solid">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Ultimos prestamos</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table class="table no-margin">
+                                    <thead>
+                                        <tr>
+                                            <th>Libro</th>
+                                            <th>Prestatario</th>
+                                            <th>Entregado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="loan in loans">
+                                            <td>{{loan.book.title}}</td>
+                                            <td>{{loan.borrower.name}}</td>
+                                            <td><i ng-class="{'fa fa-check text-green fa-2x': loan.returned, 'fa fa-close text-red fa-2x': !loan.returned}"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="box-footer clearfix">
+                            <a href="/prestamo-listaxe" class="btn btn-sm btn-default btn-flat pull-right">Ver todos os prestamos</a>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <div class="row" ng-if="loans.length === 0">
+                <h2 class="text-center"> Sen préstamos </h2>
+            </div>
         </section>
     </section>
 </div>
