@@ -1,8 +1,8 @@
 'use strict';
 
-var proxyquire = require('proxyquire').noPreserveCache();
+const proxyquire = require('proxyquire').noPreserveCache();
 
-var bookCtrlStub = {
+const bookCtrlStub = {
   index: 'bookCtrl.index',
   show: 'bookCtrl.show',
   create: 'bookCtrl.create',
@@ -10,7 +10,7 @@ var bookCtrlStub = {
   destroy: 'bookCtrl.destroy'
 };
 
-var routerStub = {
+const routerStub = {
   get: sinon.spy(),
   put: sinon.spy(),
   patch: sinon.spy(),
@@ -19,24 +19,24 @@ var routerStub = {
 };
 
 // require the index with our stubbed out modules
-var bookIndex = proxyquire('./index.js', {
+const bookIndex = proxyquire('./index.js', {
   'express': {
-    Router: function() {
+    Router: function () {
       return routerStub;
     }
   },
   './book.controller': bookCtrlStub
 });
 
-describe('Book API Router:', function() {
+describe('Book API Router:', function () {
 
-  it('should return an express router instance', function() {
+  it('should return an express router instance', function () {
     bookIndex.should.equal(routerStub);
   });
 
-  describe('GET /api/books', function() {
+  describe('GET /api/books', function () {
 
-    it('should route to book.controller.index', function() {
+    it('should route to book.controller.index', function () {
       routerStub.get
         .withArgs('/', 'bookCtrl.index')
         .should.have.been.calledOnce;
@@ -44,9 +44,9 @@ describe('Book API Router:', function() {
 
   });
 
-  describe('GET /api/books/:id', function() {
+  describe('GET /api/books/:id', function () {
 
-    it('should route to book.controller.show', function() {
+    it('should route to book.controller.show', function () {
       routerStub.get
         .withArgs('/:id', 'bookCtrl.show')
         .should.have.been.calledOnce;
@@ -54,9 +54,9 @@ describe('Book API Router:', function() {
 
   });
 
-  describe('POST /api/books', function() {
+  describe('POST /api/books', function () {
 
-    it('should route to book.controller.create', function() {
+    it('should route to book.controller.create', function () {
       routerStub.post
         .withArgs('/', 'bookCtrl.create')
         .should.have.been.calledOnce;
@@ -64,9 +64,9 @@ describe('Book API Router:', function() {
 
   });
 
-  describe('PUT /api/books/:id', function() {
+  describe('PUT /api/books/:id', function () {
 
-    it('should route to book.controller.update', function() {
+    it('should route to book.controller.update', function () {
       routerStub.put
         .withArgs('/:id', 'bookCtrl.update')
         .should.have.been.calledOnce;
@@ -74,24 +74,19 @@ describe('Book API Router:', function() {
 
   });
 
-  describe('PATCH /api/books/:id', function() {
-
-    it('should route to book.controller.update', function() {
+  describe('PATCH /api/books/:id', function () {
+    it('should route to book.controller.update', function () {
       routerStub.patch
         .withArgs('/:id', 'bookCtrl.update')
         .should.have.been.calledOnce;
     });
-
   });
 
-  describe('DELETE /api/books/:id', function() {
-
-    it('should route to book.controller.destroy', function() {
+  describe('DELETE /api/books/:id', function () {
+    it('should route to book.controller.destroy', function () {
       routerStub.delete
         .withArgs('/:id', 'bookCtrl.destroy')
         .should.have.been.calledOnce;
     });
-
   });
-
 });
